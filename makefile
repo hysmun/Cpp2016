@@ -2,6 +2,7 @@ ALLPROG= Test1 Test2 Test3 Test4 Test5 Test6 Test7
 ALLOBJ = Joueur.o Matricule.o Classement.o Personne.o Membre.o Secretaire.o InvalidClassementException.o InvalidPasswordException.o
 ALLCPP = 
 ALLHEADER = 
+TMP = "commentaire de base"
 
 all:
 	clear
@@ -77,9 +78,20 @@ InvalidClassementException.o: InvalidClassementException.h InvalidClassementExce
 InvalidPasswordException.o: InvalidPasswordException.h InvalidPasswordException.cpp
 	g++ InvalidPasswordException.cpp -c -o InvalidPasswordException.o
 
+
+
+
+git:
+	clear
+	clear
+	git add -A
+	git commit -m "$(TMP)"
+	git push
+
+
 clean:
 	clear
-	rm -f *.o $(ALLPROG)
+	rm -f *.o makefile~ *.o~ $(ALLPROG)
 	
 	
 	
