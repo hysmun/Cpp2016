@@ -29,6 +29,10 @@ class Matricule
 
 	friend istream &operator>>(istream &s, Matricule &j);
 	
+	//autre
+	void Save(ofstream &fichier) const;
+	void Load(ifstream &fichier);
+	
 };
 
 #endif

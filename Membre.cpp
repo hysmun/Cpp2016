@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include <fstream>
 using namespace std;
 #include "Membre.h"
 
@@ -82,6 +83,32 @@ istream &operator>>(istream &s, Membre &j)
 
 
 
+/*******************************************
+*
+*			Autre
+*
+********************************/
+
+void Membre::Save(ofstream &fichier) const
+{
+	int tmp = getNumClub();
+	
+	Personne::Save(fichier);
+	
+	fichier.write((char *)&tmp, sizeof(int));
+	return;
+}
+
+void Membre::Load(ifstream &fichier)
+{
+	int tmp;
+	
+	Personne::Load(fichier);
+	
+	fichier.read((char *)&tmp, sizeof(int));
+	setNumClub(tmp);
+	return ;
+}
 
 
 

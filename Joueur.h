@@ -47,6 +47,10 @@ class Joueur : public Membre
 		Joueur operator+(int x);
 		Joueur operator-(int x);
 		
+		//autre
+		void Save(ofstream &fichier) const;
+		void Load(ifstream &fichier);
+		
 };
 
 #endif

@@ -1,5 +1,7 @@
 #ifndef	__CLASSEMENT_H__
 #define	__CLASSEMENT_H__
+#include <iostream>
+using namespace std;
 
 class Classement
 {
@@ -46,6 +48,8 @@ class Classement
 	//autre
 	int getValeur() const;
 	void setCl(char n , int x);
+	void Save(ofstream &fichier) const;
+	void Load(ifstream &fichier);
 };
 
 #endif

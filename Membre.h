@@ -34,7 +34,10 @@ class Membre : public Personne
 		Membre &operator=(const Membre &tmp);
 		friend ostream &operator<<(ostream &s, const Membre &j);
 		friend istream &operator>>(istream &s, Membre &j);
-
+		
+		//autre
+		void Save(ofstream &fichier) const;
+		void Load(ifstream &fichier);
 		
 };
 

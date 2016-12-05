@@ -30,6 +30,10 @@ class Personne
 		friend ostream &operator<<(ostream &s, const Personne &j);
 		friend istream &operator>>(istream &s, Personne &j);
 		
+		//autre
+		void Save(ofstream &fichier) const;
+		void Load(ifstream &fichier);	
+			
 };
 
 #endif

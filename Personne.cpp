@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include <fstream>
 using namespace std;
 #include "Personne.h"
 
@@ -138,6 +139,46 @@ istream &operator>>(istream &s, Personne &j)
 
 
 
+/*******************************************
+*
+*			Autre
+*
+********************************/
+
+void Personne::Save(ofstream &fichier) const
+{
+	char buf[255];
+	int tmp;
+	// save nom
+	tmp = strlen(getNom());
+	fichier.write((char *)&tmp, sizeof(int));
+	fichier.write(getNom(),tmp);
+	
+	//save prenom
+	tmp = strlen(getPrenom());
+	fichier.write((char *)&tmp, sizeof(int));
+	fichier.write(getPrenom(),tmp);
+	
+	return;
+}
+
+void Personne::Load(ifstream &fichier)
+{
+	char buf[255];
+	int tmp;
+	//lecture nom
+	fichier.read((char *)&tmp, sizeof(int));
+	fichier.read(buf, tmp);
+	setNom(buf);
+	
+	//lecture prenom
+	fichier.read((char *)&tmp, sizeof(int));
+	fichier.read(buf, tmp);
+	setPrenom(buf);
+	
+	
+	return ;
+}
 
 
 

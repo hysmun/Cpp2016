@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include <fstream>
 using namespace std;
 #include "Joueur.h"
 #include "Matricule.h"
@@ -291,6 +292,61 @@ Joueur Joueur::operator-(int x)
 	}
 	return tmp;
 }
+
+
+
+/*******************************************
+*
+*			Autre
+*
+********************************/
+
+void Joueur::Save(ofstream &fichier) const
+{
+	int tmp;
+	
+	Membre::Save(fichier);
+	
+	//save points
+	tmp = getPoints();
+	fichier.write((char *)&tmp, sizeof(int));
+	
+	//save matricule
+	jMatricule.Save(fichier);
+	
+	//save classements
+	jClassement->Save(fichier);
+	
+	return;
+}
+
+void Joueur::Load(ifstream &fichier)
+{
+	int tmp;
+	Matricule tmpM;
+	Classement tmpC;
+	
+	Membre::Load(fichier);
+	
+	//load points
+	fichier.read((char *)&tmp, sizeof(int));
+	setPoints(tmp);
+	
+	//load matricule
+	tmpM.Load(fichier);
+	setMatricule(tmpM);
+	
+	//load classement
+	tmpC.Load(fichier);
+	setClassement(&tmpC);
+	
+	return ;
+}
+
+
+
+
+
 
 
 

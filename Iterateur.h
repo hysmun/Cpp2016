@@ -1,7 +1,7 @@
 #ifndef H_ITERATEUR
 #define H_ITERATEUR
 
-#include "listeBase.h"
+#include "ListeBase.h"
 
 template<class T>
 class listeBase;

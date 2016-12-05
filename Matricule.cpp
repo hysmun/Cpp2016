@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string.h>
+#include <fstream>
 using namespace std;
 #include "Joueur.h"
 #include "Matricule.h"
@@ -113,9 +114,25 @@ istream &operator>>(istream &s, Matricule &j)
 
 
 
+/*******************************************
+*
+*			Autre
+*
+********************************/
 
+void Matricule::Save(ofstream &fichier) const
+{
+	fichier.write(dateInscription,sizeof(dateInscription));
+	fichier.write((char *)&numero, sizeof(int));
+	return;
+}
 
-
+void Matricule::Load(ifstream &fichier)
+{
+	fichier.read(dateInscription, sizeof(dateInscription));
+	fichier.read((char *)&numero, sizeof(int));
+	return ;
+}
 
 
 

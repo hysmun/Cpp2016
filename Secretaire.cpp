@@ -61,20 +61,20 @@ int Secretaire::setPassword(const char *tmp)
 	int i, digit=0, alpha=0;
 	
 	if(strlen(tmp) != 8)
-	throw InvalidPasswordException(InvalidPasswordException::BAD_LENGTH_ERROR);
+		throw InvalidPasswordException(InvalidPasswordException::BAD_LENGTH_ERROR);
 	for(i=0; i < strlen(tmp); i++)
 	{
-		if(tmp[i] <= '9' || tmp[i] >= '0') digit =1;
+		if(tmp[i] <= '9' && tmp[i] >= '0') digit =1;
 		
 		if(isalpha(tmp[i])) alpha = 1;
 	}
 	
 	
 	if(digit == 0)
-	throw InvalidPasswordException(InvalidPasswordException::MISSING_DIGIT_ERROR);
+		throw InvalidPasswordException(InvalidPasswordException::MISSING_DIGIT_ERROR);
 	
 	if(alpha == 0)
-	throw InvalidPasswordException(InvalidPasswordException::MISSING_ALPHA_ERROR);
+		throw InvalidPasswordException(InvalidPasswordException::MISSING_ALPHA_ERROR);
 	
 	if(tmp != NULL)
 	{
@@ -143,3 +143,44 @@ istream &operator>>(istream &s, Secretaire &j)
 	j.setPassword(pass);
 	return s;
 }
+
+
+
+/*******************************************
+*
+*			Autre
+*
+********************************/
+
+void Secretaire::Save(ofstream &fichier) const
+{
+	return;
+}
+
+void Secretaire::Load(ifstream &fichier)
+{
+	return ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

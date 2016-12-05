@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string.h>
+#include <fstream>
 using namespace std;
 #include "Joueur.h"
 #include "Matricule.h"
@@ -26,8 +27,7 @@ Classement::Classement()
 
 Classement::Classement(char sd, short n)
 {
-	setNombre(n);
-	setLettre(sd);
+	setCl(sd, n);
 }
 
 Classement::Classement(const Classement &c)
@@ -90,7 +90,7 @@ int Classement::getValeur() const
 void Classement::setLettre(char n)
 {
 	if(n < 'A' || n > 'F')
-	throw InvalidClassementException("Lettre invalide !");
+		throw InvalidClassementException("Lettre invalide !");
 	
 	lettre = n;
 }
@@ -98,7 +98,7 @@ void Classement::setLettre(char n)
 void Classement::setNombre(short n)
 {
 	if(n > 10 || n < 1)
-	throw InvalidClassementException("Nombre invalide !");
+		throw InvalidClassementException("Nombre invalide !");
 	
 	nombre = n;
 }
@@ -107,6 +107,8 @@ void Classement::setCl(char n , int x)
 {
 	switch(n)
 	{
+		case 'A':
+			break;
 		case 'B':
 		case 'C':
 		case 'D':
@@ -118,6 +120,8 @@ void Classement::setCl(char n , int x)
 			if(x > 2)
 			throw InvalidClassementException("Nombre invalide !");
 			break;
+		default:
+			throw InvalidClassementException("Lettre invalide !");
 	}
 	setLettre(n);
 	setNombre(x);
@@ -240,6 +244,28 @@ Classement Classement::operator--(int)
 }
 
 
+/*******************************************
+*
+*			Autre
+*
+********************************/
+
+void Classement::Save(ofstream &fichier) const
+{
+	fichier.write(&lettre, sizeof(char));
+	fichier.write((char*)&nombre, sizeof(int));
+	return;
+}
+
+void Classement::Load(ifstream &fichier)
+{
+	char tmpc;
+	int tmpi;
+	fichier.read(&tmpc, sizeof(char));
+	fichier.read((char *)&tmpi, sizeof(int));
+	setCl(tmpc, tmpi);
+	return ;
+}
 
 
 

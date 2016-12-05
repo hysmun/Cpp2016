@@ -40,6 +40,10 @@ class Secretaire : public Membre
 		friend ostream &operator<<(ostream &s, const Secretaire &j);
 		friend istream &operator>>(istream &s, Secretaire &j);
 		
+		//autre
+		void Save(ofstream &fichier) const;
+		void Load(ifstream &fichier);
+		
 };
 
 #endif

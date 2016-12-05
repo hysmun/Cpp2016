@@ -1,7 +1,7 @@
 #ifndef H_LISTE
 #define H_LISTE
 
-#include "listeBase.h"
+#include "ListeBase.h"
 
 template<class T>
 class Liste : public listeBase<T> {
