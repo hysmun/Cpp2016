@@ -12,6 +12,10 @@ using namespace std;
 *
 ********************************/
 
+
+
+
+
 Matricule::Matricule()
 {
 	strcpy(dateInscription, "00/00/0000");

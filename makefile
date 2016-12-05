@@ -2,7 +2,8 @@ ALLPROG= Test1 Test2 Test3 Test4 Test5 Test6 Test7
 ALLOBJ = Joueur.o Matricule.o Classement.o Personne.o Membre.o Secretaire.o InvalidClassementException.o InvalidPasswordException.o
 ALLCPP = 
 ALLHEADER = 
-TMP = "commentaire de base"
+TMP = commentaire de base
+CFLAGS = 
 
 all:
 	clear
@@ -78,7 +79,8 @@ InvalidClassementException.o: InvalidClassementException.h InvalidClassementExce
 InvalidPasswordException.o: InvalidPasswordException.h InvalidPasswordException.cpp
 	g++ InvalidPasswordException.cpp -c -o InvalidPasswordException.o
 
-
+%.o: %.c
+	$(CC) -o $@ -c $< $(CFLAGS)
 
 
 git:
