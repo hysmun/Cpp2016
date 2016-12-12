@@ -150,12 +150,12 @@ void Personne::Save(ofstream &fichier) const
 	char buf[255];
 	int tmp;
 	// save nom
-	tmp = strlen(getNom());
+	tmp = strlen(getNom())+1;
 	fichier.write((char *)&tmp, sizeof(int));
 	fichier.write(getNom(),tmp);
 	
 	//save prenom
-	tmp = strlen(getPrenom());
+	tmp = strlen(getPrenom())+1;
 	fichier.write((char *)&tmp, sizeof(int));
 	fichier.write(getPrenom(),tmp);
 	

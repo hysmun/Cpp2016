@@ -19,32 +19,20 @@ int main(int argc,char* argv[])
 {
   int choix;
   bool fini = false;
-	try
-	{
-	  while(!fini)
-	  {
-		 if (argc == 2) { choix = atoi(argv[1]); fini = true; }
-		 else choix = Menu();
-		 switch(choix)
-		 {
-			case 1 : Essai1(); break;
-			case 2 : Essai2(); break;
-			case 3 : Essai3(); break;
-			case 4 : Essai4(); break;
-			default : fini = true ; break;
-		 }
-	  }
-	}
-	catch (InvalidClassementException)
-	{
-		cout << "ERREUR classement !"<< endl;
-	}
-	catch (...)
-	{
-		cout << "erreur autre" << endl;
-	}
-	
-	
+
+  while(!fini)
+  {
+	 if (argc == 2) { choix = atoi(argv[1]); fini = true; }
+	 else choix = Menu();
+	 switch(choix)
+	 {
+		case 1 : Essai1(); break;
+		case 2 : Essai2(); break;
+		case 3 : Essai3(); break;
+		case 4 : Essai4(); break;
+		default : fini = true ; break;
+	 }
+  }
   return 0;
 }
 
