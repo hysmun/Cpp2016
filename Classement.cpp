@@ -253,16 +253,16 @@ Classement Classement::operator--(int)
 void Classement::Save(ofstream &fichier) const
 {
 	fichier.write(&lettre, sizeof(char));
-	fichier.write((char*)&nombre, sizeof(int));
+	fichier.write((char*)&nombre, sizeof(short));
 	return;
 }
 
 void Classement::Load(ifstream &fichier)
 {
 	char tmpc;
-	int tmpi;
+	short tmpi;
 	fichier.read(&tmpc, sizeof(char));
-	fichier.read((char *)&tmpi, sizeof(int));
+	fichier.read((char *)&tmpi, sizeof(short));
 	setCl(tmpc, tmpi);
 	return ;
 }
