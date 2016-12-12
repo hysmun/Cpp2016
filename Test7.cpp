@@ -7,6 +7,7 @@ using namespace std;
 #include "Classement.h"
 #include "Matricule.h"
 #include "Joueur.h"
+#include "InvalidClassementException.h"
 
 int  Menu();
 void Essai1();
@@ -18,41 +19,54 @@ int main(int argc,char* argv[])
 {
   int choix;
   bool fini = false;
-  
-  while(!fini)
-  {
-    if (argc == 2) { choix = atoi(argv[1]); fini = true; }
-    else choix = Menu();
-    switch(choix)
-    {
-      case 1 : Essai1(); break;
-      case 2 : Essai2(); break;
-      case 3 : Essai3(); break;
-      case 4 : Essai4(); break;
-      default : fini = true ; break;
-    }
-  }
-
+	try
+	{
+	  while(!fini)
+	  {
+		 if (argc == 2) { choix = atoi(argv[1]); fini = true; }
+		 else choix = Menu();
+		 switch(choix)
+		 {
+			case 1 : Essai1(); break;
+			case 2 : Essai2(); break;
+			case 3 : Essai3(); break;
+			case 4 : Essai4(); break;
+			default : fini = true ; break;
+		 }
+	  }
+	}
+	catch (InvalidClassementException)
+	{
+		cout << "ERREUR classement !"<< endl;
+	}
+	catch (...)
+	{
+		cout << "erreur autre" << endl;
+	}
   return 0;
 }
 
 int Menu()
 {
-  cout << endl;
-  cout << "---------------------------------------------------------------------------" << endl;
-  cout << "--- JEU DE TEST 7 ---------------------------------------------------------" << endl;
-  cout << "---------------------------------------------------------------------------" << endl;
-  cout << " 1. Test des methodes Save et Load de la classe Classement" << endl;
-  cout << " 2. Test des mathodes Save et Load de la classe Matricule" << endl;
-  cout << " 3. Test des methodes Save et Load de la classe Joueur" << endl;
-  cout << " 4. Test des operateurs << et >> de la classe Classement" << endl;
-  cout << " 5. Quitter" << endl << endl;
+	
+		cout << endl;
+		cout << "---------------------------------------------------------------------------" << endl;
+		cout << "--- JEU DE TEST 7 ---------------------------------------------------------" << endl;
+		cout << "---------------------------------------------------------------------------" << endl;
+		cout << " 1. Test des methodes Save et Load de la classe Classement" << endl;
+		cout << " 2. Test des mathodes Save et Load de la classe Matricule" << endl;
+		cout << " 3. Test des methodes Save et Load de la classe Joueur" << endl;
+		cout << " 4. Test des operateurs << et >> de la classe Classement" << endl;
+		cout << " 5. Quitter" << endl << endl;
 
-  int ch;
-  cout << "  Choix : ";
-  cin >> ch; // Faites pas le biess !
-  cin.ignore();
-  return ch;
+		int ch;
+		cout << "  Choix : ";
+		cin >> ch; // Faites pas le biess !
+		cin.ignore();
+		return ch;
+	
+	
+	return ch;
 }
 
 //*********************************************************************************************
