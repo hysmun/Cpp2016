@@ -45,7 +45,7 @@ int main()
 	if(!fichier)
 		bidonnageSec();
 		
-	ListeSec.Load(fichier);
+	listeSec.Load(fichier);
 		
 	cout << "Login : ";
 	cin >> login;
@@ -56,11 +56,13 @@ int main()
 	
 	
 	if(numeroClub == 0)
+	{
 		//lancer l'interface grand manitou
+	}
 	else
 	{
 		//lancer l'interface petite bite
-
+	}
 }
 
 
