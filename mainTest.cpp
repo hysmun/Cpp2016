@@ -33,6 +33,7 @@ using namespace std;
 int main()
 {
 	ifstream fichier("secretaires.dat",ios::in);
+	Liste<Secretaire> listeSec;
 	cout << "***********************************" << endl;
 	cout << "********** Bienvenue !!! **********" << endl;
 	cout << "***********************************" << endl << endl << endl;
