@@ -43,19 +43,13 @@ int main()
 	char login[9],passwd[9];
 	int numeroClub;
 	if(!fichier)
-	{
-		Secretaire s("admin","admin",0,"admin","admin111");
-		bidonnageSec(&numeroClub,login,passwd,s);
-	}
-	else
-	{
-		cout << "Login : ";
-		cin >> login;
-		//Test si login OK
-		cout << "Password : ";
-		cin >> passwd;
-		//Test si password OK
-	}
+		bidonnageSec();
+	cout << "Login : ";
+	cin >> login;
+	//Test si login OK
+	cout << "Password : ";
+	cin >> passwd;
+	//Test si password OK
 	if(numeroClub == 0)
 		//lancer l'interface grand manitou
 	else

@@ -2,7 +2,7 @@
 #define H_UTILS_H
 
 
-void bidonnageSec(int*,char*,char*,const Secretaire&);
+void bidonnageSec();
 
 
 #endif // H_UTILS_H

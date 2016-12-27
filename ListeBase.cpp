@@ -122,7 +122,7 @@ int ListeBase<T>::Load(ifstream &fichier)
 {
 	
 	int i;
-	for(i=0; 1;i++)
+	for(i=0;1;i++)
 	{
 		
 	}
@@ -133,7 +133,7 @@ template<class T>
 int ListeBase<T>::Save(ofstream &fichier)
 {
 	int i;
-	for(i=0; 1;i++)
+	for(i=0;1;i++)
 	{
 		
 	}
