@@ -22,10 +22,10 @@ class Club
 		char* getNom()const;
 		int getNumClub()const;
 		char* getAdresse()const;
-//		Club& operator=(const Club& c);
-//		bool operator<(const Club& c)const;
-//		bool operator>(const Club& c)const;
-//		bool operator==(const Club& c)const;
+		Club& operator=(const Club& c);
+		bool operator<(const Club& c)const;
+		bool operator>(const Club& c)const;
+		bool operator==(const Club& c)const;
 };
 
 

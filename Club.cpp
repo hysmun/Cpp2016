@@ -31,10 +31,16 @@ Club::Club(const Club& c)
 			setNumClub(c.numClub);
 		}
 		else
-			return;
+		{
+			cout << "Erreur d'adresse" << endl;
+			exit(0);
+		}
 	}
 	else
-		return;
+	{
+		cout << "Erreur de nom" << endl;
+		exit(0);
+	}
 }
 
 Club::~Club()
@@ -91,7 +97,7 @@ ostream& operator<<(ostream& o,const Club& c)
 istream& operator>>(istream& i, Club& c)
 {
 	cout << "Nom du club : ";
-	i >> c.nom; // A MODIFIER
+	i >> c.nom;
 	cout << "Numero du club : ";
 	i >> c.numClub;
 	cout << "Adresse du club : ";
@@ -99,6 +105,58 @@ istream& operator>>(istream& i, Club& c)
 	return i;
 }
 
+Club& Club::operator=(const Club& c)
+{
+	if(c.nom)
+	{
+		if(c.adresse)
+		{
+			setNom(c.nom);
+			setAdresse(c.adresse);
+			setNumClub(c.numClub);
+		}
+		else
+		{
+			cout << "Erreur d'adresse" << endl;
+			exit(0);
+		}
+	}
+	else
+	{
+		cout << "Erreur de nom" << endl;
+		exit(0);
+	}
+	return *this;
+}
+
+bool Club::operator<(const Club& c)const
+{
+	if(strcmp(nom,c.nom) < 0)
+		return true;
+	else
+		return false;
+
+}
+
+
+bool Club::operator>(const Club& c)const
+{
+	if(strcmp(nom,c.nom) > 0)
+		return true;
+	else
+		return false;
+
+}
+
+
+bool Club::operator==(const Club& c)const
+{
+	if(strcmp(nom,c.nom) == 0)
+		return true;
+	else
+		return false;
+
+}
 
 
 
