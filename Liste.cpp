@@ -1,18 +1,21 @@
 #include "ListeBase.h"
 #include "Liste.h"
 
-template<class T>
-T* Liste<T>::insere(const T &elm) {
-	if (this->estVide()) {
+template<class T> T* Liste<T>::insere(const T &elm) 
+{
+	if (this->estVide()) 
+	{
 		this->pTete = new Cellule<T>;
 		this->pTete->valeur = elm;
 		this->pTete->suivant = 0;
 		return &(this->pTete->valeur);
 	}
-	else {
+	else 
+	{
 		Cellule<T> *pParc = this->pTete;
 	
-		while (pParc->suivant != 0) {
+		while (pParc->suivant != 0) 
+		{
 			pParc = pParc->suivant;
 		}
 		
@@ -25,6 +28,18 @@ T* Liste<T>::insere(const T &elm) {
 }
 
 #include "Classement.h"
+#include "Joueur.h"
+// club
 
 template class Liste<int>;
 template class Liste<Classement>;
+
+
+
+
+
+
+
+
+
+

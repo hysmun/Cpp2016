@@ -1,13 +1,13 @@
 #include <iostream>
 #include "ListeBase.h"
 
-template<class T>
-listeBase<T>::listeBase() {
+template<class T> ListeBase<T>::ListeBase() 
+{
 	pTete = 0;
 }
 
-template<class T>
-listeBase<T>::listeBase(const listeBase &l) {
+template<class T> ListeBase<T>::ListeBase(const ListeBase &l) 
+{
 	if (l.estVide())
 		return;
 		
@@ -20,7 +20,8 @@ listeBase<T>::listeBase(const listeBase &l) {
 	pParc = pParc->suivant;
 	Cellule<T> *pPrec = pTete;
 	
-	while (pParc != 0) {
+	while (pParc != 0) 
+	{
 		Cellule<T> *pTr = new Cellule<T>;
 		pTr->valeur = pParc->valeur;
 		pTr->suivant = 0;
@@ -31,10 +32,11 @@ listeBase<T>::listeBase(const listeBase &l) {
 	}
 }
 
-template<class T>
-listeBase<T>::~listeBase() {
+template<class T> ListeBase<T>::~ListeBase() 
+{
 	Cellule<T> *pTmp = pTete;
-	while (pTmp != 0) {
+	while (pTmp != 0) 
+	{
 		Cellule<T> *pToDelete = pTmp;
 		pTmp = pTmp->suivant;
 		delete pToDelete;
@@ -42,16 +44,19 @@ listeBase<T>::~listeBase() {
 }
 
 template<class T>
-bool listeBase<T>::estVide() const {
+bool ListeBase<T>::estVide() const 
+{
 	return pTete == 0 ? true : false;
 }
 
 template<class T>
-int listeBase<T>::getNombreElements() const {
+int ListeBase<T>::getNombreElements() const 
+{
 	int nbr = 0;
 	Cellule<T> *pTmp = pTete;
 	
-	while (pTmp != 0) {
+	while (pTmp != 0) 
+	{
 		nbr++;
 		pTmp = pTmp->suivant;
 	}
@@ -60,24 +65,27 @@ int listeBase<T>::getNombreElements() const {
 }
 
 template<class T>
-void listeBase<T>::Affiche() const {
+void ListeBase<T>::Affiche() const 
+{
 	Cellule<T> *pTmp = pTete;
 	
-	while (pTmp != 0) {
+	while (pTmp != 0) 
+	{
 		std::cout << pTmp->valeur << std::endl;
 		pTmp = pTmp->suivant;
 	}
 }
 
-template<class T>
-void listeBase<T>::operator=(const listeBase& source) {
+template<class T> void ListeBase<T>::operator=(const ListeBase& source) 
+{
 	if (estVide())
 		pTete = new Cellule<T>;
 	else {
 		//vider la liste
 		Cellule<T> *pTmp = pTete;
 	
-		while (pTmp != 0) {
+		while (pTmp != 0) 
+		{
 			std::cout << pTmp->valeur << std::endl;
 			pTmp = pTmp->suivant;
 		}
@@ -93,7 +101,8 @@ void listeBase<T>::operator=(const listeBase& source) {
 	pParc = pParc->suivant;
 	Cellule<T> *pPrec = pTete;
 	
-	while (pParc != 0) {
+	while (pParc != 0) 
+	{
 		Cellule<T> *pTr = new Cellule<T>;
 		pTr->valeur = pParc->valeur;
 		pTr->suivant = 0;
@@ -105,6 +114,8 @@ void listeBase<T>::operator=(const listeBase& source) {
 }
 
 #include "Classement.h"
+#include "Joueur.h"
 
-template class listeBase<int>;
-template class listeBase<Classement>;
+template class ListeBase<int>;
+template class ListeBase<Classement>;
+template class ListeBase<Joueur>;

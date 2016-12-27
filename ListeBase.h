@@ -7,25 +7,27 @@ template<class T>
 class Iterateur;
 
 template<class T>
-struct Cellule {
+struct Cellule 
+{
 	T valeur ;
 	Cellule<T> *suivant ;
 };
 
 template<class T>
-class listeBase {
+class ListeBase 
+{
 	protected:
 		Cellule<T> *pTete;
 	
 	public:
-		listeBase();
-		listeBase(const listeBase&);
-		virtual ~listeBase() = 0;
+		ListeBase();
+		ListeBase(const ListeBase&);
+		virtual ~ListeBase() = 0;
 		bool estVide() const;
 		int getNombreElements() const;
 		void Affiche() const;
 		virtual T* insere(const T&) = 0;
-		void operator=(const listeBase&);
+		void operator=(const ListeBase&);
 		friend class Iterateur<T>;
 };
 

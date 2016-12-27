@@ -4,19 +4,20 @@
 #include "ListeBase.h"
 
 template<class T>
-class listeBase;
+class ListeBase;
 
 template<class T>
 struct Cellule;
 
 template<class T>
-class Iterateur {
+class Iterateur 
+{
 	private:
-		listeBase<T> &liste;
+		ListeBase<T> &liste;
 		Cellule<T> *currentPos;
 		
 	public:
-		Iterateur(listeBase<T> &l) : liste(l), currentPos(l.pTete) {};
+		Iterateur(ListeBase<T> &l) : liste(l), currentPos(l.pTete) {};
 		void reset();
 		bool end();
 		void operator++(int);

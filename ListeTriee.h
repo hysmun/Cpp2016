@@ -4,7 +4,8 @@
 #include "ListeBase.h"
 
 template<class T>
-class ListeTriee : public listeBase<T> {
+class ListeTriee : public ListeBase<T> 
+{
 	public:
 		T* insere(const T&);
 };

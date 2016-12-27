@@ -1,33 +1,39 @@
 #include "Iterateur.h"
 
 template<class T>
-bool Iterateur<T>::end() {
+bool Iterateur<T>::end() 
+{
 	return currentPos == 0;
 }
 
 template<class T>
-void Iterateur<T>::reset() {
+void Iterateur<T>::reset() 
+{
 	currentPos = liste.pTete;
 }
 
 template<class T>
-void Iterateur<T>::operator++(int) {
+void Iterateur<T>::operator++(int) 
+{
 	if (currentPos != 0)
 		currentPos = currentPos->suivant; 
 }
 
 template<class T>
-Iterateur<T>::operator T() const {
+Iterateur<T>::operator T() const 
+{
 	return currentPos->valeur;
 }
 
 template<class T>
-T* Iterateur<T>::operator& (void) {
+T* Iterateur<T>::operator& (void) 
+{
 	return &(currentPos->valeur);
 }
 
 template<class T>
-T Iterateur<T>::remove() {
+T Iterateur<T>::remove() 
+{
 	T tmp(currentPos->valeur);
 	
 	//recreer les bons branchements
@@ -35,7 +41,8 @@ T Iterateur<T>::remove() {
 	Cellule<T> *pParc = liste.pTete;
 	Cellule<T> *pPrec = 0;
 	
-	while (pParc != 0 && pParc != currentPos) {
+	while (pParc != 0 && pParc != currentPos) 
+	{
 		pPrec = pParc;
 		pParc = pParc->suivant;
 	}

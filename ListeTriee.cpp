@@ -2,7 +2,8 @@
 #include "ListeTriee.h"
 
 template<class T>
-T* ListeTriee<T>::insere(const T &elm) {
+T* ListeTriee<T>::insere(const T &elm) 
+{
 	Cellule<T> *pNew = new Cellule<T>;
 	pNew->valeur = elm;
 	pNew->suivant = 0;
@@ -10,23 +11,27 @@ T* ListeTriee<T>::insere(const T &elm) {
 	Cellule<T> *pParc = this->pTete;
 	Cellule<T> *pPrec = 0;
 	
-	if (pParc == 0) {
+	if (pParc == 0) 
+	{
 		this->pTete = pNew;
 		return &(this->pTete->valeur);
 	}
 	
-	while (pParc != 0 && pParc->valeur < elm) {
+	while (pParc != 0 && pParc->valeur < elm) 
+	{
 		pPrec = pParc;
 		pParc = pParc->suivant;
 	}
 	
 	//cas ou il va en tete de liste?
-	if (pPrec == 0) {
+	if (pPrec == 0) 
+	{
 		pNew->suivant = this->pTete;
 		this->pTete = pNew;
 	}
 	//autre cas
-	else {
+	else 
+	{
 		pPrec->suivant = pNew;
 		pNew->suivant = pParc;
 	}
@@ -35,6 +40,22 @@ T* ListeTriee<T>::insere(const T &elm) {
 }
 
 #include "Classement.h"
+#include "Joueur.h"
+// club 
 
 template class ListeTriee<int>;
 template class ListeTriee<Classement>;
+template class ListeTriee<Joueur>;
+
+
+
+
+
+
+
+
+
+
+
+
+
