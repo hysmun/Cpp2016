@@ -1,11 +1,29 @@
 #include <stdlib.h>
-#include <iostream>
+#include <stdio.h>
 #include <string.h>
-#include "utils.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
+#include "Equipe.h"
+#include "Club.h"
+#include "Classement.h"
+#include "Joueur.h"
+#include "Membre.h"
+#include "Personne.h"
+#include "Secretaire.h"
+#include "ListeBase.h"
+#include "Liste.h"
+#include "ListeTriee.h"
+#include "InvalidClassementException.h"
+#include "InvalidPasswordException.h"
+#include "Matricule.h"
+#include "Iterateur.h"
 
-void bidonnageSec(int* numeroClub,char* login,char* passwd,const Secretaire& s)
+
+void bidonnageSec()
 {
-	*numeroClub = s.getNumClub();
-	strcpy(login,s.getLogin());
-	strcpy(passwd,s.getPassword());
+	ofstream fichier("secretaires.dat",ios::out);
+	Secretaire s("admin","admin",0,"admin","admin111");
+	s.Load(fichier);
+	fichier.close();
 }
