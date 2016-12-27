@@ -154,40 +154,28 @@ istream &operator>>(istream &s, Secretaire &j)
 
 void Secretaire::Save(ofstream &fichier) const
 {
-	char buf[255];
-	int tmp;
-	
 	// save login
 	
-	tmp = strlen(getLogin())+1;
-	fichier.write((char *)&tmp, sizeof(int));
-	fichier.write(getLogin(),tmp);
+	fichier.write(getLogin(),9);
 	
 	//save password
 	
-	tmp = strlen(getPassword())+1;
-	fichier.write((char *)&tmp, sizeof(int));
-	fichier.write(getPassword(),tmp);
+	fichier.write(getPassword(),9);
 	return;
 }
 
 void Secretaire::Load(ifstream &fichier)
 {
-	char buf[255];
-	int tmp;
-	
 	Membre::Load(fichier);
 	
 	//lecture login
 	
-	fichier.read((char *)&tmp, sizeof(int));
-	fichier.read(buf, tmp);
+	fichier.read(buf,9);
 	setLogin(buf);
 	
 	//lecture password
 	
-	fichier.read((char *)&tmp, sizeof(int));
-	fichier.read(buf, tmp);
+	fichier.read(buf,9);
 	setPassword(buf);
 	return;
 }
