@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Joueur.h"
+#include "Club.h"
 using namespace std;
 
 class Equipe
@@ -20,8 +21,8 @@ class Equipe
 	public:
 		//initialisateur
 		Equipe();
-		Equipe(Club &tmpClub, char tmpNumero,const char *tmpDivision);
-		Equipe(const Equipe &cpyEquipe);
+		Equipe(Club *tmpClub, char tmpNumero,const char *tmpDivision)  : Equipe();
+		Equipe(const Equipe &cpyEquipe)  : Equipe();
 		~Equipe();
 
 		//getteur
@@ -31,9 +32,9 @@ class Equipe
 		Joueur *getJoueur(int nbr) const;
 		
 		//setteur
-		int setClub(const Club &tClub);
+		int setClub(Club *tClub);
 		int setNumero(char num);
-		int setDivision(char *div);
+		int setDivision(const char *div);
 		int setJoueur(Joueur *tmpJoueur, int nbr);
 		
 		//operateur
@@ -43,6 +44,6 @@ class Equipe
 		//autre
 
 
-}
+};
 
 #endif // H_EQUIPE_H

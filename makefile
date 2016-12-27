@@ -136,6 +136,8 @@ ListeTriee.o: ListeTriee.cpp ListeTriee.h
 	g++ ListeTriee.cpp -c -o ListeTriee.o
 
 %.o: %.c
+	clear
+	clear
 	echo $@
 	$(CC) -o $@ -c $< $(CFLAGS)
 

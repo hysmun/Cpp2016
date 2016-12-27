@@ -5,6 +5,7 @@
 #include <fstream>
 using namespace std;
 #include "Equipe.h"
+#include "Club.h"
 
 
 /***************************************
@@ -23,18 +24,18 @@ Equipe::Equipe()
 	setNumero('A');
 }
 
-Equipe::Equipe(Club &tmpClub, char tmpNumero,const char *tmpDivision)
+Equipe::Equipe(Club *tmpClub, char tmpNumero,const char *tmpDivision) : Equipe()
 {
 	setClub(tmpClub);
 	setNumero(tmpNumero);
 	setDivision(tmpDivision);
 }
 
-Equipe::Equipe(const Equipe &cpyEquipe)
+Equipe::Equipe(const Equipe &cpyEquipe) : Equipe()
 {
-	setClub(cpyEquipe.tmpClub);
-	setNumero(cpyEquipe.tmpNumero);
-	setDivision(cpyEquipe.tmpDivision);
+	setClub(cpyEquipe.getClub());
+	setNumero(cpyEquipe.getNumero());
+	setDivision(cpyEquipe.getDivision());
 	setJoueur(cpyEquipe.jJoueur[0], 0);
 	setJoueur(cpyEquipe.jJoueur[1], 1);
 	setJoueur(cpyEquipe.jJoueur[2], 2);
@@ -81,7 +82,7 @@ Joueur *Equipe::getJoueur(int nbr) const
 *			Setteur
 *
 ********************************/
-int Equipe::setClub(const Club &tClub)
+int Equipe::setClub(Club *tClub)
 {
 	pClub = tClub;
 	return 1;
@@ -95,7 +96,7 @@ int Equipe::setNumero(char num)
 	numero = num;
 }
 
-int Equipe::setDivision(char *div)
+int Equipe::setDivision(const char *div)
 {
 	if(division != NULL)
 		delete division;
@@ -124,13 +125,14 @@ int Equipe::setJoueur(Joueur *tmpJoueur, int nbr)
 *			operateur
 *
 ********************************/
-ostream &Equipe::operator<<(ostream &s, const Equipe &e)
+ostream &operator<<(ostream &s, const Equipe &e)
 {
-
-
+	if(Club != NULL)
+		s << Club << " ";
+	s << numero << " ";
 }
 
-istream &Equipe::operator>>(istream &s, Equipe &e)
+istream &operator>>(istream &s, Equipe &e)
 {
 
 
@@ -138,8 +140,14 @@ istream &Equipe::operator>>(istream &s, Equipe &e)
 
 Equipe &Equipe::operator=(const Equipe &tmpEquipe)
 {
-
-
+	setClub(tmpEquipe.getClub());
+	setNumero(tmpEquipe.getNumero());
+	setDivision(tmpEquipe.getDivision());
+	setJoueur(tmpEquipe.jJoueur[0], 0);
+	setJoueur(tmpEquipe.jJoueur[1], 1);
+	setJoueur(tmpEquipe.jJoueur[2], 2);
+	setJoueur(tmpEquipe.jJoueur[3], 3);
+	return this;
 }
 
 
