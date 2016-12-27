@@ -60,9 +60,7 @@ int main()
 	else
 	{
 		//lancer l'interface petite bite
-	}
-		
-		
+
 }
 
 
