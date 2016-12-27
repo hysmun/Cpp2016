@@ -98,7 +98,11 @@ Joueur *Equipe::getJoueur(int nbr) const
 ********************************/
 int Equipe::setClub(Club *tClub)
 {
-	pClub = tClub;
+	if(pClub != NULL) delete pClub;
+	if(tClub != NULL)
+	{
+		pClub = tClub;
+	}
 	return 1;
 }
 
@@ -126,7 +130,7 @@ int Equipe::setJoueur(Joueur *tmpJoueur, int nbr)
 {
 	if(nbr > 3 || nbr < 0)
 		return -1;
-
+	if(jJoueur[nbr] != NULL) delete jJoueur[nbr];
 	if(tmpJoueur != NULL)
 	{
 		jJoueur[nbr] = tmpJoueur;
@@ -158,8 +162,30 @@ ostream &operator<<(ostream &s, const Equipe &e)
 
 istream &operator>>(istream &s, Equipe &e)
 {
+	Joueur tmpJoueur;
+	char nbr;
+	char tmpDiv[100];
+	Club tmpClub;
+	int i;
 
-
+	s >> tmpClub;
+	e.setClub(&tmpClub);
+	
+	cout << "veuillez entrez le numero de l'equipe (A, B, C, D, ...)"<<endl;
+	s>> nbr;
+	e.setNumero(nbr);
+	
+	cout << "Veuillez entrez la division de l'equipe"<<endl;
+	s>> tmpDiv;
+	e.setDivision(tmpDiv);
+	
+	for(i=0; i<4; i++)
+	{
+		cout << " joueur "<< i<< endl;
+		s>>tmpJoueur;
+		e.setJoueur(&tmpJoueur,i);
+	}
+	
 }
 
 Equipe &Equipe::operator=(const Equipe &tmpEquipe)
