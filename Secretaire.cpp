@@ -3,6 +3,7 @@
 #include <string.h>
 #include <iostream>
 #include <ctype.h>
+#include <fstream>
 using namespace std;
 #include "Membre.h"
 #include "Personne.h"
@@ -154,6 +155,7 @@ istream &operator>>(istream &s, Secretaire &j)
 
 void Secretaire::Save(ofstream &fichier) const
 {
+	char buf[9];
 	// save login
 	
 	fichier.write(getLogin(),9);
@@ -166,6 +168,7 @@ void Secretaire::Save(ofstream &fichier) const
 
 void Secretaire::Load(ifstream &fichier)
 {
+	char buf[9];
 	Membre::Load(fichier);
 	
 	//lecture login

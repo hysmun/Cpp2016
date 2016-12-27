@@ -1,6 +1,6 @@
 .SILENT:
 ALLPROG= Test1 Test2 Test3 Test4 Test5 Test6 Test7 main mainTest
-ALLOBJ = Joueur.o Matricule.o Classement.o Personne.o Membre.o Secretaire.o InvalidClassementException.o InvalidPasswordException.o ListeBase.o Liste.o ListeTriee.o Iterateur.o Equipe.o Club.o
+ALLOBJ = Joueur.o Matricule.o Classement.o Personne.o Membre.o Secretaire.o InvalidClassementException.o InvalidPasswordException.o ListeBase.o Liste.o ListeTriee.o Iterateur.o Equipe.o Club.o utils.o
 ALLCPP = 
 ALLHEADER = 
 TMP = commentaire de base
@@ -173,7 +173,9 @@ Equipe.o: Equipe.cpp Equipe.h
 	echo $@
 	g++ Equipe.cpp -c -o Equipe.o
 
-
+utils.o: utils.cpp utils.h
+	echo $@
+	g++ utils.cpp -c -o Utils.o
 
 
 # -------------------------------------------------

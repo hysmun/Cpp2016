@@ -28,6 +28,7 @@ using namespace std;
 #include "InvalidPasswordException.h"
 #include "Matricule.h"
 #include "Iterateur.h"
+#include "utils.h"
 
 
 int main()
@@ -43,7 +44,29 @@ int main()
 	cout << "Login : ";
 	cin >> login;
 	//Test si login OK
-	cout << "Password : ":
+	cout << "Password : ";
 	cin >> passwd;
 	//Test si password OK
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

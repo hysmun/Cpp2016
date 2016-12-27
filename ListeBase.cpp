@@ -1,4 +1,8 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include <iostream>
+#include <fstream>
 #include "ListeBase.h"
 
 template<class T> ListeBase<T>::ListeBase() 
@@ -112,6 +116,32 @@ template<class T> void ListeBase<T>::operator=(const ListeBase& source)
 		pParc = pParc->suivant;
 	}
 }
+
+template<class T> 
+int ListeBase<T>::Load(ifstream &fichier)
+{
+	
+	int i;
+	for(i=0; 1;i++)
+	{
+		
+	}
+	return 1;
+}
+
+template<class T> 
+int ListeBase<T>::Save(ofstream &fichier)
+{
+	int i;
+	for(i=0; 1;i++)
+	{
+		
+	}
+	return 1;
+}
+
+
+
 
 #include "Classement.h"
 #include "Joueur.h"
