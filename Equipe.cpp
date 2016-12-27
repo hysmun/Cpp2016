@@ -127,9 +127,13 @@ int Equipe::setJoueur(Joueur *tmpJoueur, int nbr)
 ********************************/
 ostream &operator<<(ostream &s, const Equipe &e)
 {
+	int i;
 	if(Club != NULL)
 		s << Club << " ";
 	s << numero << " ";
+	if(division != NULL)
+		s << division << " ";
+	while
 }
 
 istream &operator>>(istream &s, Equipe &e)
