@@ -34,5 +34,15 @@ using namespace std;
 
 int main()
 {
-
+	ofstream fichier("secretaires.dat",ios::out);
+	cout << "***********************************" << endl;
+	cout << "********** Bienvenue !!! **********" << endl;
+	cout << "***********************************" << endl << endl << endl;
+	char login[20],passwd[20];
+	cout << "Login : ";
+	cin >> login;
+	//Test si login OK
+	cout << "Password : ":
+	cin >> passwd;
+	//Test si password OK
 }

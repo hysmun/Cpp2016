@@ -41,11 +41,13 @@ T* ListeTriee<T>::insere(const T &elm)
 
 #include "Classement.h"
 #include "Joueur.h"
-// club 
+#include "Club.h"
 
 template class ListeTriee<int>;
 template class ListeTriee<Classement>;
 template class ListeTriee<Joueur>;
+template class ListeTriee<Club>;
+
 
 
 
