@@ -29,10 +29,14 @@ template<class T> T* Liste<T>::insere(const T &elm)
 
 #include "Classement.h"
 #include "Joueur.h"
-// club
+#include "Club.h"
+#include "Equipe.h"
+#include "Secretaire.h"
 
 template class Liste<int>;
 template class Liste<Classement>;
+template class Liste<Secretaire>;
+template class Liste<Equipe>;
 
 
 

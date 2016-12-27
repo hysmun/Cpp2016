@@ -115,7 +115,35 @@ template<class T> void ListeBase<T>::operator=(const ListeBase& source)
 
 #include "Classement.h"
 #include "Joueur.h"
+#include "Club.h"
+#include "Equipe.h"
+#include "Secretaire.h"
 
 template class ListeBase<int>;
 template class ListeBase<Classement>;
 template class ListeBase<Joueur>;
+template class ListeBase<Equipe>;
+template class ListeBase<Club>;
+template class ListeBase<Secretaire>;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
