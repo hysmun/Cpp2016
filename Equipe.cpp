@@ -24,15 +24,29 @@ Equipe::Equipe()
 	setNumero('A');
 }
 
-Equipe::Equipe(Club *tmpClub, char tmpNumero,const char *tmpDivision) : Equipe()
+Equipe::Equipe(Club *tmpClub, char tmpNumero,const char *tmpDivision)
 {
+	pClub = NULL;
+	division = NULL;
+	jJoueur[0] = NULL;
+	jJoueur[1] = NULL;
+	jJoueur[2] = NULL;
+	jJoueur[3] = NULL;
+	setNumero('A');
 	setClub(tmpClub);
 	setNumero(tmpNumero);
 	setDivision(tmpDivision);
 }
 
-Equipe::Equipe(const Equipe &cpyEquipe) : Equipe()
+Equipe::Equipe(const Equipe &cpyEquipe)
 {
+	pClub = NULL;
+	division = NULL;
+	jJoueur[0] = NULL;
+	jJoueur[1] = NULL;
+	jJoueur[2] = NULL;
+	jJoueur[3] = NULL;
+	setNumero('A');
 	setClub(cpyEquipe.getClub());
 	setNumero(cpyEquipe.getNumero());
 	setDivision(cpyEquipe.getDivision());
@@ -128,12 +142,18 @@ int Equipe::setJoueur(Joueur *tmpJoueur, int nbr)
 ostream &operator<<(ostream &s, const Equipe &e)
 {
 	int i;
-	if(Club != NULL)
-		s << Club << " ";
-	s << numero << " ";
-	if(division != NULL)
-		s << division << " ";
-	while
+	if(e.getClub() != NULL)
+		s << e.getClub() << " ";
+	s << e.getNumero() << " ";
+	if(e.getDivision() != NULL)
+		s << e.getDivision() << endl;
+	for(i=0; i<4; i++)
+	{
+		if(e.getJoueur(i) != NULL)
+		{
+			s<<"joueur " << i << endl<< e.getJoueur(i)<<endl;
+		}
+	}
 }
 
 istream &operator>>(istream &s, Equipe &e)
@@ -151,7 +171,7 @@ Equipe &Equipe::operator=(const Equipe &tmpEquipe)
 	setJoueur(tmpEquipe.jJoueur[1], 1);
 	setJoueur(tmpEquipe.jJoueur[2], 2);
 	setJoueur(tmpEquipe.jJoueur[3], 3);
-	return this;
+	return *this;
 }
 
 

@@ -21,8 +21,8 @@ class Equipe
 	public:
 		//initialisateur
 		Equipe();
-		Equipe(Club *tmpClub, char tmpNumero,const char *tmpDivision)  : Equipe();
-		Equipe(const Equipe &cpyEquipe)  : Equipe();
+		Equipe(Club *tmpClub, char tmpNumero,const char *tmpDivision) ;
+		Equipe(const Equipe &cpyEquipe);
 		~Equipe();
 
 		//getteur
