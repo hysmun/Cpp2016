@@ -1,6 +1,6 @@
 .SILENT:
-ALLPROG= Test1 Test2 Test3 Test4 Test5 Test6 Test7
-ALLOBJ = Joueur.o Matricule.o Classement.o Personne.o Membre.o Secretaire.o InvalidClassementException.o InvalidPasswordException.o ListeBase.o Liste.o ListeTriee.o Iterateur.o
+ALLPROG= Test1 Test2 Test3 Test4 Test5 Test6 Test7 main mainTest
+ALLOBJ = Joueur.o Matricule.o Classement.o Personne.o Membre.o Secretaire.o InvalidClassementException.o InvalidPasswordException.o ListeBase.o Liste.o ListeTriee.o Iterateur.o Equipe.o Club.o
 ALLCPP = 
 ALLHEADER = 
 TMP = commentaire de base
@@ -9,14 +9,7 @@ CFLAGS =
 all:
 	clear
 	clear
-	echo all test
-	make Test1
-	make Test2
-	make Test3
-	make Test4
-	make Test5
-	make Test6
-	make Test7
+	make mainTest
 
 Test:
 	make clean
@@ -30,6 +23,19 @@ Test:
 	make Test5
 	make Test6
 	make Test7
+	
+	
+# -------------------------------------------------
+
+#les executable final
+
+main: main.o $(ALLOBJ)
+	echo $@
+	g++ main.o $(ALLOBJ) -o main -Wall
+
+mainTest: mainTest.o $(ALLOBJ)
+	echo $@
+	g++ mainTest.o $(ALLOBJ) -o mainTest -Wall
 
 Test1: test1.o $(ALLOBJ)
 	echo $@
@@ -59,6 +65,14 @@ Test7: test7.o $(ALLOBJ)
 	echo $@
 	g++ test7.o $(ALLOBJ) -o Test7 -Wall
 
+
+
+
+
+# -------------------------------------------------
+
+#les executable .o
+
 test1.o: Test1.cpp
 	echo $@
 	g++ Test1.cpp -c -o test1.o -Wall
@@ -86,6 +100,22 @@ test6.o: Test6.cpp
 test7.o : Test7.cpp
 	echo $@
 	g++ Test7.cpp -c -o test7.o -Wall
+
+main.o: main.cpp
+	echo $@
+	g++ main.cpp -c -o main.o -Wall
+	
+mainTest.o: mainTest.cpp
+	echo $@
+	g++ mainTest.cpp -c -o mainTest.o -Wall
+
+
+
+
+
+# -------------------------------------------------
+
+# les classe et autres
 
 Joueur.o: Joueur.h Joueur.cpp
 	echo $@
@@ -135,6 +165,20 @@ ListeTriee.o: ListeTriee.cpp ListeTriee.h
 	echo $@
 	g++ ListeTriee.cpp -c -o ListeTriee.o
 
+Club.o: Club.cpp Club.h
+	echo $@
+	g++ Club.cpp -c -o Club.o
+
+Equipe.o: Equipe.cpp Equipe.h
+	echo $@
+	g++ Equipe.cpp -c -o Equipe.o
+
+
+
+
+# -------------------------------------------------
+
+#special compiler tout les cpp
 %.o: %.c
 	clear
 	clear
@@ -142,6 +186,13 @@ ListeTriee.o: ListeTriee.cpp ListeTriee.h
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 
+
+
+
+
+# -------------------------------------------------
+
+## autre
 git:
 	clear
 	clear
