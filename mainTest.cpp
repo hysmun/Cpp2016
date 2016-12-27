@@ -28,6 +28,7 @@ using namespace std;
 #include "InvalidPasswordException.h"
 #include "Matricule.h"
 #include "Iterateur.h"
+#include "utils.h"
 
 
 int main()
@@ -39,11 +40,24 @@ int main()
 	cout << "***********************************" << endl;
 	cout << "********** Bienvenue !!! **********" << endl;
 	cout << "***********************************" << endl << endl << endl;
-	char login[20],passwd[20];
-	cout << "Login : ";
-	cin >> login;
-	//Test si login OK
-	cout << "Password : ":
-	cin >> passwd;
-	//Test si password OK
+	char login[9],passwd[9];
+	int numeroClub;
+	if(!fichier)
+	{
+		Secretaire s("admin","admin",0,"admin","admin111");
+		bidonnageSec(&numeroClub,login,passwd,s);
+	}
+	else
+	{
+		cout << "Login : ";
+		cin >> login;
+		//Test si login OK
+		cout << "Password : ";
+		cin >> passwd;
+		//Test si password OK
+	}
+	if(numeroClub == 0)
+		//lancer l'interface grand manitou
+	else
+		//lancer l'interface petite bite
 }
