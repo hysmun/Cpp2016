@@ -30,11 +30,9 @@ using namespace std;
 #include "Iterateur.h"
 
 
-
-
 int main()
 {
-	ofstream fichier("secretaires.dat",ios::out);
+	ifstream fichier("secretaires.dat",ios::in);
 	cout << "***********************************" << endl;
 	cout << "********** Bienvenue !!! **********" << endl;
 	cout << "***********************************" << endl << endl << endl;
