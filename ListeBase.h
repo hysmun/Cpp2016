@@ -2,6 +2,11 @@
 #define H_LISTEBASE
 
 #include "Iterateur.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <iostream>
+#include <fstream>
 
 template<class T>
 class Iterateur;
@@ -29,6 +34,8 @@ class ListeBase
 		virtual T* insere(const T&) = 0;
 		void operator=(const ListeBase&);
 		friend class Iterateur<T>;
+		int Load(ifstream &fichier);
+		int Save(ofstream &fichier);
 };
 
 #endif /* H_LISTEBASE */
