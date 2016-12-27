@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include "ListeBase.h"
+using namespace std;
 
 template<class T> ListeBase<T>::ListeBase() 
 {
@@ -120,11 +121,12 @@ template<class T> void ListeBase<T>::operator=(const ListeBase& source)
 template<class T> 
 int ListeBase<T>::Load(ifstream &fichier)
 {
-	
+	<T> tmp;
 	int i;
-	for(i=0;1;i++)
+	for(i=0; fichier.eof() == false ;i++)
 	{
-		
+		tmp.Load(fichier);
+		insere(tmp);
 	}
 	return 1;
 }
@@ -133,9 +135,11 @@ template<class T>
 int ListeBase<T>::Save(ofstream &fichier)
 {
 	int i;
-	for(i=0;1;i++)
+	Cellule<T> *pParc = this->pTete;
+	for(i=0; pParc != 0;i++)
 	{
-		
+		pParc.valeur.Save(fichier);
+		pParc=pParc->suivant;
 	}
 	return 1;
 }
