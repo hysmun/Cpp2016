@@ -154,12 +154,14 @@ istream &operator>>(istream &s, Secretaire &j)
 
 void Secretaire::Save(ofstream &fichier) const
 {
+	
 	return;
 }
 
 void Secretaire::Load(ifstream &fichier)
 {
-	return ;
+	
+	return;
 }
 
 

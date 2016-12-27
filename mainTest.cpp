@@ -30,9 +30,17 @@ using namespace std;
 #include "Iterateur.h"
 
 
-
-
 int main()
 {
-
+	ifstream fichier("secretaires.dat",ios::in);
+	cout << "***********************************" << endl;
+	cout << "********** Bienvenue !!! **********" << endl;
+	cout << "***********************************" << endl << endl << endl;
+	char login[20],passwd[20];
+	cout << "Login : ";
+	cin >> login;
+	//Test si login OK
+	cout << "Password : ":
+	cin >> passwd;
+	//Test si password OK
 }

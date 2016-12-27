@@ -33,6 +33,7 @@ template<class T> T* Liste<T>::insere(const T &elm)
 #include "Equipe.h"
 #include "Secretaire.h"
 
+
 template class Liste<int>;
 template class Liste<Classement>;
 template class Liste<Secretaire>;

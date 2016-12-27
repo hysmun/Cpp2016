@@ -135,7 +135,6 @@ bool Club::operator<(const Club& c)const
 		return true;
 	else
 		return false;
-
 }
 
 
@@ -145,7 +144,6 @@ bool Club::operator>(const Club& c)const
 		return true;
 	else
 		return false;
-
 }
 
 
@@ -155,7 +153,6 @@ bool Club::operator==(const Club& c)const
 		return true;
 	else
 		return false;
-
 }
 
 
