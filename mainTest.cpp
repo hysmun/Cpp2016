@@ -44,24 +44,25 @@ int main()
 	int numeroClub;
 	if(!fichier)
 		bidonnageSec();
+		
+	ListeSec.Load(fichier);
+		
 	cout << "Login : ";
 	cin >> login;
 	//Test si login OK
 	cout << "Password : ";
 	cin >> passwd;
 	//Test si password OK
+	
+	
 	if(numeroClub == 0)
 		//lancer l'interface grand manitou
 	else
+	{
 		//lancer l'interface petite bite
-	char login[20],passwd[20];
-	cout << "Login : ";
-	cin >> login;
-	//Test si login OK
-	cout << "Password : ";
-	cin >> passwd;
-	//Test si password OK
-
+	}
+		
+		
 }
 
 
