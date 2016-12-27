@@ -33,7 +33,9 @@ using namespace std;
 int main()
 {
 	ifstream fichier("secretaires.dat",ios::in);
+	//ifstream fichier2("clubs.dat",ios::in);
 	Liste<Secretaire> listeSec;
+	//ListeTriee<Club> listeClub;
 	cout << "***********************************" << endl;
 	cout << "********** Bienvenue !!! **********" << endl;
 	cout << "***********************************" << endl << endl << endl;
