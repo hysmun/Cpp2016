@@ -7,6 +7,7 @@ using namespace std;
 #include "Joueur.h"
 #include "Matricule.h"
 #include "Classement.h"
+#include "ExceptionMessage.h"
 
 /***************************************
 *

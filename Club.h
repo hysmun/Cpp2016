@@ -26,6 +26,9 @@ class Club
 		bool operator<(const Club& c)const;
 		bool operator>(const Club& c)const;
 		bool operator==(const Club& c)const;
+		
+		void Save(ofstream &fichier) const;
+		void Load(ofstream &fichier);
 };
 
 

@@ -42,7 +42,8 @@ class Equipe
 		Equipe &operator=(const Equipe &tmpEquipe);
 		
 		//autre
-
+		void Save(ofstream &fichier) const;
+		void Load(ifstream &fichier);
 
 };
 

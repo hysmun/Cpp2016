@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string.h>
 #include "Club.h"
+#include "ExceptionMessage.h"
 
 
 using namespace std;
@@ -154,6 +155,37 @@ bool Club::operator==(const Club& c)const
 	else
 		return false;
 }
+
+void Club::Save(ofstream &fichier) const
+{
+	
+	return;
+}
+
+void Club::Load(ofstream &fichier)
+{
+	
+	return;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

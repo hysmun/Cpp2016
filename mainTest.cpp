@@ -26,6 +26,7 @@ using namespace std;
 #include "ListeTriee.h"
 #include "InvalidClassementException.h"
 #include "InvalidPasswordException.h"
+#include "ExceptionMessage.h"
 #include "Matricule.h"
 #include "Iterateur.h"
 #include "utils.h"
@@ -33,39 +34,58 @@ using namespace std;
 
 int main()
 {
-	ifstream fichier("secretaires.dat",ios::in);
-	//ifstream fichier2("clubs.dat",ios::in);
-	Liste<Secretaire> listeSec;
-	//ListeTriee<Club> listeClub;
-	cout << "***********************************" << endl;
-	cout << "********** Bienvenue !!! **********" << endl;
-	cout << "***********************************" << endl << endl << endl;
-	char login[9],passwd[9];
-	int numeroClub;
-	if(!fichier)
-		bidonnageSec();
-		
-	listeSec.Load(fichier);
-		
-	cout << "Login : ";
-	cin >> login;
-	//Test si login OK
-	cout << "Password : ";
-	cin >> passwd;
-	//Test si password OK
-	
-	
-	if(numeroClub == 0)
+	try
 	{
-		//lancer l'interface grand manitou
+		ifstream fichier("secretaires.dat",ios::in);
+		//ifstream fichier2("clubs.dat",ios::in);
+		Liste<Secretaire> listeSec;
+		//ListeTriee<Club> listeClub;
+		cout << "***********************************" << endl;
+		cout << "********** Bienvenue !!! **********" << endl;
+		cout << "***********************************" << endl << endl << endl;
+		char login[9],passwd[9];
+		int numeroClub;
+		if(!fichier)
+			bidonnageSec();
+
+		throw ExceptionMessage(" message");
+
+		listeSec.Load(fichier);
+	
+		cout << "Login : ";
+		cin >> login;
+		//Test si login OK
+		cout << "Password : ";
+		cin >> passwd;
+		//Test si password OK
+
+
+		if(numeroClub == 0)
+		{
+			//lancer l'interface grand manitou
+		}
+		else
+		{
+			//lancer l'interface petite bite
+		}
 	}
-	else
+	catch(ExceptionMessage &e)
 	{
-		//lancer l'interface petite bite
+		cerr << e.getMsg()<< endl;
+	}
+	catch(InvalidClassementException &e)
+	{
+		cerr << "mauvais classement "<< endl;
+	}
+	catch(InvalidPasswordException &e)
+	{
+		cerr << "mauvais password"<< e.getMsg() << " --- "<< e.getCode()<<endl;
+	}
+	catch(...)
+	{
+		cerr << "Erreur inconue" << endl;
 	}
 }
-
-
 
 
 

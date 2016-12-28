@@ -46,7 +46,7 @@ T* ListeTriee<T>::insere(const T &elm)
 #include "Secretaire.h"
 
 
-template class ListeTriee<int>;
+//template class ListeTriee<int>;
 template class ListeTriee<Classement>;
 template class ListeTriee<Joueur>;
 template class ListeTriee<Club>;

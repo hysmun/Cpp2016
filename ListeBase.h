@@ -7,6 +7,7 @@
 #include <string.h>
 #include <iostream>
 #include <fstream>
+using namespace std;
 
 template<class T>
 class Iterateur;

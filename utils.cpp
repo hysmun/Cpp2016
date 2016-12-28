@@ -16,14 +16,15 @@ using namespace std;
 #include "ListeTriee.h"
 #include "InvalidClassementException.h"
 #include "InvalidPasswordException.h"
+#include "ExceptionMessage.h"
 #include "Matricule.h"
 #include "Iterateur.h"
 
 
 void bidonnageSec()
 {
-	ofstream fichier("secretaires.dat",ios::out);
-	Secretaire s("admin","admin",0,"admin","admin111");
+	ifstream fichier("secretaires.dat",ios::in);
+	Secretaire s("admin","admin",0,"admin","1234azer");
 	s.Load(fichier);
 	fichier.close();
 }

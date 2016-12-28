@@ -6,6 +6,7 @@
 using namespace std;
 #include "Equipe.h"
 #include "Club.h"
+#include "ExceptionMessage.h"
 
 
 /***************************************
@@ -201,9 +202,25 @@ Equipe &Equipe::operator=(const Equipe &tmpEquipe)
 }
 
 
+/***************************************
+*
+*			Autre
+*
+********************************/
+
+void Equipe::Save(ofstream &fichier) const
+{
+
+	return;
+}
 
 
 
+void Equipe::Load(ifstream &fichier)
+{
+
+	return;
+}
 
 
 

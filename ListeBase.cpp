@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include "ListeBase.h"
+#include "ExceptionMessage.h"
 using namespace std;
 
 template<class T> ListeBase<T>::ListeBase() 
@@ -121,12 +122,11 @@ template<class T> void ListeBase<T>::operator=(const ListeBase& source)
 template<class T> 
 int ListeBase<T>::Load(ifstream &fichier)
 {
-	<T> tmp;
+	//void *tmp = new <T>;
 	int i;
 	for(i=0; fichier.eof() == false ;i++)
 	{
-		tmp.Load(fichier);
-		insere(tmp);
+		//tmp->Load(fichier);
 	}
 	return 1;
 }
@@ -138,7 +138,7 @@ int ListeBase<T>::Save(ofstream &fichier)
 	Cellule<T> *pParc = this->pTete;
 	for(i=0; pParc != 0;i++)
 	{
-		pParc.valeur.Save(fichier);
+		pParc->valeur.Save(fichier);
 		pParc=pParc->suivant;
 	}
 	return 1;
@@ -153,7 +153,7 @@ int ListeBase<T>::Save(ofstream &fichier)
 #include "Equipe.h"
 #include "Secretaire.h"
 
-template class ListeBase<int>;
+//template class ListeBase<int>;
 template class ListeBase<Classement>;
 template class ListeBase<Joueur>;
 template class ListeBase<Equipe>;
