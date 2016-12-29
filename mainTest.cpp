@@ -30,6 +30,7 @@ using namespace std;
 #include "Matricule.h"
 #include "Iterateur.h"
 #include "utils.h"
+#include "gestionMenu.h"
 
 char login[9];
 char nomClub[9];
