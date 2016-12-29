@@ -62,7 +62,7 @@ int main()
 		listeSec.Load(fichier);
 		fichier.close();
 		//cout << "affichage liste secretaire !!!"<< endl;
-		printListeSec(listeSec);
+		//printListeSec(listeSec);
 		
 		
 		cout << "Login : ";
@@ -77,7 +77,7 @@ int main()
 		numeroClub = testSecLogin(listeSec, &s);
 		
 		
-		cout << "votre numero de club est :"<< numeroClub<< endl;
+		cout << s<< endl;
 		if(numeroClub == 0)
 		{
 			menuFed();	//lancer l'interface grand manitou
