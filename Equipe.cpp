@@ -99,11 +99,7 @@ Joueur *Equipe::getJoueur(int nbr) const
 ********************************/
 int Equipe::setClub(Club *tClub)
 {
-	if(pClub != NULL) delete pClub;
-	if(tClub != NULL)
-	{
-		pClub = tClub;
-	}
+	pClub = tClub;
 	return 1;
 }
 
@@ -131,11 +127,10 @@ int Equipe::setJoueur(Joueur *tmpJoueur, int nbr)
 {
 	if(nbr > 3 || nbr < 0)
 		return -1;
-	if(jJoueur[nbr] != NULL) delete jJoueur[nbr];
-	if(tmpJoueur != NULL)
-	{
-		jJoueur[nbr] = tmpJoueur;
-	}
+	
+	
+	jJoueur[nbr] = tmpJoueur;
+	
 }
 
 
