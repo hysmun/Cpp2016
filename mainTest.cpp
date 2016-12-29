@@ -39,6 +39,9 @@ void menuFed();
 void menuClub(char*);
 
 Liste<Secretaire> listeSec;
+ListeTriee<Club> listeClub;
+
+
 Secretaire s;
 int numeroClub;
 
@@ -47,14 +50,13 @@ int main()
 	try
 	{
 		ifstream fichier("secretaires.dat",ios::in);
-		//ifstream fichier2("clubs.dat",ios::in);
-		//ListeTriee<Club> listeClub;
+		ifstream fichierClub("clubs.dat",ios::in);
 		cout << "***********************************" << endl;
 		cout << "********** Bienvenue !!! **********" << endl;
 		cout << "***********************************" << endl << endl;
 		char passwd[100];
 		int i;
-		
+		if(!(fichierClub.is_open()))
 		
 		if(!(fichier.is_open()))
 		{

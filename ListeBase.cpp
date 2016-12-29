@@ -161,6 +161,24 @@ int ListeBase<T>::Save(ofstream &fichier)
 
 
 
+template<class T>
+int ListeBase<T>::SearchDoublet(const T &tmp)
+{
+	int i;
+	Cellule<T> *pParc = this->pTete;
+	for(i=0; pParc != NULL;i++)
+	{
+		if( pParc->valeur == tmp)
+		{
+			return 1;
+		}
+		pParc=pParc->suivant;
+	}
+	return 0;
+}
+
+
+
 
 #include "Classement.h"
 #include "Joueur.h"

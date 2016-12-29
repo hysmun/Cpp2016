@@ -165,6 +165,11 @@ istream &operator>>(istream &s, Secretaire &j)
 	return s;
 }
 
+int Secretaire::operator==(const Secretaire &tmpSecretaire)
+{
+	return 1;
+}
+
 
 
 /*******************************************
