@@ -124,12 +124,16 @@ int ListeBase<T>::Load(ifstream &fichier)
 {
 	Cellule<T> *tmp = new Cellule<T>;
 	int i;
+	char c;
 	cout << "load liste "<< endl;
-	for(i=0; !fichier.eof();i++)
+	fichier.get(c);
+	for(i=0; !fichier.eof(); i++)
 	{
+		fichier.seekg(-1, ios::cur);
 		tmp->valeur.Load(fichier);
 		cout << (tmp->valeur)<< endl;
 		insere((tmp->valeur));
+		fichier.get(c);
 	}
 	cout << " fin load liste : "<< i<< endl;
 	return 1;

@@ -45,7 +45,7 @@ int main()
 		cout << "***********************************" << endl << endl << endl;
 		char login[9],passwd[9];
 		int numeroClub;
-		if(!fichier)
+		if(!(fichier.is_open()))
 		{
 			bidonnageSec();
 			fichier.open("secretaire.dat", ios::in);
