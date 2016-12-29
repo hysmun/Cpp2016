@@ -21,9 +21,9 @@ using namespace std;
 #include "Iterateur.h"
 #include "utils.h"
 
-int modifierPassword(Liste<Secretaire> listeSec,Secretaire *s,char newpass[9])
+int modifierPassword(Liste<Secretaire> *listeSec,Secretaire *s,char newpass[9])
 {
-	Iterateur<Secretaire> itSec(listeSec);
+	Iterateur<Secretaire> itSec(&listeSec);
 	for(itSec.reset(); itSec.end() == 0; itSec++)
 	{
 		if(!strcmp((&itSec)->getLogin(), s->getLogin()) && !strcmp((&itSec)->getPassword(), s->getPassword()))

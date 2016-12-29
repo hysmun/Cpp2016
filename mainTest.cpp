@@ -171,7 +171,7 @@ void menuFed()
 				cin >> newpass;
 				try
 				{
-					modifierPassword(listeSec,&s,newpass);
+					modifierPassword(&listeSec,&s,newpass);
 				}
 				catch(ExceptionMessage &e)
 				{
