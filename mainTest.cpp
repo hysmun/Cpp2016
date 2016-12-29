@@ -118,7 +118,7 @@ int main()
 		}
 		
 		
-		//cout << s << endl;
+		cout <<endl<<endl<<"Bienvenue :"<<endl<< s << endl;
 		if(numeroClub == 0)
 		{
 			menuFed();	//lancer l'interface grand manitou
