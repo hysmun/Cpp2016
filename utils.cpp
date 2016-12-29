@@ -26,7 +26,7 @@ void bidonnageSec()
 	try
 	{
 		ofstream fichier("secretaires.dat",ios::out);
-		Secretaire s("admin","admin",0, "admin", "admin111");
+		Secretaire s("admin","admin",0, "admin111", "admin111");
 		s.Save(fichier);
 		fichier.close();
 	}
@@ -63,6 +63,7 @@ int printListeSec(Liste<Secretaire> listeSec)
 		cout << &pParc <<endl;
 		pParc++;
 	}
+	
 }
 
 

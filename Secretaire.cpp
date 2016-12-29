@@ -59,13 +59,13 @@ int Secretaire::setLogin(const char *tmp)
 	{
 		
 		strcpy(login, tmp);
-		if(lenght<8)
+		/*if(lenght<8)
 		{
-			for(i=lenght+1; i==8; i++)
+			for(i=lenght; i==8; i++)
 			{
 				login[i]='\0';
 			}
-		}
+		}*/
 	}
 	else
 	{
