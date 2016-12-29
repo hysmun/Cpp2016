@@ -28,7 +28,7 @@ int modifierPassword(Liste<Secretaire> listeSec,Secretaire *s,char newpass[9])
 	{
 		if(!strcmp((&itSec)->getLogin(), s->getLogin()) && !strcmp((&itSec)->getPassword(), s->getPassword()))
 		{
-			s->setPassword(newpass);
+			(&itSec)->setPassword(newpass);
 			return 0;
 		}
 		else
