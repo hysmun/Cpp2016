@@ -40,6 +40,8 @@ void menuClub(char*);
 
 Liste<Secretaire> listeSec;
 ListeTriee<Club> listeClub;
+ListeTriee<Joueur> listeJoueur;
+Liste<Equipe> listeEquipe;
 
 
 Secretaire s;
@@ -57,6 +59,16 @@ int main()
 		char passwd[100];
 		int i;
 		if(!(fichierClub.is_open()))
+		{
+			//fichier club inexistant ou pas ouvert
+		}
+		else
+		{
+			//fichier club.dat ouvert
+			listeClub.Load(fichierClub);
+			fichierClub.close();
+		}
+		
 		
 		if(!(fichier.is_open()))
 		{
