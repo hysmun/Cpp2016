@@ -32,15 +32,14 @@ using namespace std;
 #include "utils.h"
 #include "gestionMenu.h"
 
-char login[9];
-char nomClub[9];
+char login[100];
+char nomClub[100];
 
 void menuFed();
 void menuClub(char*);
 
-
-Secretaire s;
 Liste<Secretaire> listeSec;
+Secretaire s;
 int numeroClub;
 
 int main()
@@ -53,7 +52,7 @@ int main()
 		cout << "***********************************" << endl;
 		cout << "********** Bienvenue !!! **********" << endl;
 		cout << "***********************************" << endl << endl;
-		char passwd[9];
+		char passwd[100];
 		int i;
 		
 		

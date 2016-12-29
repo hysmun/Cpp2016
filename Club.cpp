@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string.h>
+#include <fstream>
 #include "Club.h"
 #include "ExceptionMessage.h"
 
@@ -158,12 +159,38 @@ bool Club::operator==(const Club& c)const
 
 void Club::Save(ofstream &fichier) const
 {
+	int len;
+	
+	len = strlen(getNom())+1;
+	fichier.write((char *)&len,sizeof(int));
+	fichier.write(getNom(), len);
+	
+	len = getNumClub();
+	fichier.write((char *)&len, sizeof(int));
+	
+	len = strlen(getAdresse())+1;
+	fichier.write((char *)&len,sizeof(int));
+	fichier.write(getAdresse(), len);
 	
 	return;
 }
 
 void Club::Load(ifstream &fichier)
 {
+	char cTmp[255];
+	int iTmp, len;
+	
+	fichier.read((char *)&len, sizeof(int));
+	fichier.read(cTmp, len);
+	setNom(cTmp);
+	
+	fichier.read((char *)&iTmp, sizeof(int));
+	setNumClub(iTmp);
+	
+	fichier.read((char *)&len, sizeof(int));
+	fichier.read(cTmp, len);
+	setAdresse(cTmp);
+	
 	
 	return;
 }
