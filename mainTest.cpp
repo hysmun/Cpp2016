@@ -48,8 +48,9 @@ int main()
 		if(!fichier)
 		{
 			bidonnageSec();
-			ifstream fichier("secretaires.dat",ios::in);
+			fichier.open("secretaire.dat", ios::in);
 		}
+		
 		//throw ExceptionMessage(" message");
 		cout << "chargement liste secretaire"<< endl;
 		listeSec.Load(fichier);
