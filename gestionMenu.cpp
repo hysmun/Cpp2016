@@ -37,7 +37,7 @@ int modifierPassword(Liste<Secretaire> *listeSec,Secretaire *s,char newpass[9])
 	return -1;
 }
 
-int showSec(const Liste<Secretaire> listeSec,bool type)
+int showSec(Liste<Secretaire> listeSec,bool type)
 {
 	Iterateur<Secretaire> itSec(listeSec);
 	for(itSec.reset(); itSec.end() == 0; itSec++)
