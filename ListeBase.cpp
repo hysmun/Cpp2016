@@ -125,7 +125,7 @@ int ListeBase<T>::Load(ifstream &fichier)
 	Cellule<T> *tmp = new Cellule<T>;
 	int i;
 	cout << "load liste "<< endl;
-	for(i=0; fichier.eof() == false ;i++)
+	for(i=0; !(fichier.eof())  ;i++)
 	{
 		tmp->valeur.Load(fichier);
 		cout << (tmp->valeur)<< endl;
