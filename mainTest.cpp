@@ -47,10 +47,9 @@ int main()
 		int numeroClub;
 		if(!fichier)
 		{
+			fichier.close();
 			bidonnageSec();
-			fichier.open("secretaire.dat", ios::in);
 		}
-		
 		//throw ExceptionMessage(" message");
 		cout << "chargement liste secretaire"<< endl;
 		listeSec.Load(fichier);

@@ -125,13 +125,18 @@ int ListeBase<T>::Load(ifstream &fichier)
 	Cellule<T> *tmp = new Cellule<T>;
 	int i;
 	cout << "load liste "<< endl;
+	if(!fichier)
+	{
+		cout << "Erreur fichier dans listeBase.Load" << endl;
+		exit(0);
+	}
 	for(i=0; !fichier.eof();i++)
 	{
 		tmp->valeur.Load(fichier);
 		cout << (tmp->valeur)<< endl;
 		insere((tmp->valeur));
 	}
-	cout << " fin load liste : "<< i<< endl;
+	cout << " fin load liste : " << i << endl;
 	return 1;
 }
 

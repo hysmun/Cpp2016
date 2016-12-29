@@ -26,11 +26,7 @@ void bidonnageSec()
 	try
 	{
 		ofstream fichier("secretaires.dat",ios::out);
-<<<<<<< HEAD
 		Secretaire s("admin","admin",0, "admin\0\0\0\0", "admin111\0");
-=======
-		Secretaire s("admin","admin",0, "admin111", "admin111");
->>>>>>> 77edec3260ec2028afbba9dbeac2270ba33e3e0b
 		s.Save(fichier);
 		fichier.close();
 	}
