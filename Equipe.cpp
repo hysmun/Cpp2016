@@ -205,7 +205,18 @@ Equipe &Equipe::operator=(const Equipe &tmpEquipe)
 
 void Equipe::Save(ofstream &fichier) const
 {
-
+	int len, tmp;
+	char ctmp;
+	tmp = getClub()->getNumClub();
+	fichier.write((char *)&tmp, sizeof(int));
+	
+	ctmp = getNumero();
+	fichier.write(&ctmp, sizeof(char));
+	
+	len = strlen(getDivision())+1;
+	fichier.write((char *)&len, sizeof(int));
+	fichier.write(getDivision(), sizeof(len));
+	
 	return;
 }
 
@@ -213,7 +224,13 @@ void Equipe::Save(ofstream &fichier) const
 
 void Equipe::Load(ifstream &fichier)
 {
-
+	int len, iTmp;
+	char cTmp[255];
+	
+	
+	
+	
+	
 	return;
 }
 
