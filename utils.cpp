@@ -49,7 +49,7 @@ void bidonnageSec()
 int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec)
 {
 	Iterateur<Secretaire> itSec(listeSec);
-	cout << "test des secretaire login + mdp"<<endl;
+	//cout << "test des secretaire login + mdp"<<endl;
 	for(itSec.reset(); itSec.end() == 0; itSec++)
 	{
 		//cout << (&itSec)->getLogin() << " == "<< sec->getLogin()<<endl;

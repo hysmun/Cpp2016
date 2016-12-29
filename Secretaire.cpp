@@ -79,7 +79,7 @@ int Secretaire::setPassword(const char *tmp)
 	unsigned int i, digit=0, alpha=0, lenght;
 	char temp[100];
 	lenght = strlen(tmp);
-	cout << endl << tmp << endl;
+	//cout << endl << tmp << endl;
 	if(lenght != 8)
 	{
 		throw InvalidPasswordException(InvalidPasswordException::BAD_LENGTH_ERROR, temp);
@@ -189,18 +189,18 @@ void Secretaire::Save(ofstream &fichier) const
 void Secretaire::Load(ifstream &fichier)
 {
 	char buf[9];
-	cout<< "load secretaire "<< endl;
+	//cout<< "load secretaire "<< endl;
 	Membre::Load(fichier);
 	
 	//lecture login
-	cout << (Personne )*this<<endl;
+	//cout << (Personne )*this<<endl;
 	fichier.read(buf,9);
 	setLogin(buf);
-	cout << "log : " << buf<< endl;
+	//cout << "log : " << buf<< endl;
 	//lecture password
 	
 	fichier.read(buf,9);
-	cout << "pass : " << buf<< endl;
+	//cout << "pass : " << buf<< endl;
 	setPassword(buf);
 	return;
 }

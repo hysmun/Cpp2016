@@ -77,7 +77,7 @@ int main()
 		numeroClub = testSecLogin(listeSec, &s);
 		
 		
-		cout << s<< endl;
+		cout << s << endl;
 		if(numeroClub == 0)
 		{
 			menuFed();	//lancer l'interface grand manitou
