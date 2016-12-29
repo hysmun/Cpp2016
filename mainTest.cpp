@@ -234,6 +234,8 @@ void menuFed()
 			
 			case 8:
 			{
+				char name[20],surname[20];
+				
 				
 			}
 			break;
