@@ -167,8 +167,11 @@ istream &operator>>(istream &s, Secretaire &j)
 
 int Secretaire::operator==(const Secretaire &tmpSecretaire)
 {
-	
-	return 1;
+	if(!strcmp(getLogin(), tmpSecretaire.getLogin()) && !strcmp(getPassword(), tmpSecretaire.getPassword()) )
+	{
+		return 1;
+	}
+	return 0;
 }
 
 
