@@ -40,6 +40,7 @@ void menuClub(char*);
 
 
 Secretaire s;
+Liste<Secretaire> listeSec;
 int numeroClub;
 
 int main()
@@ -48,7 +49,6 @@ int main()
 	{
 		ifstream fichier("secretaires.dat",ios::in);
 		//ifstream fichier2("clubs.dat",ios::in);
-		Liste<Secretaire> listeSec;
 		//ListeTriee<Club> listeClub;
 		cout << "***********************************" << endl;
 		cout << "********** Bienvenue !!! **********" << endl;
@@ -166,7 +166,11 @@ void menuFed()
 			break;
 			
 			case 1:
-				
+				char newpass[9];
+				cout << "Nouveau mot de passe : ";
+				cin >> newpass;
+				modifierPassword(listeSec,&s,newpass);
+				cout << "Mot de passe changé avec succès !" << endl;
 			break;
 			
 			case 2:

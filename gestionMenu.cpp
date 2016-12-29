@@ -21,3 +21,18 @@ using namespace std;
 #include "Iterateur.h"
 #include "utils.h"
 
+int modifierPassword(Liste<Secretaire> listeSec,Secretaire *s,char newpass[9])
+{
+	Iterateur<Secretaire> itSec(listeSec);
+	for(itSec.reset(); itSec.end() == 0; itSec++)
+	{
+		if(!strcmp((&itSec)->getLogin(), sec->getLogin()) && !strcmp((&itSec)->getPassword(), sec->getPassword()))
+		{
+			s.setPassword(newpass);
+			return 0;
+		}
+		else
+			throw ExceptionMessage("Secretaire introuvable dans le container !");
+	}
+	return -1;
+}
