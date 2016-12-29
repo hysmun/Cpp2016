@@ -151,7 +151,7 @@ int ListeBase<T>::Save(ofstream &fichier)
 {
 	int i;
 	Cellule<T> *pParc = this->pTete;
-	for(i=0; pParc != 0;i++)
+	for(i=0; pParc != NULL;i++)
 	{
 		pParc->valeur.Save(fichier);
 		pParc=pParc->suivant;
