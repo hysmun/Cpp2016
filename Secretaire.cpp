@@ -156,10 +156,10 @@ istream &operator>>(istream &s, Secretaire &j)
 	cout << "Encodez le numero de club : " << flush;
 	s >> tmpint;
 	j.setNumClub(tmpint);
-	cout << " Encodez le login : " << flush;
+	cout << "Encodez le login : " << flush;
 	s >> tmp;
 	j.setLogin(tmp);
-	cout << " Encodez le password : " << flush;
+	cout << "Encodez le password : " << flush;
 	s >> pass;
 	j.setPassword(pass);
 	return s;
