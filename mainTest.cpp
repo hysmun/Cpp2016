@@ -192,6 +192,7 @@ void menuFed()
 				catch(ExceptionMessage &e)
 				{
 					cerr << e.getMsg() << endl;
+					break;
 				}
 				cout << "Mot de passe changé avec succès !" << endl;
 				ofstream fichier("secretaires.dat",ios::out);
