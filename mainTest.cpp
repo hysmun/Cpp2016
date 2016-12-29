@@ -38,6 +38,9 @@ void menuFed();
 void menuClub(char*);
 
 
+Secretaire s;
+int numeroClub;
+
 int main()
 {
 	try
@@ -50,7 +53,8 @@ int main()
 		cout << "********** Bienvenue !!! **********" << endl;
 		cout << "***********************************" << endl << endl;
 		char passwd[9];
-		int numeroClub;
+		int i;
+		
 		
 		if(!(fichier.is_open()))
 		{
@@ -64,20 +68,41 @@ int main()
 		//cout << "affichage liste secretaire !!!"<< endl;
 		//printListeSec(listeSec);
 		
+		try
+		{
+			cout << "Login : ";
+			cin >> login;
+			//Test si login OK
+			cout << "Password : ";
+			cin >> passwd;
+			//Test si password OK
+			
+			s.setLogin(login);
+			s.setPassword(passwd);
+		}
+		catch(InvalidPasswordException &e)
+		{}
+		for(i=0; (numeroClub = testSecLogin(listeSec, &s)) == -1; i++)
+		{
+			try
+			{
+				cout << "Login et/ou password incorrecte !"<<endl;
+				cout << "Login : ";
+				cin >> login;
+				//Test si login OK
+				cout << "Password : ";
+				cin >> passwd;
+				//Test si password OK
+				Secretaire s;
+				s.setLogin(login);
+				s.setPassword(passwd);
+			}
+			catch(InvalidPasswordException &e)
+			{}
+		}
 		
-		cout << "Login : ";
-		cin >> login;
-		//Test si login OK
-		cout << "Password : ";
-		cin >> passwd;
-		//Test si password OK
-		Secretaire s;
-		s.setLogin(login);
-		s.setPassword(passwd);
-		numeroClub = testSecLogin(listeSec, &s);
 		
-		
-		cout << s << endl;
+		//cout << s << endl;
 		if(numeroClub == 0)
 		{
 			menuFed();	//lancer l'interface grand manitou

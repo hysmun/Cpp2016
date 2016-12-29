@@ -57,8 +57,8 @@ int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec)
 		if(!strcmp((&itSec)->getLogin(), sec->getLogin()) && !strcmp((&itSec)->getPassword(), sec->getPassword()))
 		{
 			//cout << "AAAA"<< *(&itSec)<<endl<<sec;
-			sec = (&itSec);
-			cout << "AAAA"<< *(&itSec) << endl << *sec << endl;
+			*sec = *(&itSec);
+			//cout << "AAAA"<< *(&itSec) << endl << *sec << endl;
 			//cout << "trouver !"<< endl;
 			return (&itSec)->getNumClub();
 		}
