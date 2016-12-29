@@ -60,6 +60,8 @@ int main()
 		cout << "***********************************" << endl << endl;
 		char passwd[100];
 		int i;
+		
+		// fichier club
 		if(!(fichierClub.is_open()))
 		{
 			//fichier club inexistant ou pas ouvert
@@ -71,18 +73,31 @@ int main()
 			fichierClub.close();
 		}
 		
+		// fichier Joueur
+		if(!(fichierJoueur.is_open()))
+		{
+			//fichier Joueur inexistant ou pas ouvert
+		}
+		else
+		{
+			//fichier joueur.dat ouvert
+			listeJoueur.Load(fichierJoueur);
+			fichierJoueur.close();
+		}
 		
+		//fichier Secretaire
 		if(!(fichier.is_open()))
 		{
 			bidonnageSec();
-			fichier.open("secretaires.dat", ios::in);
 		}
-		
-		//cout << "chargement liste secretaire"<< endl;
-		listeSec.Load(fichier);
-		fichier.close();
-		//cout << "affichage liste secretaire !!!"<< endl;
-		//printListeSec(listeSec);
+		else
+		{
+			//cout << "chargement liste secretaire"<< endl;
+			listeSec.Load(fichier);
+			fichier.close();
+			//cout << "affichage liste secretaire !!!"<< endl;
+			//printListeSec(listeSec);
+		}
 		
 		try
 		{
@@ -218,10 +233,11 @@ void menuFed()
 				{
 					listeSec.insere(s);
 					cout << "Insertion réussie" << endl;
+					ofstream fichier("secretaires.dat",ios::out);
+					listeSec.Save(fichier);
+					fichier.close();
 				}
-				ofstream fichier("secretaires.dat",ios::out);
-				listeSec.Save(fichier);
-				fichier.close();
+				
 				break;
 			}		
 				
