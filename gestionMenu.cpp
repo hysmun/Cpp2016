@@ -42,14 +42,15 @@ int showSec(Liste<Secretaire> listeSec,bool type)
 	Iterateur<Secretaire> itSec(listeSec);
 	for(itSec.reset(); itSec.end() == 0; itSec++)
 	{
-		cout << "***********************" << endl;
 		if((&itSec)->getNumClub() == 0 && (type == 0))
 		{
+			cout << "******************" << endl;
 			cout << "Nom : " << (&itSec)->getNom() << endl;
 			cout << "Prénom : " << (&itSec)->getPrenom() << endl;
 		}
 		else if((&itSec)->getNumClub() != 0 && (type == 1))
 		{
+			cout << "******************" << endl;
 			cout << "Nom : " << (&itSec)->getNom() << endl;
 			cout << "Prénom : " << (&itSec)->getPrenom() << endl;
 		}
