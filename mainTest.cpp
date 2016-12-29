@@ -38,6 +38,7 @@ char nomClub[100];
 void menuFed();
 void menuClub(char*);
 
+
 Liste<Secretaire> listeSec;
 Secretaire s;
 int numeroClub;
@@ -168,8 +169,17 @@ void menuFed()
 				char newpass[9];
 				cout << "Nouveau mot de passe : ";
 				cin >> newpass;
-				modifierPassword(listeSec,&s,newpass);
+				try
+				{
+					modifierPassword(listeSec,&s,newpass);
+				}
+				catch(ExceptionMessage &e)
+				{
+					cerr << e.getMsg() << endl;
+				}
 				cout << "Mot de passe changé avec succès !" << endl;
+				//ifstream fichier("secretaires.dat",ios::in);
+				//listeSec.Save(fichier);
 			break;
 			
 			case 2:
