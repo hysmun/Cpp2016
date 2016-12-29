@@ -179,7 +179,6 @@ int ListeBase<T>::SearchDoublet(const T &tmp)
 
 
 
-
 #include "Classement.h"
 #include "Joueur.h"
 #include "Club.h"

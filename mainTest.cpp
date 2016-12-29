@@ -197,6 +197,7 @@ void menuFed()
 				fichier.close();
 				break;
 			}			
+			
 			case 2:
 			break;
 			
@@ -207,13 +208,27 @@ void menuFed()
 			break;
 			
 			case 5:
-			break;
-			
+			{
+				Secretaire s;		
+				cin >> s;
+				if(!(listeSec.SearchDoublet(&s)))
+				{
+					listeSec.insere(s);
+					cout << "Insertion réussie" << endl;
+				}
+				ofstream fichier("secretaires.dat",ios::out);
+				listeSec.Save(fichier);
+				fichier.close();
+				break;
+			}		
+				
 			case 6:
-			break;
+				showSec(listeSec,0);
+				break;
 			
 			case 7:
-			break;
+				showSec(listeSec,1);
+				break;
 			
 			case 8:
 			break;
@@ -271,8 +286,24 @@ void menuClub(char* nomClub)
 			break;
 			
 			case 1:
-			break;
-			
+			{
+				char newpass[9];
+				cout << "Nouveau mot de passe : ";
+				cin >> newpass;
+				try
+				{
+					modifierPassword(&listeSec,&s,newpass);
+				}
+				catch(ExceptionMessage &e)
+				{
+					cerr << e.getMsg() << endl;
+				}
+				cout << "Mot de passe changé avec succès !" << endl;
+				ofstream fichier("secretaires.dat",ios::out);
+				listeSec.Save(fichier);
+				fichier.close();
+				break;
+			}						
 			case 2:
 			break;
 			

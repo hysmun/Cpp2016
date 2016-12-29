@@ -2,6 +2,7 @@
 #define __GESTIONMENU_H__
 
 int modifierPassword(Liste<Secretaire> *listeSec,Secretaire *s,char newpasss[9]);
+int showSec(const Liste<Secretaire> listeSec, bool type);
 
 
 
