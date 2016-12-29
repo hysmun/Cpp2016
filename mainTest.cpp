@@ -34,7 +34,7 @@ using namespace std;
 char login[9];
 
 void menuFed();
-void menuClub();
+void menuClub(char*);
 
 
 int main()
