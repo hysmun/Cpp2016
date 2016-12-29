@@ -26,7 +26,7 @@ void bidonnageSec()
 	try
 	{
 		ofstream fichier("secretaires.dat",ios::out);
-		Secretaire s("admin","admin",0, "admin", "admin111");
+		Secretaire s("admin","admin",0, "admin\0\0\0\0", "admin111\0");
 		s.Save(fichier);
 		fichier.close();
 	}
@@ -36,11 +36,11 @@ void bidonnageSec()
 	}
 	catch(InvalidPasswordException &e)
 	{
-		cerr << "password icorecte "<< e.getMsg() << endl;
+		cerr << "password incorect "<< e.getMsg() << endl;
 	}
 	catch(...)
 	{
-		cerr << "erreur inconue"<< endl;
+		cerr << "erreur inconnue"<< endl;
 	}
 }
 
