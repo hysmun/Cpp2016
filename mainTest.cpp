@@ -218,10 +218,12 @@ void menuFed()
 				{
 					listeSec.insere(s);
 					cout << "Insertion réussie" << endl;
+					ofstream fichier("secretaires.dat",ios::out);
+					listeSec.Save(fichier);
+					fichier.close();
 				}
-				ofstream fichier("secretaires.dat",ios::out);
-				listeSec.Save(fichier);
-				fichier.close();
+				else
+					cout << "Erreur insertion" << endl;
 				break;
 			}		
 				
@@ -235,9 +237,20 @@ void menuFed()
 			
 			case 8:
 			{
-				char name[20],surname[20];
-				
-				
+				char firstname[20],lastname[20];
+				cout << "Nom : ";
+				cin >> lastname;
+				cout << "Prénom : ";
+				cin >> firstname;
+				if(supprimerSec(firstname,lastname,&listeSec) == 0)
+				{
+					cout << "Secrétaire supprimé(e)" << endl;
+					ofstream fichier("secretaires.dat",ios::out);
+					listeSec.Save(fichier);
+					fichier.close();
+				}
+				else
+					cout << "Erreur suppression" << endl;
 			}
 			break;
 			
@@ -256,7 +269,6 @@ void menuFed()
 			case 13:
 			break;
 		}
-	
 }
 
 
@@ -346,7 +358,6 @@ void menuClub(char* nomClub)
 			break;
 			
 		}
-		
 }
 
 

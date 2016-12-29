@@ -54,3 +54,27 @@ int showSec(Liste<Secretaire> listeSec,bool type)
 		}
 	}
 }
+
+int supprimerSec(char* firstname,char* lastname,Liste<Secretaire> *listeSec)
+{
+	Iterateur<Secretaire> itSec(*listeSec);
+	int nClub;
+	for(itSec.reset();itSec.end() == 0;itSec++)
+	{
+		if(!strcmp((&itSec)->getPrenom(), firstname) && !strcmp((&itSec)->getNom(), lastname))
+		{
+			nClub = (&itSec)->getNumClub();
+			Iterateur<Secretaire> itTmp(*listeSec);
+			for(itTmp.reset();itTmp.end() == 0;itTmp++)
+			{
+				if((strcmp((&itTmp)->getPrenom(), firstname) != 0) && (strcmp((&itTmp)->getNom(),lastname) != 0) && ((&itTmp)->getNumClub() == nClub))
+				{
+					itSec.remove();
+					return 0;
+				}
+			}
+			return -1;
+		}
+	}
+
+}
