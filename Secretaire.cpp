@@ -167,6 +167,7 @@ istream &operator>>(istream &s, Secretaire &j)
 
 int Secretaire::operator==(const Secretaire &tmpSecretaire)
 {
+	
 	return 1;
 }
 
