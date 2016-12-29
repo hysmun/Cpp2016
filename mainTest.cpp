@@ -60,6 +60,8 @@ int main()
 		cout << "***********************************" << endl << endl;
 		char passwd[100];
 		int i;
+		
+		// fichier club
 		if(!(fichierClub.is_open()))
 		{
 			//fichier club inexistant ou pas ouvert
@@ -72,17 +74,19 @@ int main()
 		}
 		
 		
+		//fichier Secretaire
 		if(!(fichier.is_open()))
 		{
 			bidonnageSec();
-			fichier.open("secretaires.dat", ios::in);
 		}
-		
-		//cout << "chargement liste secretaire"<< endl;
-		listeSec.Load(fichier);
-		fichier.close();
-		//cout << "affichage liste secretaire !!!"<< endl;
-		//printListeSec(listeSec);
+		else
+		{
+			//cout << "chargement liste secretaire"<< endl;
+			listeSec.Load(fichier);
+			fichier.close();
+			//cout << "affichage liste secretaire !!!"<< endl;
+			//printListeSec(listeSec);
+		}
 		
 		try
 		{

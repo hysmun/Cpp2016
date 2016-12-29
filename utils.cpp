@@ -92,7 +92,11 @@ int cleanScreen()
 
 
 
-
+int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
+{
+	ifstream fichier(nomClub,ios::in);
+	return 1;
+}
 
 
 
