@@ -80,12 +80,10 @@ int main()
 		cout << s<< endl;
 		if(numeroClub == 0)
 		{
-			cleanScreen();
 			menuFed();	//lancer l'interface grand manitou
 		}
 		else
 		{
-			cleanScreen();
 			menuClub(nomClub);	//lancer l'interface petite bite
 		}
 	}
@@ -109,6 +107,7 @@ int main()
 
 void menuFed()
 {
+		cleanScreen();
 		cout << "********************************************************************" << endl;
 		cout << "********* Gestion de la Fédération de Tennis de Table **************" << endl;
 		cout << "********************************************************************" << endl << endl;
@@ -185,6 +184,7 @@ void menuFed()
 
 void menuClub(char* nomClub)
 {
+		cleanScreen();
 		cout << "********************************************************************" << endl;
 		cout << "*********** Club de Tennis de Table : " << nomClub << " *********************" << endl;
 		cout << "********************************************************************" << endl << endl;
