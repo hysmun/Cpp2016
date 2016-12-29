@@ -126,8 +126,8 @@ const char *Secretaire::getPassword() const
 
 Secretaire &Secretaire::operator=(const Secretaire &tmp)
 {
-	setNom(tmp.Nom);
-	setPrenom(tmp.Prenom);
+	setNom(tmp.getNom());
+	setPrenom(tmp.getPrenom());
 	setNumClub(tmp.NumClub);
 	setPassword(tmp.password);
 	setLogin(tmp.login);
