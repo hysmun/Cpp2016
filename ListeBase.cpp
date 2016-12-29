@@ -125,8 +125,9 @@ int ListeBase<T>::Load(ifstream &fichier)
 	Cellule<T> *tmp = new Cellule<T>;
 	int i;
 	char c;
+
 	//cout << "load liste "<< endl;
-	
+
 	if(!fichier)
 	{
 		//cout << "Erreur fichier dans listeBase.Load" << endl;
