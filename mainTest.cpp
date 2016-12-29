@@ -211,7 +211,7 @@ void menuFed()
 			{
 				Secretaire s;		
 				cin >> s;
-				if(!(listeSec.SearchDoublet(s)))
+				if(listeSec.SearchDoublet(s) == 0)
 				{
 					listeSec.insere(s);
 					cout << "Insertion réussie" << endl;
