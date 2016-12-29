@@ -30,7 +30,6 @@ int modifierPassword(Liste<Secretaire> *listeSec,Secretaire *s,char newpass[9])
 		{
 			(&itSec)->setPassword(newpass);
 			return 0;
-		}
 		else
 			throw ExceptionMessage("Secretaire introuvable dans le container !");
 	}
