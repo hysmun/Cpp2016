@@ -126,17 +126,14 @@ int ListeBase<T>::Load(ifstream &fichier)
 	int i;
 	char c;
 	cout << "load liste "<< endl;
-<<<<<<< HEAD
+	
 	if(!fichier)
 	{
 		cout << "Erreur fichier dans listeBase.Load" << endl;
-		exit(0);
+		throw ExceptionMessage("Erreur fichier  dans le load ListeBase");
 	}
-	for(i=0; !fichier.eof();i++)
-=======
 	fichier.get(c);
-	for(i=0; !fichier.eof(); i++)
->>>>>>> b8206ff5b449d47bbb48eb63864b9088f1ff8cc4
+	for(i=0; !fichier.eof();i++)
 	{
 		fichier.seekg(-1, ios::cur);
 		tmp->valeur.Load(fichier);
