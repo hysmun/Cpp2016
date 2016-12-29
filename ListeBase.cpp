@@ -159,9 +159,6 @@ int ListeBase<T>::Save(ofstream &fichier)
 	return 1;
 }
 
-
-
-
 #include "Classement.h"
 #include "Joueur.h"
 #include "Club.h"

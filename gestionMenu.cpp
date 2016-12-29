@@ -36,3 +36,22 @@ int modifierPassword(Liste<Secretaire> *listeSec,Secretaire *s,char newpass[9])
 	}
 	return -1;
 }
+
+int showSec(const Liste<Secretaire> listeSec,bool type)
+{
+	Iterateur<Secretaire> itSec(listeSec);
+	for(itSec.reset(); itSec.end() == 0; itSec++)
+	{
+		cout << "***********************" << endl;
+		if((&itSec)->getNumClub() == 0 && (type == 0))
+		{
+			cout << "Nom : " << (&itSec)->getNom() << endl;
+			cout << "Prénom : " << (&itSec)->getPrenom() << endl;
+		}
+		else if((&itSec)->getNumClub() != 0 && (type == 1))
+		{
+			cout << "Nom : " << (&itSec)->getNom() << endl;
+			cout << "Prénom : " << (&itSec)->getPrenom() << endl;
+		}
+	}
+}
