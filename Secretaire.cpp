@@ -54,9 +54,18 @@ int Secretaire::Affiche(void)
 ********************************/
 int Secretaire::setLogin(const char *tmp)
 {
-	if(tmp != NULL && strlen(tmp)<9)
+	int i, lenght = strlen(tmp);
+	if(tmp != NULL && lenght<9)
 	{
+		
 		strcpy(login, tmp);
+		if(lenght<8)
+		{
+			for(i=lenght+1; i==8; i++)
+			{
+				login[i]='\0';
+			}
+		}
 	}
 	else
 	{
