@@ -32,6 +32,7 @@ using namespace std;
 #include "utils.h"
 
 char login[9];
+char nomClub[9];
 
 void menuFed();
 void menuClub(char*);
@@ -83,7 +84,7 @@ int main()
 		}
 		else
 		{
-			menuClub();	//lancer l'interface petite bite
+			menuClub(nomClub);	//lancer l'interface petite bite
 		}
 	}
 	catch(ExceptionMessage &e)
