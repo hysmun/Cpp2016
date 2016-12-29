@@ -39,6 +39,7 @@ class Secretaire : public Membre
 		Secretaire &operator=(const Secretaire &tmp);
 		friend ostream &operator<<(ostream &s, const Secretaire &j);
 		friend istream &operator>>(istream &s, Secretaire &j);
+		int operator==(const Secretaire &tmpSecretaire);
 		
 		//autre
 		void Save(ofstream &fichier) const;

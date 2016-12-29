@@ -37,6 +37,7 @@ class ListeBase
 		friend class Iterateur<T>;
 		int Load(ifstream &fichier);
 		int Save(ofstream &fichier);
+		int SearchDoublet(const T&);
 };
 
 #endif /* H_LISTEBASE */

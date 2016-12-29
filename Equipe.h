@@ -40,6 +40,7 @@ class Equipe
 		//operateur
 		
 		Equipe &operator=(const Equipe &tmpEquipe);
+		int operator==(const Equipe &tmpEquipe);
 		
 		//autre
 		void Save(ofstream &fichier) const;

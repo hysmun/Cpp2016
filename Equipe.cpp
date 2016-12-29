@@ -196,6 +196,12 @@ Equipe &Equipe::operator=(const Equipe &tmpEquipe)
 	return *this;
 }
 
+int Equipe::operator==(const Equipe &tmpEquipe)
+{
+
+	return 1;
+}
+
 
 /***************************************
 *
