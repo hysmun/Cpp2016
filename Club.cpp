@@ -162,7 +162,7 @@ void Club::Save(ofstream &fichier) const
 	return;
 }
 
-void Club::Load(ofstream &fichier)
+void Club::Load(ifstream &fichier)
 {
 	
 	return;

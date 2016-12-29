@@ -61,6 +61,45 @@ T Iterateur<T>::remove()
 }
 
 #include "Classement.h"
+#include "Club.h"
+#include "Secretaire.h"
+#include "Equipe.h"
+#include "Joueur.h"
 
 template class Iterateur<int>;
 template class Iterateur<Classement>;
+template class Iterateur<Secretaire>;
+template class Iterateur<Equipe>;
+template class Iterateur<Club>;
+template class Iterateur<Joueur>;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

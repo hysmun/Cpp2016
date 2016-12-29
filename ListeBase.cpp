@@ -122,11 +122,14 @@ template<class T> void ListeBase<T>::operator=(const ListeBase& source)
 template<class T> 
 int ListeBase<T>::Load(ifstream &fichier)
 {
-	//void *tmp = new <T>;
+	Cellule<T> *tmp = new Cellule<T>;
 	int i;
+	cout << "load liste "<< endl;
 	for(i=0; fichier.eof() == false ;i++)
 	{
-		//tmp->Load(fichier);
+		tmp->valeur.Load(fichier);
+		cout << (tmp->valeur)<< endl;
+		insere((tmp->valeur));
 	}
 	return 1;
 }

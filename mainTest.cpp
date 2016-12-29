@@ -46,12 +46,18 @@ int main()
 		char login[9],passwd[9];
 		int numeroClub;
 		if(!fichier)
+		{
+			fichier.close();
 			bidonnageSec();
+			ifstream fichier("secretaires.dat",ios::in);
+		}
 
 		//throw ExceptionMessage(" message");
-
+		cout << "chargement liste secretaire"<< endl;
 		listeSec.Load(fichier);
-	
+		fichier.close();
+		cout << "affichage liste secretaire !!!"<< endl;
+		printListeSec(listeSec);
 		cout << "Login : ";
 		cin >> login;
 		//Test si login OK
@@ -79,7 +85,7 @@ int main()
 	}
 	catch(InvalidPasswordException &e)
 	{
-		cerr << "mauvais password"<< e.getMsg() << " --- "<< e.getCode()<<endl;
+		cerr << "mauvais password main()"<< e.getMsg() << " --- "<< e.getCode()<<endl;
 	}
 	catch(...)
 	{

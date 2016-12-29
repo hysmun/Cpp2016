@@ -65,30 +65,23 @@ int Secretaire::setLogin(const char *tmp)
 }
 int Secretaire::setPassword(const char *tmp)
 {
-	int i, digit=0, alpha=0, lenght;
+	unsigned int i, digit=0, alpha=0, lenght;
 	char temp[100];
 	lenght = strlen(tmp);
-	cout << lenght << " -- "<< sizeof(tmp) << endl << tmp << endl;
+	cout << endl << tmp << endl;
 	if(lenght != 8)
 	{
-		cout << lenght << endl;
-		sprintf(temp, " erreur de bad lenght 1 (%d) -- %s", lenght, tmp);
 		throw InvalidPasswordException(InvalidPasswordException::BAD_LENGTH_ERROR, temp);
-		exit(0);
-		return -1;
 	}
-	sprintf(temp, " ");
-	cout << "lenght correct ! "<< endl;
 	for(i=0; i < lenght; i++)
 	{
-		cout << tmp[i];
 		if(tmp[i] <= '9' && tmp[i] >= '0') 
 			digit = 1;
 		
 		if(isalpha(tmp[i])) 
 			alpha = 1;
 	}
-	cout << endl << "fin analise : "<< digit << " - " << alpha<< endl;
+	//cout << endl << "fin analise : "<< digit << " - " << alpha<< endl;
 	if(digit == 0)
 		throw InvalidPasswordException(InvalidPasswordException::MISSING_DIGIT_ERROR, "erreur digit manquant");
 	
@@ -173,7 +166,7 @@ void Secretaire::Save(ofstream &fichier) const
 {
 	char buf[9];
 	// save login
-	
+	Membre::Save(fichier);
 	fichier.write(getLogin(),9);
 	
 	//save password
@@ -185,16 +178,18 @@ void Secretaire::Save(ofstream &fichier) const
 void Secretaire::Load(ifstream &fichier)
 {
 	char buf[9];
+	cout<< "load secretaire "<< endl;
 	Membre::Load(fichier);
 	
 	//lecture login
-	
+	cout << (Personne )*this<<endl;
 	fichier.read(buf,9);
 	setLogin(buf);
-	
+	cout << "log : " << buf<< endl;
 	//lecture password
 	
 	fichier.read(buf,9);
+	cout << "pass : " << buf<< endl;
 	setPassword(buf);
 	return;
 }
