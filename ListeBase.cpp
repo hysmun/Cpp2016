@@ -125,11 +125,11 @@ int ListeBase<T>::Load(ifstream &fichier)
 	Cellule<T> *tmp = new Cellule<T>;
 	int i;
 	char c;
-	cout << "load liste "<< endl;
+	//cout << "load liste "<< endl;
 	
 	if(!fichier)
 	{
-		cout << "Erreur fichier dans listeBase.Load" << endl;
+		//cout << "Erreur fichier dans listeBase.Load" << endl;
 		throw ExceptionMessage("Erreur fichier  dans le load ListeBase");
 	}
 	fichier.get(c);
@@ -137,11 +137,11 @@ int ListeBase<T>::Load(ifstream &fichier)
 	{
 		fichier.seekg(-1, ios::cur);
 		tmp->valeur.Load(fichier);
-		cout << (tmp->valeur)<< endl;
+		//cout << (tmp->valeur)<< endl;
 		insere((tmp->valeur));
 		fichier.get(c);
 	}
-	cout << " fin load liste : " << i << endl;
+	//cout << " fin load liste : " << i << endl;
 	return 1;
 }
 

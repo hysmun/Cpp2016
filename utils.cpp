@@ -26,7 +26,7 @@ void bidonnageSec()
 	try
 	{
 		ofstream fichier("secretaires.dat",ios::out);
-		Secretaire s("admin","admin",0, "admin\0\0\0\0", "admin111\0");
+		Secretaire s("admin","admin",0, "admin", "admin111");
 		s.Save(fichier);
 		fichier.close();
 	}
@@ -46,10 +46,22 @@ void bidonnageSec()
 
 
 
-int testSecLogin(Liste<Secretaire> listeSec, const Secretaire &sec)
+int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec)
 {
-	
-	
+	Iterateur<Secretaire> itSec(listeSec);
+	cout << "test des secretaire login + mdp"<<endl;
+	for(itSec.reset(); itSec.end() == 0; itSec++)
+	{
+		cout << (&itSec)->getLogin() << " == "<< sec->getLogin()<<endl;
+		cout << (&itSec)->getPassword() << " == "<< sec->getPassword()<<endl<<endl;
+		if(strcmp((&itSec)->getLogin(), sec->getLogin()) && strcmp((&itSec)->getPassword(), sec->getPassword()))
+		{
+			sec = (&itSec);
+			cout << "trouver !"<< endl;
+			return (&itSec)->getNumClub();
+		}
+	}
+	return -1;
 }
 
 int printListeSec(Liste<Secretaire> listeSec)
