@@ -134,9 +134,13 @@ void menuFed()
 		cin >> ch;
 		switch(ch)
 		{
-			case 1:
+			case 0:
 				//save
 				exit(0);
+			break;
+			
+			case 1:
+				
 			break;
 			
 			case 2:
@@ -174,7 +178,6 @@ void menuFed()
 			
 			case 13:
 			break;
-			
 		}
 	
 }
@@ -208,9 +211,12 @@ void menuClub(char* nomClub)
 		cin >> ch;
 		switch(ch)
 		{
-			case 1:
+			case 0:
 				//save
 				exit(0);
+			break;
+			
+			case 1:
 			break;
 			
 			case 2:

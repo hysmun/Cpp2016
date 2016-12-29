@@ -138,9 +138,9 @@ Secretaire &Secretaire::operator=(const Secretaire &tmp)
 
 ostream &operator<<(ostream &s, const Secretaire &j)
 {
-	s << (Personne)j<< endl;
+	s << (Personne)j << endl;
 	s << "num : " << j.getNumClub()<< endl;
-	s << "login : "<< j.getLogin() << " password : " << j.getPassword()<< endl;
+	s << "login : " << j.getLogin() << " password : " << j.getPassword()<< endl;
 	return s;
 }
 
