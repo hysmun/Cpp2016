@@ -71,7 +71,7 @@ int Secretaire::setLogin(const char *tmp)
 	{
 		char temp[100];
 		sprintf(temp, "mauvis login car taille = %d --- %s", lenght, tmp);
-		throw ExceptionMessage(temp);
+		//throw ExceptionMessage(temp);
 	}
 }
 int Secretaire::setPassword(const char *tmp)
