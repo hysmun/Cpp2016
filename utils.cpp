@@ -79,7 +79,14 @@ int printListeSec(Liste<Secretaire> listeSec)
 }
 
 
-
+int cleanScreen()
+{
+	for(int i =0; i<100; i++)
+	{
+		cout << endl;
+	}
+	return 1;
+}
 
 
 
