@@ -48,7 +48,7 @@ int main()
 		if(!fichier)
 			bidonnageSec();
 
-		throw ExceptionMessage(" message");
+		//throw ExceptionMessage(" message");
 
 		listeSec.Load(fichier);
 	

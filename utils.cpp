@@ -23,8 +23,27 @@ using namespace std;
 
 void bidonnageSec()
 {
-	ifstream fichier("secretaires.dat",ios::in);
-	Secretaire s("admin","admin",0,"admin","1234azer");
-	s.Load(fichier);
-	fichier.close();
+	try
+	{
+		char pass[9] = "adminaa1";
+		ifstream fichier("secretaires.dat",ios::in);
+		Secretaire s("admin","admin",0);
+		s.setLogin("admin");
+		cout << "password "<< endl;
+		s.setPassword(pass);
+		s.Load(fichier);
+		fichier.close();
+	}
+	catch(ExceptionMessage &e)
+	{
+		cerr << "erreur : "<< e.getMsg()<<endl;
+	}
+	catch(InvalidPasswordException &e)
+	{
+		cerr << "password icorecte "<< e.getMsg() << endl;
+	}
+	catch(...)
+	{
+		cerr << "erreur inconue"<< endl;
+	}
 }

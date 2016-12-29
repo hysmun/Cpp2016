@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ctype.h>
 #include <fstream>
+#include <cstring>
 using namespace std;
 #include "Membre.h"
 #include "Personne.h"
@@ -53,38 +54,49 @@ int Secretaire::Affiche(void)
 ********************************/
 int Secretaire::setLogin(const char *tmp)
 {
-	if(tmp != NULL)
+	if(tmp != NULL && strlen(tmp)<9)
 	{
 		strcpy(login, tmp);
+	}
+	else
+	{
+		throw ExceptionMessage("Mauvais login !");
 	}
 }
 int Secretaire::setPassword(const char *tmp)
 {
-	int i, digit=0, alpha=0;
-	
-	if(strlen(tmp) != 8)
+	int i, digit=0, alpha=0, lenght;
+	char temp[100];
+	lenght = strlen(tmp);
+	cout << lenght << " -- "<< sizeof(tmp) << endl << tmp << endl;
+	if(lenght != 8)
 	{
-		cout << strlen(tmp)<< endl;
-		throw InvalidPasswordException(InvalidPasswordException::BAD_LENGTH_ERROR, "erreur bad lenght");
+		cout << lenght << endl;
+		sprintf(temp, " erreur de bad lenght 1 (%d) -- %s", lenght, tmp);
+		throw InvalidPasswordException(InvalidPasswordException::BAD_LENGTH_ERROR, temp);
+		exit(0);
+		return -1;
 	}
-	for(i=0; i < strlen(tmp); i++)
+	sprintf(temp, " ");
+	cout << "lenght correct ! "<< endl;
+	for(i=0; i < lenght; i++)
 	{
-		if(tmp[i] <= '9' && tmp[i] >= '0') digit =1;
+		cout << tmp[i];
+		if(tmp[i] <= '9' && tmp[i] >= '0') 
+			digit = 1;
 		
-		if(isalpha(tmp[i])) alpha = 1;
+		if(isalpha(tmp[i])) 
+			alpha = 1;
 	}
-	
-	
+	cout << endl << "fin analise : "<< digit << " - " << alpha<< endl;
 	if(digit == 0)
 		throw InvalidPasswordException(InvalidPasswordException::MISSING_DIGIT_ERROR, "erreur digit manquant");
 	
 	if(alpha == 0)
 		throw InvalidPasswordException(InvalidPasswordException::MISSING_ALPHA_ERROR, "erreur alphha manquant");
 	
-	if(tmp != NULL)
-	{
-		strcpy(password, tmp);
-	}
+
+	strcpy(password, tmp);
 }
 
 /***************************************
