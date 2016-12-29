@@ -26,9 +26,9 @@ int modifierPassword(Liste<Secretaire> listeSec,Secretaire *s,char newpass[9])
 	Iterateur<Secretaire> itSec(listeSec);
 	for(itSec.reset(); itSec.end() == 0; itSec++)
 	{
-		if(!strcmp((&itSec)->getLogin(), sec->getLogin()) && !strcmp((&itSec)->getPassword(), sec->getPassword()))
+		if(!strcmp((&itSec)->getLogin(), s->getLogin()) && !strcmp((&itSec)->getPassword(), s->getPassword()))
 		{
-			s.setPassword(newpass);
+			s->setPassword(newpass);
 			return 0;
 		}
 		else
