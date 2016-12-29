@@ -94,7 +94,20 @@ int cleanScreen()
 
 int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
 {
-	ifstream fichier(nomClub,ios::in);
+	
+	
+	if(nomClub == NULL)
+	{
+		//on veut tout les joueurs et tout les equipes de tout les clubs
+	}
+	else
+	{
+		// on veut les jouers et equipe que de 1 seul clubs portant le nom : nomClub
+		ifstream fichier(nomClub,ios::in);
+		
+		
+		
+	}
 	return 1;
 }
 

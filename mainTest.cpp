@@ -53,8 +53,6 @@ int main()
 	{
 		ifstream fichier("secretaires.dat",ios::in);
 		ifstream fichierClub("clubs.dat",ios::in);
-		ifstream fichierJoueur("joueur.dat",ios::in);
-		ifstream fichierEquipe("equipe.dat",ios::in);
 		cout << "***********************************" << endl;
 		cout << "********** Bienvenue !!! **********" << endl;
 		cout << "***********************************" << endl << endl;
