@@ -52,12 +52,12 @@ int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec)
 	cout << "test des secretaire login + mdp"<<endl;
 	for(itSec.reset(); itSec.end() == 0; itSec++)
 	{
-		cout << (&itSec)->getLogin() << " == "<< sec->getLogin()<<endl;
-		cout << (&itSec)->getPassword() << " == "<< sec->getPassword()<<endl<<endl;
-		if(strcmp((&itSec)->getLogin(), sec->getLogin()) && strcmp((&itSec)->getPassword(), sec->getPassword()))
+		//cout << (&itSec)->getLogin() << " == "<< sec->getLogin()<<endl;
+		//cout << (&itSec)->getPassword() << " == "<< sec->getPassword()<<endl<<endl;
+		if(!strcmp((&itSec)->getLogin(), sec->getLogin()) && !strcmp((&itSec)->getPassword(), sec->getPassword()))
 		{
 			sec = (&itSec);
-			cout << "trouver !"<< endl;
+			//cout << "trouver !"<< endl;
 			return (&itSec)->getNumClub();
 		}
 	}
