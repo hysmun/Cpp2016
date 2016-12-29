@@ -6,7 +6,7 @@ void bidonnageSec();
 
 
 
-int testSecLogin(Liste<Secretaire> listeSec, const Secretaire &sec);
+int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec);
 
 int printListeSec(Liste<Secretaire> listeSec);
 
