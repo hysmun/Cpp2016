@@ -211,5 +211,3 @@ template class ListeBase<Secretaire>;
 
 
 
-
-

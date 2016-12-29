@@ -73,17 +73,6 @@ int main()
 			fichierClub.close();
 		}
 		
-		// fichier Joueur
-		if(!(fichierJoueur.is_open()))
-		{
-			//fichier Joueur inexistant ou pas ouvert
-		}
-		else
-		{
-			//fichier joueur.dat ouvert
-			listeJoueur.Load(fichierJoueur);
-			fichierJoueur.close();
-		}
 		
 		//fichier Secretaire
 		if(!(fichier.is_open()))
