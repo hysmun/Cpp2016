@@ -38,7 +38,7 @@ char nomClub[100];
 void menuFed();
 void menuClub(char*);
 
-
+Liste<Secretaire> listeSec;
 Secretaire s;
 int numeroClub;
 
@@ -48,7 +48,7 @@ int main()
 	{
 		ifstream fichier("secretaires.dat",ios::in);
 		//ifstream fichier2("clubs.dat",ios::in);
-		Liste<Secretaire> listeSec;
+		
 		//ListeTriee<Club> listeClub;
 		cout << "***********************************" << endl;
 		cout << "********** Bienvenue !!! **********" << endl;
