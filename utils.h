@@ -16,4 +16,7 @@ int cleanScreen();
 int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe);
 
 
+char *getNomClubWithNum(ListeTriee<Club> listeClub, int num);
+
+
 #endif // H_UTILS_H

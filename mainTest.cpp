@@ -123,8 +123,7 @@ int main()
 			catch(InvalidPasswordException &e)
 			{}
 		}
-		
-		
+	
 		cout <<endl<<endl<<"Bienvenue :"<<endl<< s << endl;
 		if(numeroClub == 0)
 		{
@@ -132,6 +131,7 @@ int main()
 		}
 		else
 		{
+			strcpy(nomClub, getNomClubWithNum(listeClub, numeroClub));
 			menuClub(nomClub);	//lancer l'interface petite bite
 		}
 	}
@@ -194,7 +194,7 @@ void menuFed()
 				listeSec.Save(fichier);
 				fichier.close();
 				
-				ofstream fichierClub("club.dat",ios::out);
+				ofstream fichierClub("clubs.dat",ios::out);
 				listeClub.Save(fichierClub);
 				fichierClub.close();
 				
@@ -230,7 +230,7 @@ void menuFed()
 				try
 				{
 					addClub(&listeClub, &listeSec);
-					ofstream fichierClub("club.dat",ios::out);
+					ofstream fichierClub("clubs.dat",ios::out);
 					listeClub.Save(fichierClub);
 					fichierClub.close();
 					ofstream fichier("secretaires.dat",ios::out);
