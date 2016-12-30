@@ -98,12 +98,20 @@ ostream& operator<<(ostream& o,const Club& c)
 
 istream& operator>>(istream& i, Club& c)
 {
+	char nomClub[255],adClub[255];
+	int numeroClub;
 	cout << "Nom du club : ";
-	i >> c.nom;
+	i >> nomClub;
+	c.setNom(nomClub);
+	
 	cout << "Numero du club : ";
-	i >> c.numClub;
+	i >> numeroClub;
+	c.setNumClub(numeroClub);
+	
 	cout << "Adresse du club : ";
-	i >> c.adresse;
+	i >> adClub;
+	c.setAdresse(adClub);
+	
 	return i;
 }
 
