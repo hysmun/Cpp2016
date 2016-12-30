@@ -112,7 +112,19 @@ int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<J
 	return 1;
 }
 
-
+char *getNomClubWithNum(ListeTriee<Club> listeClub, int num)
+{
+	Iterateur<Club> ItClub(listeClub);
+	for(ItClub.reset(); ItClub.end() != 0; ItClub++)
+	{
+		if((&ItClub)->getNumClub() == num)
+		{
+			return (&ItClub)->getNom();
+		}
+	}
+	throw ExceptionMessage("nom de club pas trouver !");
+	return NULL;
+}
 
 
 
