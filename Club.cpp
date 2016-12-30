@@ -100,19 +100,21 @@ ostream& operator<<(ostream& o,const Club& c)
 
 istream& operator>>(istream& i, Club& c)
 {
-	char nomClub[255],adClub[255];
-	int numeroClub;
+
+	char tmp[100];
+	int itmp;
 	cout << "Nom du club : ";
-	i >> nomClub;
-	c.setNom(nomClub);
+	i >> tmp;
+	c.setNom(tmp);
 	
-	cout << "Numero du club : ";
-	i >> numeroClub;
-	c.setNumClub(numeroClub);
+	cout << endl <<"Numero du club : ";
+	i >> itmp;
+	c.setNumClub(itmp);
 	
-	cout << "Adresse du club : ";
-	i >> adClub;
-	c.setAdresse(adClub);
+	cout << endl << "Adresse du club : ";
+	i >> tmp;
+	c.setAdresse(tmp);
+	
 	
 	return i;
 }

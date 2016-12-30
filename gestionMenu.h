@@ -16,7 +16,7 @@ int supprimerSec(char* firstname,char* lastname, Liste<Secretaire> *listeSec);
 
 
 
-
+int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec);
 
 
 

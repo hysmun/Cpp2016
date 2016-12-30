@@ -86,7 +86,45 @@ int supprimerSec(char* firstname,char* lastname,Liste<Secretaire> *listeSec)
 
 int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 {
+	Club cTmp;
+	Secretaire sTmp;
+	char tmp[100], pass[100];
+	int tmpint;
+	Personne tmpp;
 	
+	
+	//encodage club
+	cout << "encodage du club "<<endl;
+	cin >> cTmp;
+	
+	
+	
+	
+	//encodage Secretaire du club
+	cout << endl <<"encodage de la secretaire"<< endl;
+	cin >> tmpp;
+	sTmp.setNom(tmpp.getNom());
+	sTmp.setPrenom(tmpp.getPrenom());
+	
+	sTmp.setNumClub(cTmp.getNumClub());
+	cout << "Encodez le login : " << flush;
+	cin >> tmp;
+	sTmp.setLogin(tmp);
+	cout << "Encodez le password : " << flush;
+	cin >> pass;
+	sTmp.setPassword(pass);
+	
+	//verifie que le club et la secretaire n'existe pas déjà
+	if(!listeClub->SearchDoublet(cTmp)  &&  !listeSec->SearchDoublet(sTmp))
+	{
+		listeClub->insere(cTmp);
+		listeSec->insere(sTmp);
+	}
+	else
+	{
+		throw ExceptionMessage("Erreur création club !!!!");
+		return -1;
+	}
 	
 	
 	return 1;
