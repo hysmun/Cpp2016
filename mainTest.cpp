@@ -315,6 +315,7 @@ void menuFed()
 			case 9:
 			{
 				//afficher tous les joueurs
+				listeJoueur.Affiche();
 				break;
 			}
 			
@@ -327,6 +328,7 @@ void menuFed()
 			case 11:
 			{
 				//afficher toutes les equipes
+				listeEquipe.Affiche();
 				break;
 			}
 			
@@ -405,6 +407,26 @@ void menuClub(char* nomClub)
 			case 2:
 			{
 				//ajouter un joueur
+				Joueur j;
+				Personne tmp;
+				Classement tmpc;
+				Matricule tmpm;
+	
+	
+				cin >>tmp;
+				j.setNom(tmp.getNom());
+				j.setPrenom(tmp.getPrenom());
+				cin >> tmpm;
+				j.setMatricule(tmpm);
+				
+				
+				j.setNumClub(numeroClub);
+				cout << "Encodez le classement: " << flush;
+				cin >> tmpc;
+				j.setClassement(&tmpc);
+				
+				listeJoueur.insere(j);
+				cout << " joueur insere "<<endl;
 				break;
 			}
 			
@@ -417,6 +439,7 @@ void menuClub(char* nomClub)
 			case 4:
 			{
 				//afficher tous les joueurs (nom, prenom, classement)
+				listeJoueur.Affiche();
 				break;
 			}
 			

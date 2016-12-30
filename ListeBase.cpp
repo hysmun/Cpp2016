@@ -178,6 +178,33 @@ int ListeBase<T>::SearchDoublet(const T &tmp)
 }
 
 
+template<class T>
+int ListeBase<T>::DeleteElem(const T &tmp)
+{
+	int i;
+	Cellule<T> *pParc = this->pTete;
+	Cellule<T> *pPrec = NULL;
+	for(i=0; pParc != NULL;i++)
+	{
+		if( pParc->valeur == tmp)
+		{
+			if(pPrec == NULL)
+			{
+				this->pTete = pParc->suivant;
+			}
+			else
+			{
+				pPrec->suivant = pParc->suivant;
+			}
+			return 1;
+		}
+		pPrec = pParc;
+		pParc=pParc->suivant;
+	}
+	return 0;
+}
+
+
 
 #include "Classement.h"
 #include "Joueur.h"

@@ -38,6 +38,7 @@ class ListeBase
 		int Load(ifstream &fichier);
 		int Save(ofstream &fichier);
 		int SearchDoublet(const T&);
+		int DeleteElem(const T &tmp);
 };
 
 #endif /* H_LISTEBASE */
