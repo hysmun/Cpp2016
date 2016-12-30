@@ -184,7 +184,8 @@ void menuFed()
 			
 			case 1:
 			{
-				char newpass[9];
+				//nouveau mdp
+				char newpass[100];
 				cout << "Nouveau mot de passe : ";
 				cin >> newpass;
 				try
@@ -204,16 +205,26 @@ void menuFed()
 			}			
 			
 			case 2:
-			break;
+			{
+				//cree un club
+				break;
+			}
 			
 			case 3:
-			break;
+			{
+				//afficher tout les clubs
+				break;
+			}
 			
 			case 4:
-			break;
+			{
+				//afficher les infos et joueur d'un club
+				break;
+			}
 			
 			case 5:
 			{
+				//cree nouvelle secretaire
 				Secretaire s;		
 				cin >> s;
 				if(listeSec.SearchDoublet(s) == 0)
@@ -230,15 +241,22 @@ void menuFed()
 			}		
 				
 			case 6:
+			{
+				//afficher TOUTE les secretaire
 				showSec(listeSec,0);
 				break;
+			}
 			
 			case 7:
+			{
+				//afficher les secretaire d'un club
 				showSec(listeSec,1);
 				break;
+			}
 			
 			case 8:
 			{
+				//suprimer un secretaire
 				char firstname[20],lastname[20];
 				cout << "Nom : ";
 				cin >> lastname;
@@ -257,19 +275,34 @@ void menuFed()
 			break;
 			
 			case 9:
-			break;
+			{
+				//afficher tous les joueurs
+				break;
+			}
 			
 			case 10:
-			break;
+			{
+				//afficher tout les joueurs pour un classement de lettre donnee
+				break;
+			}
 			
 			case 11:
-			break;
+			{
+				//afficher toutes les equipes
+				break;
+			}
 			
 			case 12:
-			break;
+			{
+				//afficher lles info d'une equipe
+				break;
+			}
 			
 			case 13:
-			break;
+			{
+				//lancer un match + exporter resultat en .txt
+				break;
+			}
 		}
 }
 
@@ -327,40 +360,79 @@ void menuClub(char* nomClub)
 				break;
 			}						
 			case 2:
-			break;
+			{
+				//ajouter un joueur
+				break;
+			}
 			
 			case 3:
-			break;
+			{
+				//supprimer un joueur
+				break;
+			}
 			
 			case 4:
-			break;
+			{
+				//afficher tous les joueurs (nom, prenom, classement)
+				break;
+			}
 			
 			case 5:
-			break;
+			{
+				//afficher toutes les infos d'un seul joueur
+				break;
+			}
 			
 			case 6:
-			break;
+			{
+				// importer un ensemble de joueur d'un fichier .txt
+				break;
+			}
 			
 			case 7:
-			break;
+			{
+				//cree une equipe
+				break;
+			}
 			
 			case 8:
-			break;
+			{
+				//ajouter un joueur a une equipe
+				break;
+			}
 			
 			case 9:
-			break;
+			{
+				//retirer un joueur d'une equipe'
+				break;
+			}
 			
 			case 10:
-			break;
+			{
+				//afficher detail une equipe
+				break;
+			}
 			
 			case 11:
-			break;
+			{
+				//afficher toutes les equipes
+				break;
+			}
 			
 			case 12:
-			break;
+			{
+				//supprimer une equipe
+				break;
+			}
 			
 		}
 }
+
+
+
+
+
+
 
 
 

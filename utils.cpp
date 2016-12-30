@@ -19,6 +19,7 @@ using namespace std;
 #include "ExceptionMessage.h"
 #include "Matricule.h"
 #include "Iterateur.h"
+#include "gestionMenu.h"
 
 
 void bidonnageSec()
@@ -98,7 +99,7 @@ int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<J
 	
 	if(nomClub == NULL)
 	{
-		//on veut tout les joueurs et tout les equipes de tout les clubs
+		//erreur !!!
 	}
 	else
 	{
