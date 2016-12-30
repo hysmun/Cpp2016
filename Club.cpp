@@ -121,7 +121,7 @@ istream& operator>>(istream& i, Club& c)
 	
 	cout << endl << "Adresse du club : ";
 	i.ignore();
- 	i >> tmp;
+ 	i.getline(tmp,100,'\n');
 	c.setAdresse(tmp);
 	
 	
