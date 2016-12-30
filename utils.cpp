@@ -93,18 +93,18 @@ int cleanScreen()
 
 
 
-int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
+int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
 {
 	
 	
-	if(nomClub == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
+	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
 	{
 		//erreur !!!
 	}
 	else
 	{
 		// on veut les jouers et equipe que de 1 seul clubs portant le nom : nomClub
-		ifstream fichier(nomClub,ios::in);
+		ifstream fichier(nomFichier,ios::in);
 		
 		
 		
@@ -112,19 +112,19 @@ int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<J
 	return 1;
 }
 
-int SaveJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
+int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
 {
 	
 	
-	if(nomClub == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
+	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
 	{
 		//erreur !!!
 	}
 	else
 	{
 		// on veut les jouers et equipe que de 1 seul clubs portant le nom : nomClub
-		ofstream fichier(nomClub,ios::out);
-		
+		ofstream fichier(nomFichier,ios::out);
+		listeJoueur->Save(fichier);
 		
 		
 	}
