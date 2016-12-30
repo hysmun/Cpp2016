@@ -75,6 +75,9 @@ int main()
 		if(!(fichier.is_open()))
 		{
 			bidonnageSec();
+			ifstream fichierSec("secretaires.dat", ios::in);
+			listeSec.Load(fichierSec);
+			fichierSec.close();
 		}
 		else
 		{
@@ -123,6 +126,8 @@ int main()
 			catch(InvalidPasswordException &e)
 			{}
 		}
+		
+		numeroClub = s.getNumClub();
 	
 		cout <<endl<<endl<<"Bienvenue :"<<endl<< s << endl;
 		if(numeroClub == 0)
