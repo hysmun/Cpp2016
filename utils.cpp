@@ -160,9 +160,10 @@ int printListeJoueur(ListeTriee<Joueur> listeJoueur)
 	Iterateur<Joueur> It(listeJoueur);
 	for(It.reset(); It.end() == 0; It++)
 	{
-		cout  << "Nom : "<< (&It)->getNom()<<endl;
-		cout  << "Prenom : "<< (&It)->getPrenom()<<endl;
-		cout  << "Classement : "<< *((&It)->getClassement())<<endl<<endl;
+		cout  << "Nom : "<< (&It)->getNom() <<endl;
+		cout  << "Prenom : "<< (&It)->getPrenom() <<endl;
+		cout  << "Classement : "<< *((&It)->getClassement()) <<endl;
+		cout  << "Matricule : "<< (&It)->getMatricule() <<endl<<endl;
 		
 	}
 	return 1;
