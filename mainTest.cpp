@@ -110,6 +110,8 @@ int main()
 		{
 			try
 			{
+				s.setLogin(NULL);
+				s.setPassword(NULL);
 				cout << "Login et/ou password incorrecte !"<<endl;
 				cout << "Login : ";
 				cin >> login;
@@ -195,7 +197,7 @@ void menuFed()
 				listeSec.Save(fichier);
 				fichier.close();
 				
-				ofstream fichierClub("Club.dat",ios::out);
+				ofstream fichierClub("club.dat",ios::out);
 				listeClub.Save(fichierClub);
 				fichierClub.close();
 				
@@ -231,9 +233,12 @@ void menuFed()
 				try
 				{
 					addClub(&listeClub, &listeSec);
-					ofstream fichierClub("Club.dat",ios::out);
+					ofstream fichierClub("club.dat",ios::out);
 					listeClub.Save(fichierClub);
 					fichierClub.close();
+					ofstream fichier("secretaires.dat",ios::out);
+					listeSec.Save(fichier);
+					fichier.close();
 					cout << "Club et secretaire ajouter "<<endl;
 				}
 				catch (ExceptionMessage &e)
