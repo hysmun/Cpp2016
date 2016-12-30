@@ -115,8 +115,10 @@ int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<J
 char *getNomClubWithNum(ListeTriee<Club> listeClub, int num)
 {
 	Iterateur<Club> ItClub(listeClub);
+	cout << "recheche num club "<<endl;
 	for(ItClub.reset(); ItClub.end() != 0; ItClub++)
 	{
+		cout << endl << "premier essais : "<< num << " == "<<(&ItClub)->getNumClub()<<endl;
 		if((&ItClub)->getNumClub() == num)
 		{
 			return (&ItClub)->getNom();

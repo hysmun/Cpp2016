@@ -136,6 +136,7 @@ int main()
 		}
 		else
 		{
+			listeClub.Affiche();
 			strcpy(nomClub, getNomClubWithNum(listeClub, numeroClub));
 			menuClub(nomClub);	//lancer l'interface petite bite
 		}
