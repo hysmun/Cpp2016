@@ -88,6 +88,7 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 {
 	Club cTmp;
 	Secretaire sTmp;
+	cout << "hello!!!";
 	char tmp[100], pass[100];
 	int tmpint;
 	Personne tmpp;
