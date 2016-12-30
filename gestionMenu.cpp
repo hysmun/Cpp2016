@@ -88,10 +88,14 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 {
 	Club cTmp;
 	Secretaire sTmp;
+	cout << "hello0000!!!"<<endl;
 	char tmp[100], pass[100];
 	int tmpint;
 	Personne tmpp;
-	
+	if(listeClub == NULL || listeSec == NULL)
+	{
+		throw ExceptionMessage("Erraur add club");
+	}
 	
 	//encodage club
 	cout << "encodage du club " << endl;
