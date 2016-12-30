@@ -72,7 +72,7 @@ int printListeSec(Liste<Secretaire> listeSec)
 	int i;
 	Iterateur<Secretaire> pParc(listeSec);
 	cout<< endl;
-	for(i=0; pParc.end() != 0; i++)
+	for(i=0; pParc.end() == 0; i++)
 	{
 		cout << "secretaire "<< i<<endl;
 		cout << &pParc <<endl;
@@ -116,7 +116,7 @@ char *getNomClubWithNum(ListeTriee<Club> listeClub, int num)
 {
 	Iterateur<Club> ItClub(listeClub);
 	cout << "recheche num club "<<endl;
-	for(ItClub.reset(); ItClub.end() != 0; ItClub++)
+	for(ItClub.reset(); ItClub.end() == 0; ItClub++)
 	{
 		cout << endl << "premier essais : "<< num << " == "<<(&ItClub)->getNumClub()<<endl;
 		if((&ItClub)->getNumClub() == num)
