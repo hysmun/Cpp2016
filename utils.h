@@ -18,7 +18,10 @@ int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<J
 
 char *getNomClubWithNum(ListeTriee<Club> listeClub, int num);
 
-int printListeJoueur(ListeTriee<T> listeJoueur)
+int printListeJoueur(ListeTriee<Joueur> listeJoueur);
+
+
+int SaveJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe);
 
 
 

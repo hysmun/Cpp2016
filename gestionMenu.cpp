@@ -91,7 +91,7 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 	Club cTmp;
 	Secretaire sTmp;
 	char tmp[100], pass[100];
-	int tmpint;
+	int tmpint, test =0;
 	Personne tmpp;
 	if(listeClub == NULL || listeSec == NULL)
 	{
@@ -103,21 +103,31 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 	cin >> cTmp;
 	
 	
+	//Test s'il reste une secretaire dans le club
+	Iterateur<Secretaire> itTmp(*listeSec);
+	for(itTmp.reset();itTmp.end() == 0;itTmp++)
+	{
+		if(((&itTmp)->getNumClub() == cTmp.getNumClub()))
+		{
+			test = 1;
+		}
+	}
+	if(test == 0)
+	{
+		//encodage Secretaire du club
+		cout << endl <<"encodage de la secretaire"<< endl;
+		cin >> tmpp;
+		sTmp.setNom(tmpp.getNom());
+		sTmp.setPrenom(tmpp.getPrenom());
 	
-	cin.ignore(256, '\n');
-	//encodage Secretaire du club
-	cout << endl <<"encodage de la secretaire"<< endl;
-	cin >> tmpp;
-	sTmp.setNom(tmpp.getNom());
-	sTmp.setPrenom(tmpp.getPrenom());
-	
-	sTmp.setNumClub(cTmp.getNumClub());
-	cout << "Encodez le login : " << flush;
-	cin >> tmp;
-	sTmp.setLogin(tmp);
-	cout << "Encodez le password : " << flush;
-	cin >> pass;
-	sTmp.setPassword(pass);
+		sTmp.setNumClub(cTmp.getNumClub());
+		cout << "Encodez le login : " << flush;
+		cin >> tmp;
+		sTmp.setLogin(tmp);
+		cout << "Encodez le password : " << flush;
+		cin >> pass;
+		sTmp.setPassword(pass);
+	}
 	
 	//verifie que le club et la secretaire n'existe pas déjà
 	if(!listeClub->SearchDoublet(cTmp)  &&  !listeSec->SearchDoublet(sTmp))
