@@ -75,6 +75,9 @@ int main()
 		if(!(fichier.is_open()))
 		{
 			bidonnageSec();
+			ifstream fichierSec("secretaires.dat", ios::in);
+			listeSec.Load(fichierSec);
+			fichierSec.close();
 		}
 		else
 		{
