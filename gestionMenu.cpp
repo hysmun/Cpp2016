@@ -93,7 +93,7 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 	Personne tmpp;
 	if(listeClub == NULL || listeSec == NULL)
 	{
-		throw ExceptionMessage("Erraur add club");
+		throw ExceptionMessage("Erreur add club");
 	}
 	
 	//encodage club
