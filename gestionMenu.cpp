@@ -94,7 +94,7 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 	
 	
 	//encodage club
-	cout << "encodage du club "<<endl;
+	cout << "encodage du club " << endl;
 	cin >> cTmp;
 	
 	

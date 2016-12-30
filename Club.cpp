@@ -28,9 +28,9 @@ Club::Club(const Club& c)
 	{
 		if(c.adresse)
 		{
-			setNom(c.nom);
-			setAdresse(c.adresse);
-			setNumClub(c.numClub);
+			setNom(c.getNom());
+			setAdresse(c.getAdresse());
+			setNumClub(c.getNumClub());
 		}
 		else
 		{
