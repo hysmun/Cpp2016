@@ -112,6 +112,31 @@ int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<J
 	return 1;
 }
 
+int SaveJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
+{
+	
+	
+	if(nomClub == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
+	{
+		//erreur !!!
+	}
+	else
+	{
+		// on veut les jouers et equipe que de 1 seul clubs portant le nom : nomClub
+		ofstream fichier(nomClub,ios::out);
+		
+		
+		
+	}
+	return 1;
+}
+
+
+
+
+
+
+
 char *getNomClubWithNum(ListeTriee<Club> listeClub, int num)
 {
 	Iterateur<Club> ItClub(listeClub);
@@ -137,7 +162,7 @@ int printListeJoueur(ListeTriee<Joueur> listeJoueur)
 	{
 		cout  << "Nom : "<< (&It)->getNom()<<endl;
 		cout  << "Prenom : "<< (&It)->getPrenom()<<endl;
-		cout  << "Classement : "<< (&It)->getClassement()<<endl<<endl;
+		cout  << "Classement : "<< *((&It)->getClassement())<<endl<<endl;
 		
 	}
 	return 1;
