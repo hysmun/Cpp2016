@@ -54,8 +54,13 @@ int Secretaire::Affiche(void)
 ********************************/
 int Secretaire::setLogin(const char *tmp)
 {
-	int i, lenght = strlen(tmp);
-	if(tmp != NULL && lenght<9)
+	int i, lenght;
+	if(tmp == NULL)
+	{
+		return -1;
+	}
+	lenght = strlen(tmp);
+	if( lenght<9)
 	{
 		
 		strcpy(login, tmp);
@@ -78,6 +83,10 @@ int Secretaire::setPassword(const char *tmp)
 {
 	unsigned int i, digit=0, alpha=0, lenght;
 	char temp[100];
+	if(tmp==NULL)
+	{
+		throw InvalidPasswordException(InvalidPasswordException::BAD_LENGTH_ERROR, temp);
+	}
 	lenght = strlen(tmp);
 	//cout << endl << tmp << endl;
 	if(lenght != 8)

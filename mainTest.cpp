@@ -110,8 +110,6 @@ int main()
 		{
 			try
 			{
-				s.setLogin(NULL);
-				s.setPassword(NULL);
 				cout << "Login et/ou password incorrecte !"<<endl;
 				cout << "Login : ";
 				cin >> login;
@@ -119,7 +117,6 @@ int main()
 				cout << "Password : ";
 				cin >> passwd;
 				//Test si password OK
-				Secretaire s;
 				s.setLogin(login);
 				s.setPassword(passwd);
 			}
