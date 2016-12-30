@@ -10,20 +10,24 @@ using namespace std;
 
 Club::Club()
 {
-	setNom("Nom");
+	nom = NULL;
+	adresse = NULL;
 	setNumClub(0);
-	setAdresse("Adresse");
 }
 
 Club::Club(char* n,int nc,char* ad)
 {
+	nom = NULL;
+	adresse = NULL;
 	setNom(n);
 	setNumClub(nc);
 	setAdresse(ad);
 }
 
-Club::Club(const Club& c)
+Club::Club(const Club& c) 
 {
+	nom = NULL;
+	adresse = NULL;
 	if(c.nom)
 	{
 		if(c.adresse)
@@ -56,8 +60,11 @@ void Club::setNom(const char* n)
 {
 	if(nom)
 		delete nom;
-	nom = new char[strlen(n)+1];
-	strcpy(nom,n);
+	if(n)
+	{
+		nom = new char[strlen(n)+1];
+		strcpy(nom,n);
+	}
 }
 
 void Club::setNumClub(int nc)
@@ -69,8 +76,11 @@ void Club::setAdresse(const char* ad)
 {
 	if(adresse)
 		delete adresse;
-	adresse = new char[strlen(ad)+1];
-	strcpy(adresse,ad);
+	if(ad)
+	{
+		adresse = new char[strlen(ad)+1];
+		strcpy(adresse,ad);
+	}
 }
 
 char* Club::getNom()const
