@@ -3,6 +3,7 @@
 template<class T>
 bool Iterateur<T>::end() 
 {
+	if(liste.pTete == NULL) return 1;
 	return currentPos == 0;
 }
 
