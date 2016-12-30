@@ -98,6 +98,7 @@ ostream& operator<<(ostream& o,const Club& c)
 
 istream& operator>>(istream& i, Club& c)
 {
+
 	char tmp[100];
 	int itmp;
 	cout << "Nom du club : ";
