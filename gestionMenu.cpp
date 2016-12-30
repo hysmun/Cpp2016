@@ -170,5 +170,3 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 
 
 
-
-
