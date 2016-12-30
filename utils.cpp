@@ -97,7 +97,7 @@ int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<J
 {
 	
 	
-	if(nomClub == NULL)
+	if(nomClub == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
 	{
 		//erreur !!!
 	}
@@ -130,7 +130,18 @@ char *getNomClubWithNum(ListeTriee<Club> listeClub, int num)
 
 
 
-
+int printListeJoueur(ListeTriee<Joueur> listeJoueur)
+{
+	Iterateur<Joueur> It(listeJoueur);
+	for(It.reset(); It.end() == 0; It++)
+	{
+		cout  << "Nom : "<< (&It)->getNom()<<endl;
+		cout  << "Prenom : "<< (&It)->getPrenom()<<endl;
+		cout  << "Classement : "<< (&It)->getClassement()<<endl<<endl;
+		
+	}
+	return 1;
+}
 
 
 

@@ -321,7 +321,7 @@ void menuFed()
 			case 9:
 			{
 				//afficher tous les joueurs
-				listeJoueur.Affiche();
+				printListeJoueur(listeJoueur);
 				break;
 			}
 			
@@ -445,7 +445,7 @@ void menuClub(char* nomClub)
 			case 4:
 			{
 				//afficher tous les joueurs (nom, prenom, classement)
-				listeJoueur.Affiche();
+				printListeJoueur(listeJoueur);
 				break;
 			}
 			
