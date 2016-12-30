@@ -214,7 +214,6 @@ void menuFed()
 			{
 				//cree un club
 				cleanScreen();
-				cout << "BOUHHHH"<<endl;
 				addClub(&listeClub, &listeSec);
 				break;
 			}
