@@ -13,7 +13,7 @@ int printListeSec(Liste<Secretaire> listeSec);
 int cleanScreen();
 
 
-int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
+int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe);
 
 
 #endif // H_UTILS_H

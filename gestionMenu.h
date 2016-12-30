@@ -1,8 +1,17 @@
 #ifndef __GESTIONMENU_H__
 #define __GESTIONMENU_H__
 
-int modifierPassword(Liste<Secretaire> *listeSec,Secretaire *s,char newpasss[9]);
+#include "Secretaire.h"
+#include "ListeBase.h"
+#include "Liste.h"
+#include "ListeTriee.h"
+
+
+
+int modifierPassword(Liste<Secretaire> *listeSec, Secretaire *s, char *newpasss);
+
 int showSec(Liste<Secretaire> listeSec, bool type);
+
 int supprimerSec(char* firstname,char* lastname, Liste<Secretaire> *listeSec);
 
 

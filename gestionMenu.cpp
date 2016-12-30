@@ -20,9 +20,14 @@ using namespace std;
 #include "Matricule.h"
 #include "Iterateur.h"
 #include "utils.h"
+#include "gestionMenu.h"
 
-int modifierPassword(Liste<Secretaire> *listeSec,Secretaire *s,char newpass[9])
+int modifierPassword(Liste<Secretaire> *listeSec, Secretaire *s, char *newpass)
 {
+	if(strlen(newpass) != 8)
+	{
+		throw ExceptionMessage("mauvais mots de pass dans modifierPassword");
+	}
 	Iterateur<Secretaire> itSec(*listeSec);
 	for(itSec.reset(); itSec.end() == 0; itSec++)
 	{
@@ -78,3 +83,51 @@ int supprimerSec(char* firstname,char* lastname,Liste<Secretaire> *listeSec)
 	}
 
 }
+
+int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
+{
+	
+	
+	
+	return 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
