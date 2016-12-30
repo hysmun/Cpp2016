@@ -123,6 +123,8 @@ int main()
 			catch(InvalidPasswordException &e)
 			{}
 		}
+		
+		numeroClub = s.getNumClub();
 	
 		cout <<endl<<endl<<"Bienvenue :"<<endl<< s << endl;
 		if(numeroClub == 0)
