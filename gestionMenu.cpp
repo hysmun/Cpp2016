@@ -139,10 +139,15 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 int supprimerJoueur(Matricule m, ListeTriee<Joueur> *listeJoueur)
 {
 	Iterateur<Joueur> itJoueur(*listeJoueur);
-	
-
-
-
+	for(itJoueur.reset();itJoueur.end() == 0;itJoueur++)
+	{
+		if(!strcmp((&itJoueur)->getDateInscription(),m.getDateInscription()) && ((&itJoueur)->getNumero() == m.getNumero()))
+		{
+			itJoueur.remove();
+			return 0;
+		}
+	}
+	return -1;
 }
 
 

@@ -315,8 +315,8 @@ void menuFed()
 				}
 				else
 					cout << "Erreur suppression" << endl;
+				break;
 			}
-			break;
 			
 			case 9:
 			{
@@ -439,16 +439,16 @@ void menuClub(char* nomClub)
 			case 3:
 			{
 				//supprimer un joueur
-//				Matricule m;
-//				
-//				cin >> m;
-//				if(supprimerJoueur(m,&listeJoueur) == 0)
-//				{
-//					cout << "Joueur supprimé" << endl;
-//				}
-//				else
-//					cout << "Erreur suppression" << endl;
-//				break;
+				Matricule m;
+				
+				cin >> m;
+				if(supprimerJoueur(m,&listeJoueur) == 0)
+				{
+					cout << "Joueur supprimé" << endl;
+				}
+				else
+					cout << "Erreur suppression" << endl;
+				break;
 			}
 			
 			case 4:
