@@ -439,6 +439,20 @@ void menuClub(char* nomClub)
 			case 3:
 			{
 				//supprimer un joueur
+				Matricule m;
+				
+				cin >> m;
+				
+				
+				if(supprimerSec(firstname,lastname,&listeSec) == 0)
+				{
+					cout << "Secrétaire supprimé(e)" << endl;
+					ofstream fichier("secretaires.dat",ios::out);
+					listeSec.Save(fichier);
+					fichier.close();
+				}
+				else
+					cout << "Erreur suppression" << endl;
 				break;
 			}
 			

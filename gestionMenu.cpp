@@ -70,6 +70,7 @@ int supprimerSec(char* firstname,char* lastname,Liste<Secretaire> *listeSec)
 		if(!strcmp((&itSec)->getPrenom(), firstname) && !strcmp((&itSec)->getNom(), lastname))
 		{
 			nClub = (&itSec)->getNumClub();
+			//Test s'il reste une secretaire dans le club
 			Iterateur<Secretaire> itTmp(*listeSec);
 			for(itTmp.reset();itTmp.end() == 0;itTmp++)
 			{
