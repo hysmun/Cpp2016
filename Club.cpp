@@ -35,13 +35,11 @@ Club::Club(const Club& c)
 		else
 		{
 			cout << "Erreur d'adresse" << endl;
-			exit(0);
 		}
 	}
 	else
 	{
 		cout << "Erreur de nom" << endl;
-		exit(0);
 	}
 }
 
@@ -130,13 +128,11 @@ Club& Club::operator=(const Club& c)
 		else
 		{
 			cout << "Erreur d'adresse" << endl;
-			exit(0);
 		}
 	}
 	else
 	{
 		cout << "Erreur de nom" << endl;
-		exit(0);
 	}
 	return *this;
 }
