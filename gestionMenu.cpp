@@ -56,6 +56,7 @@ int showSec(Liste<Secretaire> listeSec,bool type)
 			cout << "******************" << endl;
 			cout << "Nom : " << (&itSec)->getNom() << endl;
 			cout << "Prénom : " << (&itSec)->getPrenom() << endl;
+			cout << "Numéro de club : " << (&itSec)->getNumClub() << endl;
 		}
 	}
 }

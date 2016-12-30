@@ -120,8 +120,8 @@ istream& operator>>(istream& i, Club& c)
 	c.setNumClub(itmp);
 	
 	cout << endl << "Adresse du club : ";
-	i >> tmp;
-	cout << endl << "Contenu de tmp : " << tmp;
+	i.ignore();
+ 	i >> tmp;
 	c.setAdresse(tmp);
 	
 	
