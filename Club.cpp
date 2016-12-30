@@ -90,7 +90,9 @@ char* Club::getAdresse()const
 
 ostream& operator<<(ostream& o,const Club& c)
 {
-	o << "Nom du club : " << c.nom << endl << "Numero du club : " << c.numClub << endl << "Adresse du club : " << c.adresse << endl;
+	o << "Nom du club : " << c.getNom() << endl;
+	o << "Numero du club : " << c.getNumClub() << endl;
+	o << "Adresse du club : " << c.getAdresse() << endl;
 	return o;
 }
 
