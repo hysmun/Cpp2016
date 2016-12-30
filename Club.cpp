@@ -121,6 +121,7 @@ istream& operator>>(istream& i, Club& c)
 	
 	cout << endl << "Adresse du club : ";
 	i >> tmp;
+	cout << endl << "Contenu de tmp : " << tmp;
 	c.setAdresse(tmp);
 	
 	
