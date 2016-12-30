@@ -102,7 +102,7 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 	
 	
 	
-	
+	cin.ignore(256, '\n');
 	//encodage Secretaire du club
 	cout << endl <<"encodage de la secretaire"<< endl;
 	cin >> tmpp;

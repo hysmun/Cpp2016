@@ -156,7 +156,11 @@ int main()
 
 void menuFed()
 {
-		cleanScreen();
+	int ch=14;
+	cleanScreen();
+	while(ch != 0)
+	{
+		
 		cout << "********************************************************************" << endl;
 		cout << "********* Gestion de la Fédération de Tennis de Table **************" << endl;
 		cout << "********************************************************************" << endl << endl;
@@ -178,15 +182,26 @@ void menuFed()
 		cout << "	11. Afficher toutes les équipes" << endl;
 		cout << "	12. Afficher toutes les informations d’une équipe" << endl;
 		cout << "	13. Lancer un match de championnat inter-club et exporter les résultats au format txt" << endl << endl;
-		int ch;
+		
 		cout << "Votre choix : ";
 		cin >> ch;
+		cleanScreen();
 		switch(ch)
 		{
 			case 0:
+			{
 				//save
+				ofstream fichier("secretaires.dat",ios::out);
+				listeSec.Save(fichier);
+				fichier.close();
+				
+				ofstream fichierClub("Club.dat",ios::out);
+				listeClub.Save(fichierClub);
+				fichierClub.close();
+				
 				exit(0);
-			break;
+				break;
+			}
 			
 			case 1:
 			{
@@ -213,15 +228,25 @@ void menuFed()
 			case 2:
 			{
 				//cree un club
-				cleanScreen();
-				addClub(&listeClub, &listeSec);
+				try
+				{
+					addClub(&listeClub, &listeSec);
+					ofstream fichierClub("Club.dat",ios::out);
+					listeClub.Save(fichierClub);
+					fichierClub.close();
+					cout << "Club et secretaire ajouter "<<endl;
+				}
+				catch (ExceptionMessage &e)
+				{
+					cout << e.getMsg()<<endl;
+				}
 				break;
 			}
 			
 			case 3:
 			{
 				//afficher tout les clubs
-				cleanScreen();
+				cout << "affichage des clubs :"<<endl;
 				listeClub.Affiche();
 				break;
 			}
@@ -315,6 +340,8 @@ void menuFed()
 				break;
 			}
 		}
+		cout<<endl<<endl<<endl;
+	}
 }
 
 
@@ -322,7 +349,10 @@ void menuFed()
 
 void menuClub(char* nomClub)
 {
-		cleanScreen();
+	int ch= 14;
+	cleanScreen();
+	while(ch != 0)
+	{
 		cout << "********************************************************************" << endl;
 		cout << "*********** Club de Tennis de Table : " << nomClub << " *********************" << endl;
 		cout << "********************************************************************" << endl << endl;
@@ -341,9 +371,9 @@ void menuClub(char* nomClub)
 		cout << "	10. Afficher tous les détails d’une équipe" << endl;
 		cout << "	11. Afficher toutes les équipes" << endl;
 		cout << "	12. Supprimer une équipe" << endl << endl;
-		int ch;
 		cout << "Votre choix : ";
 		cin >> ch;
+		cleanScreen();
 		switch(ch)
 		{
 			case 0:
@@ -437,6 +467,8 @@ void menuClub(char* nomClub)
 			}
 			
 		}
+		cout<<endl<<endl<<endl;
+	}
 }
 
 
