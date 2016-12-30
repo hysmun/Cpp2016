@@ -53,9 +53,7 @@ int main()
 	{
 		ifstream fichier("secretaires.dat",ios::in);
 		ifstream fichierClub("clubs.dat",ios::in);
-		cout << "***********************************" << endl;
-		cout << "********** Bienvenue !!! **********" << endl;
-		cout << "***********************************" << endl << endl;
+		
 		char passwd[100];
 		int i;
 		
@@ -67,6 +65,7 @@ int main()
 		else
 		{
 			//fichier club.dat ouvert
+			cout << "chargement fichier club"<<endl;
 			listeClub.Load(fichierClub);
 			fichierClub.close();
 		}
@@ -82,9 +81,16 @@ int main()
 			//cout << "chargement liste secretaire"<< endl;
 			listeSec.Load(fichier);
 			fichier.close();
+			cout <<"chargement fichier secretaire "<<endl;
 			//cout << "affichage liste secretaire !!!"<< endl;
 			//printListeSec(listeSec);
 		}
+		
+		
+		
+		cout << "***********************************" << endl;
+		cout << "********** Bienvenue !!! **********" << endl;
+		cout << "***********************************" << endl << endl;
 		
 		try
 		{
@@ -207,18 +213,23 @@ void menuFed()
 			case 2:
 			{
 				//cree un club
+				cleanScreen();
+				addClub(&listeClub, &listeSec);
 				break;
 			}
 			
 			case 3:
 			{
 				//afficher tout les clubs
+				cleanScreen();
+				listeClub.Affiche();
 				break;
 			}
 			
 			case 4:
 			{
 				//afficher les infos et joueur d'un club
+				cleanScreen();
 				break;
 			}
 			
