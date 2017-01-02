@@ -29,7 +29,7 @@ Iterateur<T>::operator T() const
 template<class T>
 T* Iterateur<T>::operator& (void) 
 {
-	cout << "val :"<<&(currentPos->valeur)<< " "<< (currentPos->valeur)<<endl;
+	//cout << "val :"<<&(currentPos->valeur)<< " "<< (currentPos->valeur)<<endl;
 	return &(currentPos->valeur);
 }
 
