@@ -198,18 +198,26 @@ Joueur *getJoueurWithNum(ListeTriee<Joueur> *listeJoueur, int num)
 
 int printListeJoueur(ListeTriee<Joueur> listeJoueur)
 {
+	if(listeJoueur.estVide() == true)
+	{
+		cout << "liste Joueur vide  !"<<endl;
+		return -1;
+	}
 	Iterateur<Joueur> It(listeJoueur);
 	cout << "liste des joueurs : "<<endl;
 	for(It.reset(); It.end() == 0; It++)
 	{
-		if(&It == NULL)
+		if((&It) == NULL)
 		{
 			cout << "Fin liste des joueurs !"<<endl<<endl;
 			return -1;
 		}
 		cout  << "Nom : "<< (&It)->getNom() <<endl;
 		cout  << "Prenom : "<< (&It)->getPrenom() <<endl;
-		cout  << "Classement : "<< *((&It)->getClassement()) <<endl;
+		if(((&It)->getClassement()) != NULL)
+			cout  << "Classement : "<< *((&It)->getClassement()) <<endl;
+		else
+			cout << "Classement : NC"<<endl;
 		cout  << "Matricule : "<< (&It)->getMatricule().getNumero() <<endl<<endl;
 		
 	}
@@ -224,14 +232,14 @@ int printListeEquipe(Liste<Equipe> listeEquipe)
 	int cpt=0;
 	for(It.reset(); It.end() == 0; It++)
 	{
-		if(&It == NULL)
+		if(&It == NULL || (&It)->getClub()->getNom() == NULL || ((&It)->getDivision()) == NULL)
 		{
 			cout << "Fin liste des equipes !"<<endl<<endl;
 			return -1;
 		}
-		cout  << "Nom : "<< (&It)->getClub()->getNom()<<flush;
+		cout  << "Nom : " << (&It)->getClub()->getNom()<<flush;
 		cout  <<  (&It)->getNumero() <<endl;
-		cout  << "Division : "<< *((&It)->getDivision()) <<endl;
+		cout  << "Division : "<< ((&It)->getDivision()) <<endl;
 		
 		for(int i=0; i<4; i++)
 		{

@@ -9,13 +9,16 @@ using namespace std;
 
 template<class T> ListeBase<T>::ListeBase() 
 {
-	pTete = 0;
+	pTete = NULL;
 }
 
 template<class T> ListeBase<T>::ListeBase(const ListeBase &l) 
 {
 	if (l.estVide())
+	{
+		pTete =NULL;
 		return;
+	}
 		
 	Cellule<T> *pParc = l.pTete;
 	
@@ -52,7 +55,7 @@ template<class T> ListeBase<T>::~ListeBase()
 template<class T>
 bool ListeBase<T>::estVide() const 
 {
-	return pTete == 0 ? true : false;
+	return pTete == NULL ? true : false;
 }
 
 template<class T>

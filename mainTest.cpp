@@ -520,7 +520,7 @@ void menuClub(char* nomClub)
 				//cree une equipe
 				int test;
 				
-				test = CreeEquipe(listeClub, &listeEquipe, numeroClub);
+				test = CreeEquipe(&listeClub, &listeEquipe, numeroClub);
 				if(test == 1)
 				{
 					//insertion equipe reussi!

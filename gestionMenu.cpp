@@ -188,7 +188,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				fichiertxt.getline(matrictmp,20,',');
 				fichiertxt.getline(classtmp,20,'\n');
 
-				cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << endl;
+				cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << "-prout" << strlen(classtmp) << endl;
 				matriculeint=atoi(matrictmp);
 				jtmp.setNom(nomtmp);
 				jtmp.setPrenom(prenomtmp);
@@ -199,6 +199,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				if(strcmp(classtmp,"NC") == 0)
 				{
 					cout << "Ajout d'un joueur non classé" << endl;
+					jtmp.setClassement(NULL);
 				}
 				else
 				{
@@ -219,6 +220,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 			catch(InvalidClassementException &e)
 			{
 				//erreur classement
+				cout << "erreur classement !"<<endl;
 			}
 			catch(ExceptionMessage &e)
 			{
@@ -231,13 +233,13 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 }
 
 
-int CreeEquipe(ListeTriee<Club> listeClub, Liste<Equipe> *listeEquipe, int num)
+int CreeEquipe(ListeTriee<Club> *listeClub, Liste<Equipe> *listeEquipe, int num)
 {
 	//
 	Equipe tmpE;
 	Club *tmpC;
 	
-	if((tmpC = getClubWithNum(&listeClub, num)) == NULL)
+	if((tmpC = getClubWithNum(listeClub, num)) == NULL)
 	{
 		//erreur
 		return -1;
