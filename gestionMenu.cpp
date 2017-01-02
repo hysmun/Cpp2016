@@ -184,10 +184,6 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 			{
 				pass = 0;
 				fichiertxt.seekg(-1, ios::cur);
-				fichiertxt.getline(nomtmp,20,',');
-				fichiertxt.getline(prenomtmp,20,',');
-				fichiertxt.getline(matrictmp,20,',');
-				fichiertxt.getline(classtmp,5);
 				fichiertxt.getline(tmpS, 255);
 				
 				nomtmp = strtok(tmpS, ",");
