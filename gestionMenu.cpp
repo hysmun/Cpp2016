@@ -208,7 +208,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				
 				if(classtmp[0] == 'N' && classtmp[1] == 'C')
 				{
-					cout << "Ajout d'un joueur non classé" << endl;
+					cout << "Ajout d'un joueur non classé" << classtmp << endl;
 					//jtmp.setClassement(NULL);
 				}
 				else
@@ -250,6 +250,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 			nomtmp = NULL;
 			prenomtmp = NULL;
 			matrictmp = NULL;
+			jtmp.setClassement(NULL);
 		}
 		fichiertxt.close();
 		return 0;

@@ -101,7 +101,10 @@ int Joueur::setClassement(Classement *c)
 {
 	if(jClassement != NULL) delete jClassement;
 	if( c != NULL)
-		jClassement = new Classement(*c);
+	{
+		jClassement = new Classement;
+		*jClassement = *c;
+	}
 	else jClassement = NULL; 
 	return 1;
 }
@@ -137,6 +140,7 @@ Classement *Joueur::getClassement() const
 
 Joueur &Joueur::operator=(const Joueur &tmp)
 {
+	//jClassement = NULL;
 	setNom(tmp.Nom);
 	setPrenom(tmp.Prenom);
 	setNumClub(tmp.NumClub);
