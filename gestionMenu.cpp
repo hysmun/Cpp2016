@@ -196,9 +196,15 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				Matricule mtmp;
 				mtmp.setNumero(matriculeint);
 				jtmp.setMatricule(mtmp);
-				Classement cltmp(classtmp);
-				jtmp.setClassement(&cltmp);
-				
+				if(strcmp(classtmp,"NC") == 0)
+				{
+					cout << "Ajout d'un joueur non classé" << endl;
+				}
+				else
+				{
+					Classement cltmp(classtmp);
+					jtmp.setClassement(&cltmp);
+				}
 				for(itJoueur.reset();itJoueur.end() == 0;itJoueur++)
 				{
 					if((&itJoueur)->getMatricule().getNumero() == jtmp.getMatricule().getNumero())
@@ -210,7 +216,6 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				
 				listeJoueur->insere(jtmp);
 			}
-			
 			catch(InvalidClassementException &e)
 			{
 				//erreur classement
