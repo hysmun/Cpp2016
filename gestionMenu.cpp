@@ -178,7 +178,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 	{
 		fichiertxt.getline(dummyline,255);
 		fichiertxt.get(c);
-		for(int i=0; !fichiertxt.eof()&& i< 25; i++)
+		for(int i=0; !fichiertxt.eof(); i++)
 		{
 			try
 			{
@@ -192,11 +192,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				classtmp = strtok(NULL, " ,\n\0");
 				
 				
-				cout << "Lu : " <<classtmp<< nomtmp <<endl;
-				cout << " " << prenomtmp << " " <<endl;
-				cout << matrictmp<<endl;
-				cout << " class : " << classtmp << "  --- " <<endl;
-				cout << "len : "<< strlen(classtmp) << endl<<endl;
+				cout << "Lu : " <<tmpS<<endl;
 				
 				
 				matriculeint=atoi(matrictmp);
