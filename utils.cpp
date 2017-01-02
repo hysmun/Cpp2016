@@ -260,10 +260,12 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 					if(tmpI != 0)
 					{
 						//le joueur existe
+						tmpE.setJoueur(getJoueurWithNum(listeJoueur, tmpI), i);
 					}
 					else
 					{
 						//le joueur n'existe pas
+						tmpE.setJoueur(NULL, i);
 					}
 				}
 			}
