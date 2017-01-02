@@ -164,8 +164,9 @@ int supprimerJoueur(Matricule m, ListeTriee<Joueur> *listeJoueur)
 int importFichierJoueur(ListeTriee<Joueur> *listejoueur, char* nomFich, int numeroClub)
 {
 	ifstream fichiertxt(nomFich,ios::in);
-	char nomtmp[20],prenomtmp[20],matrictmp[20],classtmp[4],dummyline[255];
 	char c;
+	char nomtmp[20],prenomtmp[20],matrictmp[20],classtmp[20],dummyline[255];
+
 	if(!(fichiertxt.is_open()))
 	{
 		cout << "Erreur nom de fichier" << endl;
@@ -174,14 +175,27 @@ int importFichierJoueur(ListeTriee<Joueur> *listejoueur, char* nomFich, int nume
 	else
 	{
 		fichiertxt.getline(dummyline,255);
+		fichiertxt.get(c);
 		for(int i=0; !fichiertxt.eof()&& i< 25; i++)
 		{
-			fichiertxt.seekg(-1, ios::cur);
-			fichiertxt.getline(nomtmp,20,',');
-			fichiertxt.getline(prenomtmp,20,',');
-			fichiertxt.getline(matrictmp,20,',');
-			fichiertxt.getline(classtmp,4,'\n');
-			cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << endl;
+			try
+			{
+				fichiertxt.seekg(-1, ios::cur);
+				fichiertxt.getline(nomtmp,20,',');
+				fichiertxt.getline(prenomtmp,20,',');
+				fichiertxt.getline(matrictmp,20,',');
+				fichiertxt.getline(classtmp,20, '\n');
+
+				cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << endl;
+			}
+			catch(InvalidClassementException &e)
+			{
+				//erreur classement
+			}
+			catch(ExceptionMessage &e)
+			{
+				//erreur generale
+			}
 			fichiertxt.get(c);
 		}
 		return 0;
