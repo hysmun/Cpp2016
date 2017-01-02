@@ -166,8 +166,8 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 	ifstream fichiertxt(nomFich,ios::in);
 	Iterateur<Joueur> itJoueur(*listeJoueur);
 	char c;
-	int matriculeint;
-	char nomtmp[20],prenomtmp[20],matrictmp[20],classtmp[20],dummyline[255];
+	int matriculeint, pass=0;
+	char *nomtmp,*prenomtmp,*matrictmp,*classtmp,dummyline[255], tmpS[255];
 	Joueur jtmp;
 	if(!(fichiertxt.is_open()))
 	{
@@ -182,13 +182,27 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 		{
 			try
 			{
+				pass = 0;
 				fichiertxt.seekg(-1, ios::cur);
 				fichiertxt.getline(nomtmp,20,',');
 				fichiertxt.getline(prenomtmp,20,',');
 				fichiertxt.getline(matrictmp,20,',');
 				fichiertxt.getline(classtmp,5);
-
-				cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << endl;
+				fichiertxt.getline(tmpS, 255);
+				
+				nomtmp = strtok(tmpS, ",");
+				prenomtmp = strtok(NULL, ",");
+				matrictmp = strtok(NULL, ",");
+				classtmp = strtok(NULL, " ,\n\0");
+				
+				
+				//cout << "Lu : " <<classtmp<< nomtmp <<endl;
+				//cout << " " << prenomtmp << " " <<endl;
+				//cout << matrictmp<<endl;
+				//cout << " class : " << classtmp << "  --- " <<endl;
+				//cout << "len : "<< strlen(classtmp) << endl<<endl;
+				
+				
 				matriculeint=atoi(matrictmp);
 				jtmp.setNom(nomtmp);
 				jtmp.setPrenom(prenomtmp);
@@ -196,37 +210,53 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				Matricule mtmp;
 				mtmp.setNumero(matriculeint);
 				jtmp.setMatricule(mtmp);
-				if(strcmp(classtmp,"NC") == 0)
+				
+				
+				
+				if(classtmp[0] == 'N' && classtmp[1] == 'C')
 				{
-					cout << "Ajout d'un joueur non classé" << endl;
-					jtmp.setClassement(NULL);
+					//cout << "Ajout d'un joueur non classé" << endl;
+					//jtmp.setClassement(NULL);
 				}
 				else
 				{
 					Classement cltmp(classtmp);
 					jtmp.setClassement(&cltmp);
 				}
-				for(itJoueur.reset();itJoueur.end() == 0;itJoueur++)
-				{
-					if((&itJoueur)->getMatricule().getNumero() == jtmp.getMatricule().getNumero())
-					{
-						cout << "Joueur déja présent dans la liste" << endl;
-						return -1;
-					}
-				}
 				
-				listeJoueur->insere(jtmp);
+				cout << jtmp<<endl;
+				
+				
+				
 			}
 			catch(InvalidClassementException &e)
 			{
 				//erreur classement
-				cout << "erreur classement !"<<endl;
+				cout << "erreur classement !"<<e.getMsg()<<endl;
+				
 			}
 			catch(ExceptionMessage &e)
 			{
 				//erreur generale
 			}
+			
+			for(itJoueur.reset();itJoueur.end() == 0;itJoueur++)
+			{
+				if((&itJoueur)->getMatricule().getNumero() == jtmp.getMatricule().getNumero())
+				{
+					//cout << "Joueur déja présent dans la liste" << endl;
+					pass = 1;
+				}
+			}
+			if( pass == 0)
+				listeJoueur->insere(jtmp);
+			
+			
 			fichiertxt.get(c);
+			classtmp = NULL;
+			nomtmp = NULL;
+			prenomtmp = NULL;
+			matrictmp = NULL;
 		}
 		fichiertxt.close();
 		return 0;
