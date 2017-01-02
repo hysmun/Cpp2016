@@ -186,7 +186,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				fichiertxt.getline(nomtmp,20,',');
 				fichiertxt.getline(prenomtmp,20,',');
 				fichiertxt.getline(matrictmp,20,',');
-				fichiertxt.getline(classtmp,20,'\n');
+				fichiertxt.getline(classtmp,5);
 
 				cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << endl;
 				matriculeint=atoi(matrictmp);
