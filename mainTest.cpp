@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include <dirent.h>
 #include <fstream>
 using namespace std;
 #include "Equipe.h"
@@ -476,6 +477,31 @@ void menuClub(char* nomClub)
 			case 6:
 			{
 				// importer un ensemble de joueur d'un fichier .txt
+				DIR *pDir;
+				dirent *pElementDir;
+				int len;
+				
+				if((pDir = opendir(".")) == NULL)
+				{
+					//erreur
+				}
+				else
+				{
+					//dir ouvert
+					cout << endl<< "Affichage des fichier  *.txt"<<endl<<endl;
+					for(int i=0;(pElementDir = readdir(pDir)) != NULL; )
+					{
+						len = strlen(pElementDir->d_name);
+						if(strcmp(".txt", &(pElementDir->d_name[len - 4])) == 0)
+						{
+							// c'est un fichier .txt
+							printf("%d -- %s\n", i, pElementDir->d_name);
+							i++;
+						}
+					}
+					// suite ...
+					
+				}
 				break;
 			}
 			

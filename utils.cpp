@@ -120,6 +120,7 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
 	{
 		//erreur !!!
+		throw ExceptionMessage("Erreur sauvegarde Joueur !!!!");
 	}
 	else
 	{
