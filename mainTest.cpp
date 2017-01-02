@@ -143,6 +143,9 @@ int main()
 			if(tmpC != NULL)
 			{
 				strcpy(nomClub, tmpC->getNom());
+				char Nomfichier[255];
+				sprintf(Nomfichier, "%s.dat", nomClub);
+				LoadJoueurAndEquipe(Nomfichier, &listeClub, &listeJoueur, &listeEquipe);
 				menuClub(nomClub);	//lancer l'interface petite bite
 			}
 		}
@@ -515,6 +518,15 @@ void menuClub(char* nomClub)
 			case 7:
 			{
 				//cree une equipe
+				int test;
+				
+				test = CreeEquipe(listeClub, &listeEquipe, numeroClub);
+				if(test == 1)
+				{
+					//insertion equipe reussi!
+					cout << "equipe cree !!"<<endl;
+				}
+				
 				break;
 			}
 			
@@ -539,6 +551,7 @@ void menuClub(char* nomClub)
 			case 11:
 			{
 				//afficher toutes les equipes
+				printListeEquipe(listeEquipe);
 				break;
 			}
 			

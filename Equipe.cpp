@@ -175,12 +175,12 @@ istream &operator>>(istream &s, Equipe &e)
 	s>> tmpDiv;
 	e.setDivision(tmpDiv);
 	
-	for(i=0; i<4; i++)
+	/*for(i=0; i<4; i++)
 	{
 		cout << " joueur "<< i<< endl;
 		s>>tmpJoueur;
 		e.setJoueur(&tmpJoueur,i);
-	}
+	}*/
 	
 }
 

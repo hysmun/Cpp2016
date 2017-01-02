@@ -111,6 +111,8 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		ofstream fichier(nomFichier,ios::out);
 		Iterateur<Equipe> ItE(*listeEquipe);
 		
+		cout << "save j&e "<<endl;
+		
 		tmp = listeJoueur->getNombreElements();
 		fichier.write((char *)&tmp, sizeof(int));
 		
@@ -124,7 +126,7 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 			tmp = (&ItE)->getNumero();
 			fichier.write((char *)&(tmp), sizeof(int));
 			
-			len = strlen((&ItE)->getDivision());
+			len = strlen((&ItE)->getDivision())+1;
 			fichier.write((char *)&len, sizeof(int));
 			fichier.write((&ItE)->getDivision(), len);
 			
@@ -197,8 +199,14 @@ Joueur *getJoueurWithNum(ListeTriee<Joueur> *listeJoueur, int num)
 int printListeJoueur(ListeTriee<Joueur> listeJoueur)
 {
 	Iterateur<Joueur> It(listeJoueur);
+	cout << "liste des joueurs : "<<endl;
 	for(It.reset(); It.end() == 0; It++)
 	{
+		if(&It == NULL)
+		{
+			cout << "Fin liste des joueurs !"<<endl<<endl;
+			return -1;
+		}
 		cout  << "Nom : "<< (&It)->getNom() <<endl;
 		cout  << "Prenom : "<< (&It)->getPrenom() <<endl;
 		cout  << "Classement : "<< *((&It)->getClassement()) <<endl;
@@ -207,6 +215,37 @@ int printListeJoueur(ListeTriee<Joueur> listeJoueur)
 	}
 	return 1;
 }
+
+
+int printListeEquipe(Liste<Equipe> listeEquipe)
+{
+	Iterateur<Equipe> It(listeEquipe);
+	cout << "liste des equipes : "<<endl;
+	int cpt=0;
+	for(It.reset(); It.end() == 0; It++)
+	{
+		if(&It == NULL)
+		{
+			cout << "Fin liste des equipes !"<<endl<<endl;
+			return -1;
+		}
+		cout  << "Nom : "<< (&It)->getClub()->getNom()<<flush;
+		cout  <<  (&It)->getNumero() <<endl;
+		cout  << "Division : "<< *((&It)->getDivision()) <<endl;
+		
+		for(int i=0; i<4; i++)
+		{
+			if((&It)->getJoueur(i) != NULL)
+			{
+				cpt++;
+			}
+		}
+		cout << "Nombre de joueurs : " << cpt << endl;
+		
+	}
+	return 1;
+}
+
 
 
 int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
@@ -225,6 +264,13 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 	{
 		// on veut les jouers et equipe que de 1 seul clubs portant le nom : nomClub
 		ifstream fichier(nomFichier,ios::in);
+		
+		cout << "Load j&e"<<endl;
+		
+		if(!(fichier.is_open()) )
+		{
+			return -1;
+		}
 		Iterateur<Club> ItC(*listeClub);
 		
 		Club *tmpC;
@@ -278,7 +324,6 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 	}
 	return 1;
 }
-
 
 
 

@@ -226,9 +226,33 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 }
 
 
-int CreeClub(ListeTriee<Club> *listeClub, int num)
+int CreeEquipe(ListeTriee<Club> listeClub, Liste<Equipe> *listeEquipe, int num)
 {
 	//
+	Equipe tmpE;
+	Club *tmpC;
+	
+	if((tmpC = getClubWithNum(&listeClub, num)) == NULL)
+	{
+		//erreur
+		return -1;
+	}
+	else
+	{
+		tmpE.setClub(tmpC);
+		
+		cin >> tmpE;
+		cout << endl;
+		
+		for(int i=0; i<4; i++)
+		{
+			tmpE.setJoueur(NULL, i);
+		}
+		
+		listeEquipe->insere(tmpE);
+		
+		return 1;
+	}
 }
 
 
