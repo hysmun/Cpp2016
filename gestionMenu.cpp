@@ -161,15 +161,28 @@ int supprimerJoueur(Matricule m, ListeTriee<Joueur> *listeJoueur)
 	return -1;
 }
 
-int importFichierJoueur(ListeTriee<Joueur> *listejoueur, char* nomFich)
+int importFichierJoueur(ListeTriee<Joueur> *listejoueur, char* nomFich, int numeroClub)
 {
-	int HdFich;
-	if((HdFich = open(nomFich,O_RDONLY)) == -1)
+	ifstream fichiertxt(nomFich,ios::in);
+	char nomtmp[20],prenomtmp[20],matrictmp[20],classtmp[4],dummyline[255];
+	if(!(fichiertxt.is_open()))
 	{
-		cout << "Nom de fichier incorrect" << endl;
+		cout << "Erreur nom de fichier" << endl;
 		return -1;
 	}
-	
+	else
+	{
+		fichiertxt.getline(dummyline,255);
+		while(! fichiertxt.eof())
+		{
+			fichiertxt.getline(nomtmp,20,',');
+			fichiertxt.getline(prenomtmp,20,',');
+			fichiertxt.getline(matrictmp,20,',');
+			fichiertxt.getline(classtmp,4);
+			cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << endl;
+		}
+		return 0;
+	}
 }
 
 

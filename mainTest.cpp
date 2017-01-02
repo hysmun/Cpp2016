@@ -480,7 +480,7 @@ void menuClub(char* nomClub)
 				DIR *pDir;
 				dirent *pElementDir;
 				int len;
-				
+				char nomFich[20];
 				if((pDir = opendir(".")) == NULL)
 				{
 					//erreur
@@ -499,7 +499,9 @@ void menuClub(char* nomClub)
 							i++;
 						}
 					}
-					// suite ...
+					cout << "Nom du fichier pour insertion : ";
+					cin >> nomFich;
+					importFichierJoueur(&listeJoueur,nomFich,numeroClub);
 					
 				}
 				break;
