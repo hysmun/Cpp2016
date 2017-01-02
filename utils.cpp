@@ -95,7 +95,9 @@ int cleanScreen()
 
 int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
 {
-	
+	int NbrJ, i, tmpI;
+	Joueur tmpJ;
+	Equipe tmpE;
 	
 	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
 	{
@@ -105,8 +107,22 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 	{
 		// on veut les jouers et equipe que de 1 seul clubs portant le nom : nomClub
 		ifstream fichier(nomFichier,ios::in);
+		Iterateur<Club> ItC(*listeClub);
 		
+		//lecture des joueurs
+		fichier.read((char *)&NbrJ, sizeof(int));
+		for(i=0; i < NbrJ; i++)
+		{
+			//lecture du joueur et insertion
+			tmpJ.Load(fichier);
+			listeJoueur->insere(tmpJ);
+		}
 		
+		//lecture des equipes
+		for(i=0; (fichier.read((char *)&tmpI, sizeof(int))) != 0; i++)
+		{
+			
+		}
 		
 	}
 	return 1;
@@ -171,20 +187,22 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 
 
 
-char *getNomClubWithNum(ListeTriee<Club> listeClub, int num)
+Club *getClubWithNum(ListeTriee<Club> listeClub, int num)
 {
 	Iterateur<Club> ItClub(listeClub);
+	Club *tmpC;
 	cout << "recheche num club "<<endl;
 	for(ItClub.reset(); ItClub.end() == 0; ItClub++)
 	{
 		cout << endl << "premier essais : "<< num << " == "<<(&ItClub)->getNumClub()<<endl;
 		if((&ItClub)->getNumClub() == num)
 		{
-			return (&ItClub)->getNom();
+			cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
+			tmpC = (&ItClub);
+			return tmpC;
 		}
 	}
 	throw ExceptionMessage("nom de club pas trouver !");
-	return NULL;
 }
 
 
