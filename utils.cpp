@@ -202,7 +202,7 @@ int printListeJoueur(ListeTriee<Joueur> listeJoueur)
 		cout  << "Nom : "<< (&It)->getNom() <<endl;
 		cout  << "Prenom : "<< (&It)->getPrenom() <<endl;
 		cout  << "Classement : "<< *((&It)->getClassement()) <<endl;
-		cout  << "Matricule : "<< (&It)->getMatricule() <<endl<<endl;
+		cout  << "Matricule : "<< (&It)->getMatricule().getNumero() <<endl<<endl;
 		
 	}
 	return 1;

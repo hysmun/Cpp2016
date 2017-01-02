@@ -161,12 +161,14 @@ int supprimerJoueur(Matricule m, ListeTriee<Joueur> *listeJoueur)
 	return -1;
 }
 
-int importFichierJoueur(ListeTriee<Joueur> *listejoueur, char* nomFich, int numeroClub)
+int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int numeroClub)
 {
 	ifstream fichiertxt(nomFich,ios::in);
+	Iterateur<Joueur> itJoueur(*listeJoueur);
 	char c;
+	int matriculeint;
 	char nomtmp[20],prenomtmp[20],matrictmp[20],classtmp[20],dummyline[255];
-
+	Joueur jtmp;
 	if(!(fichiertxt.is_open()))
 	{
 		cout << "Erreur nom de fichier" << endl;
@@ -184,10 +186,31 @@ int importFichierJoueur(ListeTriee<Joueur> *listejoueur, char* nomFich, int nume
 				fichiertxt.getline(nomtmp,20,',');
 				fichiertxt.getline(prenomtmp,20,',');
 				fichiertxt.getline(matrictmp,20,',');
-				fichiertxt.getline(classtmp,20, '\n');
+				fichiertxt.getline(classtmp,20,'\n');
 
 				cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << endl;
+				matriculeint=atoi(matrictmp);
+				jtmp.setNom(nomtmp);
+				jtmp.setPrenom(prenomtmp);
+				jtmp.setNumClub(numeroClub);
+				Matricule mtmp;
+				mtmp.setNumero(matriculeint);
+				jtmp.setMatricule(mtmp);
+				Classement cltmp(classtmp);
+				jtmp.setClassement(&cltmp);
+				
+				for(itJoueur.reset();itJoueur.end() == 0;itJoueur++)
+				{
+					if((&itJoueur)->getMatricule().getNumero() == jtmp.getMatricule().getNumero())
+					{
+						cout << "Joueur déja présent dans la liste" << endl;
+						return -1;
+					}
+				}
+				
+				listeJoueur->insere(jtmp);
 			}
+			
 			catch(InvalidClassementException &e)
 			{
 				//erreur classement
