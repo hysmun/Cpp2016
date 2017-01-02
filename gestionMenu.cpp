@@ -173,7 +173,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listejoueur, char* nomFich, int nume
 	else
 	{
 		fichiertxt.getline(dummyline,255);
-		while(! fichiertxt.eof())
+		while(fichiertxt)
 		{
 			fichiertxt.getline(nomtmp,20,',');
 			fichiertxt.getline(prenomtmp,20,',');
