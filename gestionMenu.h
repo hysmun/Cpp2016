@@ -20,6 +20,8 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec);
 
 int supprimerJoueur(Matricule m, ListeTriee<Joueur> *listeJoueur);
 
+int importFichierJoueur(ListeTriee<Joueur> *listeJoueur);
+
 
 
 

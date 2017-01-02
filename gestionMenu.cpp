@@ -161,6 +161,17 @@ int supprimerJoueur(Matricule m, ListeTriee<Joueur> *listeJoueur)
 	return -1;
 }
 
+int importFichierJoueur(ListeTriee<Joueur> *listejoueur, char* nomFich)
+{
+	int HdFich;
+	if((HdFich = open(nomFich,O_RDONLY)) == -1)
+	{
+		cout << "Nom de fichier incorrect" << endl;
+		return -1;
+	}
+	
+}
+
 
 
 
