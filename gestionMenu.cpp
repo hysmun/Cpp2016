@@ -165,6 +165,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listejoueur, char* nomFich, int nume
 {
 	ifstream fichiertxt(nomFich,ios::in);
 	char nomtmp[20],prenomtmp[20],matrictmp[20],classtmp[4],dummyline[255];
+	char c;
 	if(!(fichiertxt.is_open()))
 	{
 		cout << "Erreur nom de fichier" << endl;
@@ -173,13 +174,15 @@ int importFichierJoueur(ListeTriee<Joueur> *listejoueur, char* nomFich, int nume
 	else
 	{
 		fichiertxt.getline(dummyline,255);
-		while(fichiertxt)
+		for(int i=0; !fichiertxt.eof()&& i< 25; i++)
 		{
+			fichiertxt.seekg(-1, ios::cur);
 			fichiertxt.getline(nomtmp,20,',');
 			fichiertxt.getline(prenomtmp,20,',');
 			fichiertxt.getline(matrictmp,20,',');
-			fichiertxt.getline(classtmp,4);
+			fichiertxt.getline(classtmp,4,'\n');
 			cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << endl;
+			fichiertxt.get(c);
 		}
 		return 0;
 	}
