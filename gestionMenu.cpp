@@ -188,7 +188,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				fichiertxt.getline(matrictmp,20,',');
 				fichiertxt.getline(classtmp,20,'\n');
 
-				cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << "-prout" << strlen(classtmp) << endl;
+				cout << "Lu : " << nomtmp << " " << prenomtmp << " " << matrictmp << " " << classtmp << endl;
 				matriculeint=atoi(matrictmp);
 				jtmp.setNom(nomtmp);
 				jtmp.setPrenom(prenomtmp);
@@ -228,6 +228,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 			}
 			fichiertxt.get(c);
 		}
+		fichiertxt.close();
 		return 0;
 	}
 }
