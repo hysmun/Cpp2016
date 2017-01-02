@@ -167,7 +167,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 	Iterateur<Joueur> itJoueur(*listeJoueur);
 	char c;
 	int matriculeint, pass=0;
-	char *nomtmp,*prenomtmp,*matrictmp,*classtmp, *tmpS2, dummyline[255], tmpS[255];
+	char *nomtmp,*prenomtmp,*matrictmp,*classtmp, tmpS2[256], dummyline[255], tmpS[256];
 	Joueur jtmp;
 	if(!(fichiertxt.is_open()))
 	{
@@ -185,7 +185,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				pass = 0;
 				fichiertxt.seekg(-1, ios::cur);
 				fichiertxt.getline(tmpS, 255, '\n');
-				tmpS2 = tmpS;
+				strcpy(tmpS2, tmpS);
 				
 				nomtmp = strtok(tmpS, ",");
 				prenomtmp = strtok(NULL, ",");
