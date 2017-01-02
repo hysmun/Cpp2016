@@ -194,11 +194,11 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 
 
 				
-				//cout << "Lu : " <<classtmp<< nomtmp <<endl;
-				//cout << " " << prenomtmp << " " <<endl;
-				//cout << matrictmp<<endl;
-				//cout << " class : " << classtmp << "  --- " <<endl;
-				//cout << "len : "<< strlen(classtmp) << endl<<endl;
+				cout << "Lu : " <<classtmp<< nomtmp <<endl;
+				cout << " " << prenomtmp << " " <<endl;
+				cout << matrictmp<<endl;
+				cout << " class : " << classtmp << "  --- " <<endl;
+				cout << "len : "<< strlen(classtmp) << endl<<endl;
 				
 				
 				matriculeint=atoi(matrictmp);
@@ -213,7 +213,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				
 				if(classtmp[0] == 'N' && classtmp[1] == 'C')
 				{
-					//cout << "Ajout d'un joueur non classé" << endl;
+					cout << "Ajout d'un joueur non classé" << endl;
 					//jtmp.setClassement(NULL);
 				}
 				else
