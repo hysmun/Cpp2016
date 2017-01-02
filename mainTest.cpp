@@ -360,6 +360,7 @@ void menuFed()
 void menuClub(char* nomClub)
 {
 	int ch= 14;
+	char tmp[200];
 	cleanScreen();
 	while(ch != 0)
 	{
@@ -387,13 +388,18 @@ void menuClub(char* nomClub)
 		switch(ch)
 		{
 			case 0:
+			{
 				//save
+				
+				sprintf(tmp,"%s.dat", nomClub);
+				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				exit(0);
+			}
 			break;
 			
 			case 1:
 			{
-				char newpass[9];
+				char newpass[100];
 				cout << "Nouveau mot de passe : ";
 				cin >> newpass;
 				try
@@ -408,6 +414,9 @@ void menuClub(char* nomClub)
 				ofstream fichier("secretaires.dat",ios::out);
 				listeSec.Save(fichier);
 				fichier.close();
+				
+				
+				
 				break;
 			}						
 			case 2:

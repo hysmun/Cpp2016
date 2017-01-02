@@ -115,6 +115,7 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
 {
 	
+	int len, tmp, i;
 	
 	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
 	{
@@ -124,8 +125,40 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 	{
 		// on veut les jouers et equipe que de 1 seul clubs portant le nom : nomClub
 		ofstream fichier(nomFichier,ios::out);
+		Iterateur<Equipe> ItE(*listeEquipe);
+		
+		tmp = listeJoueur->getNombreElements();
+		fichier.write((char *)&tmp, sizeof(int));
+		
+		
 		listeJoueur->Save(fichier);
 		
+		for(ItE.reset(); ItE.end() == 0; ItE++)
+		{
+			tmp = (&ItE)->getClub()->getNumClub();
+			fichier.write((char *)&(tmp), sizeof(int));
+			tmp = (&ItE)->getNumero();
+			fichier.write((char *)&(tmp), sizeof(int));
+			
+			len = strlen((&ItE)->getDivision());
+			fichier.write((char *)&len, sizeof(int));
+			fichier.write((&ItE)->getDivision(), len);
+			
+			for(i=0; i<4; i++)
+			{
+				if((&ItE)->getJoueur(i) != NULL)
+				{
+					tmp = (&ItE)->getJoueur(i)->getMatricule().getNumero();
+					fichier.write((char *) &(tmp), sizeof(int));
+				}
+				else
+				{
+					tmp = 0;
+					fichier.write((char *) &tmp, sizeof(int));
+				}
+			}
+		}
+		fichier.close();
 		
 	}
 	return 1;
