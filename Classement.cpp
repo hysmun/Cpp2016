@@ -32,11 +32,13 @@ Classement::Classement(char sd, short n)
 
 Classement::Classement(const Classement &c)
 {
+	//cout << "copie cla"<<endl;
 	setCl(c.getLettre(), c.getNombre());
 }
 
 Classement::Classement(const char *sd)
 {
+	//cout<<"init par chaine : "<< sd << endl;
 	setCl(sd[0], atoi(&sd[1]));
 }
 
@@ -105,6 +107,8 @@ void Classement::setNombre(short n)
 
 void Classement::setCl(char n , int x)
 {
+	//cout << "set cl"<<endl;
+	
 	switch(n)
 	{
 		case 'A':
@@ -119,6 +123,11 @@ void Classement::setCl(char n , int x)
 		case 'F':
 			if(x > 2)
 			throw InvalidClassementException("Nombre invalide !");
+			break;
+		case 'N':
+			if( x = 67)
+			
+			return;
 			break;
 		default:
 			throw InvalidClassementException("Lettre invalide !");
