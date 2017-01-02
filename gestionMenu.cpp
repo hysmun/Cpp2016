@@ -194,7 +194,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 
 
 				
-			//cout << "Lu : " <<classtmp<< nomtmp <<endl;
+				//cout << "Lu : " <<classtmp<< nomtmp <<endl;
 				//cout << " " << prenomtmp << " " <<endl;
 				//cout << matrictmp<<endl;
 				//cout << " class : " << classtmp << "  --- " <<endl;
@@ -256,6 +256,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 			prenomtmp = NULL;
 			matrictmp = NULL;
 		}
+		fichiertxt.close();
 		return 0;
 	}
 }
