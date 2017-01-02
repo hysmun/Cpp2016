@@ -3,14 +3,14 @@
 template<class T>
 bool Iterateur<T>::end() 
 {
-	if(liste->pTete == NULL) return 1;
+	if(liste.pTete == NULL) return 1;
 	return currentPos == 0;
 }
 
 template<class T>
 void Iterateur<T>::reset() 
 {
-	currentPos = liste->pTete;
+	currentPos = liste.pTete;
 }
 
 template<class T>
@@ -40,7 +40,7 @@ T Iterateur<T>::remove()
 	
 	//recreer les bons branchements
 	//parcourir la liste depuis le debut, comparer les adresses jusqu'a tomber sur la bonne...
-	Cellule<T> *pParc = liste->pTete;
+	Cellule<T> *pParc = liste.pTete;
 	Cellule<T> *pPrec = 0;
 	
 	while (pParc != 0 && pParc != currentPos) 
@@ -51,7 +51,7 @@ T Iterateur<T>::remove()
 	
 	//retirer le premier element (tete)
 	if(pPrec == 0)
-		liste->pTete = liste->pTete->suivant;
+		liste.pTete = liste.pTete->suivant;
 	//autre element
 	else
 		pPrec->suivant = pParc->suivant;

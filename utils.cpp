@@ -187,9 +187,9 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 
 
 
-Club *getClubWithNum(ListeTriee<Club> listeClub, int num)
+Club *getClubWithNum(ListeTriee<Club> *listeClub, int num)
 {
-	Iterateur<Club> ItClub(listeClub);
+	Iterateur<Club> ItClub(*listeClub);
 	Club *tmpC;
 	cout << "recheche num club "<<endl;
 	for(ItClub.reset(); ItClub.end() == 0; ItClub++)

@@ -13,12 +13,12 @@ template<class T>
 class Iterateur 
 {
 	private:
-		ListeBase<T> *liste;
+		ListeBase<T> &liste;
 		Cellule<T> *currentPos;
 		
 	public:
-		//Iterateur(ListeBase<T> &l) : liste(l), currentPos(l.pTete) {};
-		Iterateur(ListeBase<T> &l) {liste = &l; currentPos = l.pTete;};
+		Iterateur(ListeBase<T> &l) : liste(l), currentPos(l.pTete) {};
+		//Iterateur(ListeBase<T> &l) {liste = &l; currentPos = l.pTete;};
 		void reset();
 		bool end();
 		void operator++(int);

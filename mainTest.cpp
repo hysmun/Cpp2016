@@ -138,7 +138,7 @@ int main()
 		else
 		{
 			listeClub.Affiche();
-			Club *tmpC = getClubWithNum(listeClub, numeroClub);
+			Club *tmpC = getClubWithNum(&listeClub, numeroClub);
 			cout << "Club : "<<tmpC<<endl<< *tmpC;
 			strcpy(nomClub, tmpC->getNom());
 			menuClub(nomClub);	//lancer l'interface petite bite
