@@ -197,7 +197,7 @@ Club *getClubWithNum(ListeTriee<Club> *listeClub, int num)
 		cout << endl << "premier essais : "<< num << " == "<<(&ItClub)->getNumClub()<<endl;
 		if((&ItClub)->getNumClub() == num)
 		{
-			cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
+			//cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
 			tmpC = (&ItClub);
 			return tmpC;
 		}
