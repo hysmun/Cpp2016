@@ -224,7 +224,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 					jtmp.setClassement(&cltmp);
 				}
 				
-				cout << jtmp<<endl;
+				//cout << jtmp<<endl;
 				
 				
 				
