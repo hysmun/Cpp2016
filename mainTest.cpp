@@ -140,8 +140,11 @@ int main()
 			listeClub.Affiche();
 			Club *tmpC = getClubWithNum(&listeClub, numeroClub);
 			//cout << "Club : "<<tmpC<<endl<< *tmpC;
-			strcpy(nomClub, tmpC->getNom());
-			menuClub(nomClub);	//lancer l'interface petite bite
+			if(tmpC != NULL)
+			{
+				strcpy(nomClub, tmpC->getNom());
+				menuClub(nomClub);	//lancer l'interface petite bite
+			}
 		}
 	}
 	catch(ExceptionMessage &e)

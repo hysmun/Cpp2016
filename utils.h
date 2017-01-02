@@ -17,6 +17,7 @@ int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<J
 
 
 Club *getClubWithNum(ListeTriee<Club> *listeClub, int num);
+Joueur *getJoueurWithNum(ListeTriee<Joueur> *listeJoueur, int num);
 
 int printListeJoueur(ListeTriee<Joueur> listeJoueur);
 
