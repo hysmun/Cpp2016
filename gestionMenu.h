@@ -22,7 +22,7 @@ int supprimerJoueur(Matricule m, ListeTriee<Joueur> *listeJoueur);
 
 int importFichierJoueur(ListeTriee<Joueur> *listeJoueur,char *nomFich, int numeroClub);
 
-
+int CreeClub(ListeTriee<Club> *listeClub, int num);
 
 
 

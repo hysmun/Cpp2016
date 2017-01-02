@@ -161,11 +161,11 @@ istream &operator>>(istream &s, Equipe &e)
 	Joueur tmpJoueur;
 	char nbr;
 	char tmpDiv[100];
-	Club tmpClub;
+	//Club tmpClub;
 	int i;
 
-	s >> tmpClub;
-	e.setClub(&tmpClub);
+	//s >> tmpClub;
+	//e.setClub(&tmpClub);
 	
 	cout << "veuillez entrez le numero de l'equipe (A, B, C, D, ...)"<<endl;
 	s>> nbr;

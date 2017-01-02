@@ -226,7 +226,10 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 }
 
 
-
+int CreeClub(ListeTriee<Club> *listeClub, int num)
+{
+	//
+}
 
 
 
