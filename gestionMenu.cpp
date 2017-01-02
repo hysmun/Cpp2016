@@ -184,7 +184,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 			{
 				pass = 0;
 				fichiertxt.seekg(-1, ios::cur);
-				fichiertxt.getline(tmpS, 255);
+				fichiertxt.getline(tmpS, 255, '\n');
 				
 				nomtmp = strtok(tmpS, ",");
 				prenomtmp = strtok(NULL, ",");
@@ -222,7 +222,16 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				
 				//cout << jtmp<<endl;
 				
-				
+				for(itJoueur.reset();itJoueur.end() == 0;itJoueur++)
+				{
+					if((&itJoueur)->getMatricule().getNumero() == jtmp.getMatricule().getNumero())
+					{
+						//cout << "Joueur déja présent dans la liste" << endl;
+						pass = 1;
+					}
+				}
+				if( pass == 0)
+					listeJoueur->insere(jtmp);
 				
 			}
 			catch(InvalidClassementException &e)
@@ -236,16 +245,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				//erreur generale
 			}
 			
-			for(itJoueur.reset();itJoueur.end() == 0;itJoueur++)
-			{
-				if((&itJoueur)->getMatricule().getNumero() == jtmp.getMatricule().getNumero())
-				{
-					//cout << "Joueur déja présent dans la liste" << endl;
-					pass = 1;
-				}
-			}
-			if( pass == 0)
-				listeJoueur->insere(jtmp);
+			
 			
 			
 			fichiertxt.get(c);
