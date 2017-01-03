@@ -1,6 +1,6 @@
 .SILENT:
 ALLPROG= Test1 Test2 Test3 Test4 Test5 Test6 Test7 main mainTest
-ALLOBJ = Joueur.o Matricule.o Classement.o Personne.o Membre.o Secretaire.o InvalidClassementException.o InvalidPasswordException.o ListeBase.o Liste.o ListeTriee.o Iterateur.o Equipe.o Club.o utils.o ExceptionMessage.o gestionMenu.o
+ALLOBJ = Joueur.o Matricule.o Classement.o Personne.o Membre.o Secretaire.o InvalidClassementException.o InvalidPasswordException.o ListeBase.o Liste.o ListeTriee.o Iterateur.o Equipe.o Club.o ExceptionMessage.o gestionMenu.o
 ALLCPP = 
 ALLHEADER = 
 TMP = commentaire de base
@@ -173,10 +173,6 @@ Equipe.o: Equipe.cpp Equipe.h
 	echo $@
 	g++ Equipe.cpp -c -o Equipe.o
 
-utils.o: utils.cpp utils.h
-	echo $@
-	g++ utils.cpp -c -o utils.o
-
 ExceptionMessage.o: ExceptionMessage.cpp ExceptionMessage.h
 	echo $@
 	g++ ExceptionMessage.cpp -c -o ExceptionMessage.o
@@ -218,7 +214,11 @@ clean:
 	echo clean
 	rm -f *.o makefile~ *.o~ $(ALLPROG)
 	
-	
+dat:
+	clear
+	clear
+	echo clean des .dat
+	rm -f *.dat
 	
 	
 	

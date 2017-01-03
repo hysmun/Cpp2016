@@ -122,14 +122,14 @@ istream &operator>>(istream &s, Matricule &j)
 
 void Matricule::Save(ofstream &fichier) const
 {
-	fichier.write(dateInscription,sizeof(dateInscription));
+	fichier.write(dateInscription,11*sizeof(char));
 	fichier.write((char *)&numero, sizeof(int));
 	return;
 }
 
 void Matricule::Load(ifstream &fichier)
 {
-	fichier.read(dateInscription, sizeof(dateInscription));
+	fichier.read(dateInscription, 11*sizeof(char));
 	fichier.read((char *)&numero, sizeof(int));
 	return ;
 }
