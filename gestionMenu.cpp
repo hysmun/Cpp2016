@@ -674,7 +674,18 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 
 
 
-
+int removeJoueurFromEquipe(Equipe *tmpE, Joueur *tmpJ)
+{
+	int tmpI;
+	
+	for(int i=0; i<4; i++)
+	{
+		if(*(tmpE->getJoueur(i)) == *tmpJ)
+		{
+			tmpE->setJoueur(NULL, i);
+		}
+	}
+}
 
 
 

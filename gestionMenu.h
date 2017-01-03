@@ -54,7 +54,7 @@ int printListeEquipe(Liste<Equipe> listeEquipe);
 int SaveJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe);
 
 
-
+int removeJoueurFromEquipe(Equipe *tmpE, Joueur *tmpJ);
 
 
 
