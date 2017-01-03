@@ -45,7 +45,7 @@ ListeTriee<Joueur> listeJoueur;
 Liste<Equipe> listeEquipe;
 
 int verbose = 0;
-int error = 0;
+int error = 1;
 
 Secretaire s;
 Club *clubSec = NULL;
@@ -68,9 +68,27 @@ int main(int argc, char *argv[])
 						cout <<"      mode verbose        "<<endl;
 						break;
 					case 'e':
-						error = 1;
+						error = 0;
 						cout << "      mode affichage des erreurs  "<<endl;
 						break;
+					case 'h':
+					{
+						cout << "-----    HELP ------"<<endl<<endl;
+						cout << "liste des options:"<<endl;
+						cout << "-v   pour le mode verbose (affichage suplémentaire de ce que fait le programme)"<<endl;
+						cout << "-e   pour le mode avec affichage de toute les erreurs généré par le programme-"<<endl;
+						cout << "-h   pour le manuel d'aide des options"<<endl;
+						cout << "-i   pour les informations concernant ce programme "<<endl<<endl;;
+
+					}
+					case 'i':
+					{
+						cout << "Programme de gestion du tenis "<<endl<<endl;;
+						cout << "fait par :"<<endl;
+						cout << "Brajkovic Antoine"<<endl;
+						cout << "Mauhin Remy"<<endl<<endl;
+
+					}
 				}
 					
 				break;
