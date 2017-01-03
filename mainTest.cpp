@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
 					case 'i':
 					{
 						cout <<endl<< "------------------------------------ ------"<<endl;
-						cout << "Programme de gestion du tenis "<<endl<<endl;;
+						cout << "Programme de gestion du tennis "<<endl<<endl;;
 						cout << "fait par :"<<endl;
 						cout << "Brajkovic Antoine"<<endl;
 						cout << "Mauhin Remy"<<endl<<endl;
@@ -426,6 +426,12 @@ void menuFed()
 				char letclass;
 				cout << "Encodez une lettre de classement valide : ";
 				cin >> letclass;
+				letclass=toupper(letclass);
+				while(letclass!='A' && letclass!='B' && letclass!='C' && letclass!='D' && letclass!='E' && letclass!='F' && letclass!='N')
+				{
+					cout << "Erreur de lettre. Encodez une lettre valide : ";
+					cin >> letclass;
+				}
 				showJoueurWthClassement(listeJoueur,letclass);
 				break;
 			}
