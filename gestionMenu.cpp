@@ -47,12 +47,21 @@ int mygetch ( void )
 
 int cleanScreen()
 {
-	for(int i =0; i<75; i++)
+	for(int i =0; i<50; i++)
 	{
 		cout << endl;
 	}
+	
+ 	SetCursorPos(0,0);
+
 	return 1;
 }
+
+void SetCursorPos(int XPos, int YPos)
+{
+	printf("\033[%d;%dH", YPos+1, XPos+1);
+}
+
 
 char WaitHit()
 {

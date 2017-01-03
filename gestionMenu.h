@@ -38,6 +38,7 @@ int printListeSec(Liste<Secretaire> listeSec);
 
 int cleanScreen();
 char WaitHit();
+void SetCursorPos(int XPos, int YPos);
 
 
 int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe);

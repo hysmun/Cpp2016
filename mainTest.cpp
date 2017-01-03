@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
 		}
 		
 		
-		
+		cleanScreen();
 		cout << "***********************************" << endl;
 		cout << "********** Bienvenue !!! **********" << endl;
 		cout << "***********************************" << endl << endl;
@@ -174,8 +174,17 @@ int main(int argc, char *argv[])
 		{
 			try
 			{
-				cout << "Login et/ou password incorrecte !"<<endl;
+				cout <<endl<< "Login et/ou password incorrecte !"<<endl<<endl;
+				SetCursorPos(0,0);
+				cout << "***********************************" << endl;
+				cout << "********** Bienvenue !!! **********" << endl;
+				cout << "***********************************" << endl << endl;
+				cout << "                                                " << endl;
+				cout << "                                                " << endl;
+				cout << "                                                " << endl;
+				SetCursorPos(0,4);
 				cout << "Login : ";
+				
 				cin >> login;
 				//Test si login OK
 				cout << "Password : ";
@@ -193,7 +202,7 @@ int main(int argc, char *argv[])
 		numeroClub = s.getNumClub();
 		if(verbose == 1)
 			cout <<endl<<endl<<"Bienvenue :"<<endl<< s << endl;
-			
+		
 		if(numeroClub == 0)
 		{
 			clubSec = NULL;
