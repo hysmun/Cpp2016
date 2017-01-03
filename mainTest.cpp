@@ -789,6 +789,15 @@ void menuClub(char* nomClub)
 			case 12:
 			{
 				//supprimer une equipe
+				char lettre;
+				Equipe *tmpE;
+				
+				cout << "Veuillez entrer la lettre de l'equipe  :"<<endl;
+				cin >> lettre;
+				
+				
+				Iterateur<Equipe> It(listeEquipe);
+				
 				break;
 			}
 			
