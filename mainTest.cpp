@@ -378,6 +378,10 @@ void menuFed()
 			case 10:
 			{
 				//afficher tout les joueurs pour un classement de lettre donnee
+				char letclass;
+				cout << "Encodez une lettre de classement valide : ";
+				cin >> letclass;
+				showJoueurWthClassement(listeJoueur,letclass);
 				break;
 			}
 			
@@ -390,7 +394,7 @@ void menuFed()
 			
 			case 12:
 			{
-				//afficher lles info d'une equipe
+				//afficher les info d'une equipe
 				break;
 			}
 			
