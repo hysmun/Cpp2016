@@ -8,7 +8,7 @@
 #include "Club.h"
 #include "Joueur.h"
 
-
+int mygetch ( void );
 
 int modifierPassword(Liste<Secretaire> *listeSec, Secretaire *s, char *newpasss);
 
@@ -37,7 +37,7 @@ int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec);
 int printListeSec(Liste<Secretaire> listeSec);
 
 int cleanScreen();
-int WaitHit();
+char WaitHit();
 
 
 int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe);

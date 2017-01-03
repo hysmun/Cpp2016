@@ -140,15 +140,19 @@ ostream &operator<<(ostream &s, const Equipe &e)
 {
 	int i;
 	if(e.getClub() != NULL)
-		s << *(e.getClub()) << " ";
-	s << e.getNumero() << " ";
+		s << (e.getClub()->getNom()) << " ";
+	s << e.getNumero() <<endl;
 	if(e.getDivision() != NULL)
 		s << e.getDivision() << endl<<endl;
 	for(i=0; i<4; i++)
 	{
 		if(e.getJoueur(i) != NULL)
 		{
-			s<<"joueur " << i+1 << endl<< *(e.getJoueur(i))<<endl<<endl;;
+			s<<"joueur " << i << endl<< *(e.getJoueur(i))<<endl<<endl;;
+		}
+		else
+		{
+			s<< " pas de joueur " << i<<endl;
 		}
 	}
 }

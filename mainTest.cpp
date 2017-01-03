@@ -44,13 +44,47 @@ ListeTriee<Club> listeClub;
 ListeTriee<Joueur> listeJoueur;
 Liste<Equipe> listeEquipe;
 
+int verbose = 0;
+int error = 0;
 
 Secretaire s;
 Club *clubSec = NULL;
 int numeroClub;
 
-int main()
+int main(int argc, char *argv[])
 {
+	verbose = 0;
+	for(int j=1; j<argc; j++)
+	{
+		//cout << "mode "<<endl;
+		switch(argv[j][0])
+		{
+			case '-':
+			{
+				switch(argv[j][1])
+				{
+					case 'v':
+						verbose = 1;
+						cout <<"      mode verbose        "<<endl;
+						break;
+					case 'e':
+						error = 1;
+						cout << "      mode affichage des erreurs  "<<endl;
+				}
+					
+				break;
+			}
+			default:
+			{
+				cout << "erreur "<<endl;
+			}
+		}
+	}
+
+
+
+
+
 	try
 	{
 		ifstream fichier("secretaires.dat",ios::in);
@@ -67,7 +101,8 @@ int main()
 		else
 		{
 			//fichier club.dat ouvert
-			cout << "chargement fichier club"<<endl;
+			if(verbose == 1)
+				cout << "chargement fichier club"<<endl;
 			listeClub.Load(fichierClub);
 			fichierClub.close();
 		}
@@ -86,7 +121,8 @@ int main()
 			//cout << "chargement liste secretaire"<< endl;
 			listeSec.Load(fichier);
 			fichier.close();
-			cout <<"chargement fichier secretaire "<<endl;
+			if(verbose == 1)
+				cout <<"chargement fichier secretaire "<<endl;
 			//cout << "affichage liste secretaire !!!"<< endl;
 			//printListeSec(listeSec);
 		}
@@ -130,8 +166,9 @@ int main()
 		}
 		
 		numeroClub = s.getNumClub();
-	
-		cout <<endl<<endl<<"Bienvenue :"<<endl<< s << endl;
+		if(verbose == 1)
+			cout <<endl<<endl<<"Bienvenue :"<<endl<< s << endl;
+			
 		if(numeroClub == 0)
 		{
 			clubSec = NULL;
@@ -234,6 +271,7 @@ void menuFed()
 					cerr << e.getMsg() << endl;
 					break;
 				}
+				
 				cout << "Mot de passe changé avec succès !" << endl;
 				ofstream fichier("secretaires.dat",ios::out);
 				listeSec.Save(fichier);
@@ -361,7 +399,9 @@ void menuFed()
 				break;
 			}
 		}
-		cout<<endl<<endl<<endl;
+		WaitHit();
+		cleanScreen();
+		//cout<<endl<<endl<<endl;
 	}
 }
 
@@ -375,6 +415,7 @@ void menuClub(char* nomClub)
 	cleanScreen();
 	while(ch != 0)
 	{
+		
 		cout << "********************************************************************" << endl;
 		cout << "*********** Club de Tennis de Table : " << nomClub << " *********************" << endl;
 		cout << "********************************************************************" << endl << endl;
@@ -482,6 +523,7 @@ void menuClub(char* nomClub)
 			case 5:
 			{
 				//afficher toutes les infos d'un seul joueur
+
 				break;
 			}
 			
@@ -529,7 +571,6 @@ void menuClub(char* nomClub)
 					//insertion equipe reussi!
 					cout << "equipe cree !!"<<endl;
 				}
-				
 				break;
 			}
 			
@@ -551,7 +592,7 @@ void menuClub(char* nomClub)
 					break;
 				}
 				
-				cout << ""<< endl;
+				cout << "Veuillez entrer le numero de matricule du joueur "<< endl;
 				cin >> num;
 				
 				tmpJ = getJoueurWithNum(&listeJoueur, num);
@@ -623,7 +664,10 @@ void menuClub(char* nomClub)
 			}
 			
 		}
-		cout<<endl<<endl<<endl;
+		
+		WaitHit();
+		cleanScreen();
+		//cout<<endl<<endl<<endl;
 	}
 }
 

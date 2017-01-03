@@ -2,7 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include <limits>
 #include <fstream>
+#include <termios.h>
+#include <unistd.h>
 using namespace std;
 #include "Equipe.h"
 #include "Club.h"
@@ -21,6 +24,45 @@ using namespace std;
 #include "Iterateur.h"
 #include "utils.h"
 #include "gestionMenu.h"
+
+extern int verbose;
+extern int error;
+
+int mygetch ( void ) 
+{
+  int ch;
+  struct termios oldt, newt;
+
+  tcgetattr ( 0, &oldt );
+  newt = oldt;
+  newt.c_lflag &= ~( ICANON | ECHO );
+  newt.c_cc[VMIN] = 1;
+  tcsetattr ( 0, TCSANOW, &newt );
+  read(0, &ch, 1);
+  tcsetattr ( 0, TCSANOW, &oldt );
+
+  return ch;
+}
+
+
+int cleanScreen()
+{
+	for(int i =0; i<75; i++)
+	{
+		cout << endl;
+	}
+	return 1;
+}
+
+char WaitHit()
+{
+	char c;
+	cout << endl<<"Appuyez sur une touche pour continuez "<<endl;
+	//while(kbhit() != 1);
+	c = mygetch();
+	return c;
+}
+
 
 int modifierPassword(Liste<Secretaire> *listeSec, Secretaire *s, char *newpass)
 {
@@ -353,21 +395,6 @@ int printListeSec(Liste<Secretaire> listeSec)
 }
 
 
-int cleanScreen()
-{
-	for(int i =0; i<50; i++)
-	{
-		cout << endl;
-	}
-	return 1;
-}
-
-int WaitHit()
-{
-	char c;
-	cout << endl<<"Appuyez sur une touche pour continuez "<<endl;
-	//while(kbhit() != 1);
-}
 
 
 
@@ -387,16 +414,16 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		ofstream fichier(nomFichier,ios::out);
 		Iterateur<Equipe> ItE(*listeEquipe);
 		
-		cout << "save j&e "<<endl;
+		//cout << "save j&e "<<endl;
 		
 		tmp = listeJoueur->getNombreElements();
 		fichier.write((char *)&tmp, sizeof(int));
 		
-		cout << "tmp = " << tmp <<endl;
+		//cout << "tmp = " << tmp <<endl;
 		
 		listeJoueur->Save(fichier);
 		
-		cout << "joueur save !"<<endl;
+		//cout << "joueur save !"<<endl;
 		
 		for(ItE.reset(); ItE.end() == 0; ItE++)
 		{
@@ -409,7 +436,7 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 			fichier.write((char *)&len, sizeof(int));
 			fichier.write((&ItE)->getDivision(), len);
 			
-			cout << "club fait "<<endl;
+			//cout << "club fait "<<endl;
 			
 			for(i=0; i<4; i++)
 			{
@@ -423,7 +450,7 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 					tmp = 0;
 					fichier.write((char *) &tmp, sizeof(int));
 				}
-				cout << " joueur "<<i+1 <<" fait !"<<endl;
+				//cout << " joueur "<<i+1 <<" fait !"<<endl;
 			}
 			
 		}
@@ -447,7 +474,7 @@ Club *getClubWithNum(ListeTriee<Club> *listeClub, int num)
 	//cout << "recheche num club "<<endl;
 	for(ItClub.reset(); ItClub.end() == 0; ItClub++)
 	{
-		cout << endl << "premier essais : "<< num << " == "<<(&ItClub)->getNumClub()<<endl;
+		//cout << endl << "premier essais : "<< num << " == "<<(&ItClub)->getNumClub()<<endl;
 		if((&ItClub)->getNumClub() == num)
 		{
 			//cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
@@ -562,7 +589,6 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 {
 	int NbrJ, i, tmpI, len;
 	Joueur tmpJ;
-	Equipe tmpE;
 	char tmpS[255];
 
 	
@@ -595,8 +621,14 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		}
 		
 		//lecture des equipes
-		for(i=0; (fichier.read((char *)&tmpI, sizeof(int))) != 0; i++)
+		cout << "lecture equipe "<<endl;
+		char c;
+		fichier.get(c);
+		for(i=0; !fichier.eof(); i++)
 		{
+				Equipe tmpE;
+			fichier.seekg(-1, ios::cur);
+			fichier.read((char *)&tmpI, sizeof(int));
 			tmpC = getClubWithNum(listeClub, tmpI);
 			if(tmpC != NULL)
 			{
@@ -613,15 +645,16 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 				for(int j=0; j<4; j++)
 				{
 					fichier.read((char *)&tmpI, sizeof(int));
+					//cout<< "joueur "<< j <<" -- "<<tmpI<<endl;
 					if(tmpI != 0)
 					{
 						//le joueur existe
-						tmpE.setJoueur(getJoueurWithNum(listeJoueur, tmpI), i);
+						tmpE.setJoueur(getJoueurWithNum(listeJoueur, tmpI), j);
 					}
 					else
 					{
 						//le joueur n'existe pas
-						tmpE.setJoueur(NULL, i);
+						tmpE.setJoueur(NULL, j);
 					}
 				}
 			}
@@ -629,6 +662,10 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 			{
 				//erreur 
 			}
+			//cout << "Equipe "<<i<<endl;
+			//cout <<tmpE<<endl<<endl;
+			fichier.get(c);
+			listeEquipe->insere(tmpE);
 		}
 		
 	}

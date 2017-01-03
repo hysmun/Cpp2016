@@ -318,11 +318,11 @@ void Joueur::Save(ofstream &fichier) const
 	tmp = getPoints();
 	fichier.write((char *)&tmp, sizeof(int));
 	
-	cout << "save matricule "<<endl;
+	//cout << "save matricule "<<endl;
 	//save matricule
 	jMatricule.Save(fichier);
 	
-	cout << "save classement "<<endl;
+	//cout << "save classement "<<endl;
 	//save classements
 	if(jClassement != NULL)
 	{
@@ -339,7 +339,7 @@ void Joueur::Save(ofstream &fichier) const
 		fichier.write(&lettre, sizeof(char));
 		fichier.write((char*)&nombre, sizeof(short));
 	}
-	cout << "fin save joueur "<<endl;
+	//cout << "fin save joueur "<<endl;
 	return;
 }
 
