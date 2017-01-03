@@ -616,7 +616,10 @@ void menuClub(char* nomClub)
 			case 5:
 			{
 				//afficher toutes les infos d'un seul joueur
-				
+				int matriculeint;
+				cout << "Encodez un numero de matricule : ";
+				cin >> matriculeint;
+				showInfoJoueur(listeJoueur,matriculeint);
 				break;
 			}
 			
