@@ -70,14 +70,14 @@ int main(int argc, char *argv[])
 						break;
 					case 'e':
 						error = 0;
-						cout << "      mode affichage des erreurs  "<<endl;
+						cout << "      mode non-affichage des erreurs  "<<endl;
 						break;
 					case 'h':
 					{
 						cout <<endl<< "-------   HELP ----------"<<endl<<endl;
 						cout << "liste des options:"<<endl;
 						cout << "-v   pour le mode verbose (affichage suplémentaire de ce que fait le programme)"<<endl;
-						cout << "-e   pour le mode avec affichage de toute les erreurs généré par le programme-"<<endl;
+						cout << "-e   pour le mode avec affichage d'aucune les erreurs généré par le programme-"<<endl;
 						cout << "-h   pour le manuel d'aide des options"<<endl;
 						cout << "-i   pour les informations concernant ce programme "<<endl<<endl;;
 						break;
