@@ -54,6 +54,7 @@ int numeroClub;
 int main(int argc, char *argv[])
 {
 	verbose = 0;
+	error = 1;
 	for(int j=1; j<argc; j++)
 	{
 		//cout << "mode "<<endl;
@@ -73,7 +74,7 @@ int main(int argc, char *argv[])
 						break;
 					case 'h':
 					{
-						cout << "-----    HELP ------"<<endl<<endl;
+						cout <<endl<< "-------   HELP ----------"<<endl<<endl;
 						cout << "liste des options:"<<endl;
 						cout << "-v   pour le mode verbose (affichage suplémentaire de ce que fait le programme)"<<endl;
 						cout << "-e   pour le mode avec affichage de toute les erreurs généré par le programme-"<<endl;
@@ -83,12 +84,14 @@ int main(int argc, char *argv[])
 					}
 					case 'i':
 					{
+						cout <<endl<< "------------------------------------ ------"<<endl;
 						cout << "Programme de gestion du tenis "<<endl<<endl;;
 						cout << "fait par :"<<endl;
 						cout << "Brajkovic Antoine"<<endl;
 						cout << "Mauhin Remy"<<endl<<endl;
 
 					}
+					break;
 				}
 					
 				break;
