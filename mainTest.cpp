@@ -70,6 +70,7 @@ int main(int argc, char *argv[])
 					case 'e':
 						error = 1;
 						cout << "      mode affichage des erreurs  "<<endl;
+						break;
 				}
 					
 				break;
@@ -598,7 +599,8 @@ void menuClub(char* nomClub)
 				tmpJ = getJoueurWithNum(&listeJoueur, num);
 				if(tmpJ == NULL)
 				{
-					cout << "erreur joueur non existant!"<<endl;
+					if(verbose==1 || error ==1)
+						cout << "erreur joueur non existant!"<<endl;
 					break;
 				}
 				
@@ -613,12 +615,13 @@ void menuClub(char* nomClub)
 				}
 				if( full == 1)
 				{
-					cout << "equipe plein impossible de rajouter le joueur "<<endl;
+					if(verbose==1 || error ==1)
+						cout << "equipe plein impossible de rajouter le joueur "<<endl;
 				}
 				else
 				{
-					cout <<endl<< "Joueur ajouter a l'equipe !"<<endl;
-					cout << *tmpE<<endl;
+					if(verbose==1)
+						cout <<endl<< "Joueur ajouter a l'equipe !"<< endl << *tmpE<<endl;
 				}
 				
 				break;
@@ -626,7 +629,36 @@ void menuClub(char* nomClub)
 			
 			case 9:
 			{
-				//retirer un joueur d'une equipe'
+				//retirer un joueur d'une equipe
+				int num;
+				char lettre;
+				Equipe *tmpE;
+				Joueur *tmpJ;
+				
+				cout << "Veuillez entrer la lettre de l'equipe ou ajouter le joueur :"<<endl;
+				cin >> lettre;
+				
+				tmpE = getEquipeWithNum(&listeEquipe, lettre, *clubSec);
+				if(tmpE == NULL)
+				{
+					cout << "erreur Equipe non existante!"<<endl;
+					break;
+				}
+				cout << "Veuillez entrer le numero de matricule du joueur "<< endl;
+				cin >> num;
+				
+				tmpJ = getJoueurWithNum(&listeJoueur, num);
+				if(tmpJ == NULL)
+				{
+					cout << "erreur joueur non existant!"<<endl;
+					break;
+				}
+				
+				removeJoueurFromEquipe(tmpE, tmpJ);
+				
+				if(verbose==1)
+					cout << "joueur enlever de l'equipe"<<endl;
+				
 				break;
 			}
 			
