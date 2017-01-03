@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 						cout << "-e   pour le mode avec affichage de toute les erreurs généré par le programme-"<<endl;
 						cout << "-h   pour le manuel d'aide des options"<<endl;
 						cout << "-i   pour les informations concernant ce programme "<<endl<<endl;;
-
+						break;
 					}
 					case 'i':
 					{
@@ -89,9 +89,8 @@ int main(int argc, char *argv[])
 						cout << "fait par :"<<endl;
 						cout << "Brajkovic Antoine"<<endl;
 						cout << "Mauhin Remy"<<endl<<endl;
-
+						break;
 					}
-					break;
 				}
 					
 				break;
