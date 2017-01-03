@@ -272,8 +272,8 @@ void menuFed()
 					cerr << e.getMsg() << endl;
 					break;
 				}
-				
-				cout << "Mot de passe changé avec succès !" << endl;
+				if(verbose == 1)
+					cout << "Mot de passe changé avec succès !" << endl;
 				ofstream fichier("secretaires.dat",ios::out);
 				listeSec.Save(fichier);
 				fichier.close();
@@ -292,7 +292,8 @@ void menuFed()
 					ofstream fichier("secretaires.dat",ios::out);
 					listeSec.Save(fichier);
 					fichier.close();
-					cout << "Club et secretaire ajouter "<<endl;
+					if(verbose == 1)
+						cout << "Club et secretaire ajouter "<<endl;
 				}
 				catch (ExceptionMessage &e)
 				{
@@ -324,13 +325,17 @@ void menuFed()
 				if(listeSec.SearchDoublet(s) == 0)
 				{
 					listeSec.insere(s);
-					cout << "Insertion réussie" << endl;
+					if(verbose == 1)
+						cout << "Insertion réussie" << endl;
 					ofstream fichier("secretaires.dat",ios::out);
 					listeSec.Save(fichier);
 					fichier.close();
 				}
 				else
-					cout << "Erreur insertion" << endl;
+				{
+					if(error == 1)
+						cout << "Erreur insertion" << endl;
+				}
 				break;
 			}		
 				
@@ -358,13 +363,17 @@ void menuFed()
 				cin >> firstname;
 				if(supprimerSec(firstname,lastname,&listeSec) == 0)
 				{
-					cout << "Secrétaire supprimé(e)" << endl;
+					if(verbose == 1)
+						cout << "Secrétaire supprimé(e)" << endl;
 					ofstream fichier("secretaires.dat",ios::out);
 					listeSec.Save(fichier);
 					fichier.close();
 				}
 				else
-					cout << "Erreur suppression" << endl;
+				{
+					if(error == 1 || verbose==1)
+						cout << "Erreur suppression" << endl;
+				}
 				break;
 			}
 			
@@ -445,7 +454,8 @@ void menuClub(char* nomClub)
 				//save
 				
 				sprintf(tmp,"%s.dat", nomClub);
-				cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
+				if( verbose==1)
+					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
 				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				exit(0);
 			}
@@ -464,7 +474,8 @@ void menuClub(char* nomClub)
 				{
 					cerr << e.getMsg() << endl;
 				}
-				cout << "Mot de passe changé avec succès !" << endl;
+				if(verbose==1)
+					cout << "Mot de passe changé avec succès !" << endl;
 				ofstream fichier("secretaires.dat",ios::out);
 				listeSec.Save(fichier);
 				fichier.close();
@@ -495,7 +506,8 @@ void menuClub(char* nomClub)
 				j.setClassement(&tmpc);
 				
 				listeJoueur.insere(j);
-				cout << " joueur insere "<<endl;
+				if(verbose==1)
+					cout << " joueur insere "<<endl;
 				break;
 			}
 			
@@ -510,10 +522,14 @@ void menuClub(char* nomClub)
 				m.setNumero(matriculeint);
 				if(supprimerJoueur(m,&listeJoueur) == 0)
 				{
-					cout << "Joueur supprimé" << endl;
+					if(verbose==1)
+						cout << "Joueur supprimé" << endl;
 				}
 				else
-					cout << "Erreur suppression" << endl;
+				{
+					if(error == 1 || verbose==1)
+						cerr << "Erreur suppression" << endl;
+				}
 				break;
 			}
 			
@@ -556,7 +572,7 @@ void menuClub(char* nomClub)
 							i++;
 						}
 					}
-					cout << "Nom du fichier pour insertion : ";
+					cout <<endl<<endl<< "Nom du fichier pour insertion : ";
 					cin >> nomFich;
 					importFichierJoueur(&listeJoueur,nomFich,numeroClub);
 					
@@ -573,7 +589,8 @@ void menuClub(char* nomClub)
 				if(test == 1)
 				{
 					//insertion equipe reussi!
-					cout << "equipe cree !!"<<endl;
+					if(verbose==1)
+						cout << "equipe cree !!"<<endl;
 				}
 				break;
 			}
@@ -592,7 +609,8 @@ void menuClub(char* nomClub)
 				tmpE = getEquipeWithNum(&listeEquipe, lettre, *clubSec);
 				if(tmpE == NULL)
 				{
-					cout << "erreur Equipe non existante!"<<endl;
+					if(error == 1 || verbose==1)
+						cerr << "erreur Equipe non existante!"<<endl;
 					break;
 				}
 				
@@ -603,7 +621,7 @@ void menuClub(char* nomClub)
 				if(tmpJ == NULL)
 				{
 					if(verbose==1 || error ==1)
-						cout << "erreur joueur non existant!"<<endl;
+						cerr << "erreur joueur non existant!"<<endl;
 					break;
 				}
 				
@@ -619,7 +637,7 @@ void menuClub(char* nomClub)
 				if( full == 1)
 				{
 					if(verbose==1 || error ==1)
-						cout << "equipe plein impossible de rajouter le joueur "<<endl;
+						cerr << "equipe plein impossible de rajouter le joueur "<<endl;
 				}
 				else
 				{
@@ -644,7 +662,8 @@ void menuClub(char* nomClub)
 				tmpE = getEquipeWithNum(&listeEquipe, lettre, *clubSec);
 				if(tmpE == NULL)
 				{
-					cout << "erreur Equipe non existante!"<<endl;
+					if(error == 1 || verbose==1)
+						cerr << "erreur Equipe non existante!"<<endl;
 					break;
 				}
 				cout << "Veuillez entrer le numero de matricule du joueur "<< endl;
@@ -653,7 +672,8 @@ void menuClub(char* nomClub)
 				tmpJ = getJoueurWithNum(&listeJoueur, num);
 				if(tmpJ == NULL)
 				{
-					cout << "erreur joueur non existant!"<<endl;
+					if(error == 1 || verbose==1)
+						cerr << "erreur joueur non existant!"<<endl;
 					break;
 				}
 				
@@ -677,11 +697,13 @@ void menuClub(char* nomClub)
 				tmpE = getEquipeWithNum(&listeEquipe, lettre, *clubSec);
 				if(tmpE == NULL)
 				{
-					cout << "erreur Equipe non existante!"<<endl;
+					if(error == 1 || verbose==1)
+						cerr << "erreur Equipe non existante!"<<endl;
+					if(error == 1 || verbose==1)
+						cerr << *tmpE<<endl;
 					break;
 				}
-				
-				cout << *tmpE<<endl;
+
 				break;
 			}
 			

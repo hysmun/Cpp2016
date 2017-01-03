@@ -212,7 +212,8 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 	Joueur jtmp;
 	if(!(fichiertxt.is_open()))
 	{
-		cout << "Erreur nom de fichier" << endl;
+		if(error == 1 || verbose==1)
+			cout << "Erreur nom de fichier" << endl;
 		return -1;
 	}
 	else
@@ -249,7 +250,8 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				
 				if(classtmp[0] == 'N' && classtmp[1] == 'C')
 				{
-					cout << "Ajout d'un joueur non classé" << classtmp << endl;
+					if(error == 1 || verbose==1)
+						cout << "Ajout d'un joueur non classé" << classtmp << endl;
 					//jtmp.setClassement(NULL);
 				}
 				else
@@ -270,7 +272,8 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				}
 				if( pass == 0)
 				{
-					cout << "insertion d'un joueur "<<endl;
+					if(verbose==1)
+						cout << "insertion d'un joueur "<<endl;
 					listeJoueur->insere(jtmp);
 				}
 				
@@ -278,7 +281,8 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 			catch(InvalidClassementException &e)
 			{
 				//erreur classement
-				cout << "erreur classement !"<<e.getMsg()<<endl;
+				if(error == 1 || verbose==1)
+					cerr << "erreur classement !"<<e.getMsg()<<endl;
 				
 			}
 			catch(ExceptionMessage &e)
@@ -345,15 +349,18 @@ void bidonnageSec()
 	}
 	catch(ExceptionMessage &e)
 	{
-		cerr << "erreur : "<< e.getMsg()<<endl;
+		if(error == 1 || verbose==1)
+			cerr << "erreur : "<< e.getMsg()<<endl;
 	}
 	catch(InvalidPasswordException &e)
 	{
-		cerr << "password incorect "<< e.getMsg() << endl;
+		if(error == 1 || verbose==1)
+			cerr << "password incorect "<< e.getMsg() << endl;
 	}
 	catch(...)
 	{
-		cerr << "erreur inconnue"<< endl;
+		if(error == 1 || verbose==1)
+			cerr << "erreur inconnue"<< endl;
 	}
 }
 
@@ -362,7 +369,8 @@ void bidonnageSec()
 int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec)
 {
 	Iterateur<Secretaire> itSec(listeSec);
-	//cout << "test des secretaire login + mdp"<<endl;
+	if(verbose==1)
+		cout << "test des secretaire login + mdp"<<endl;
 	for(itSec.reset(); itSec.end() == 0; itSec++)
 	{
 		//cout << (&itSec)->getLogin() << " == "<< sec->getLogin()<<endl;
@@ -372,7 +380,8 @@ int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec)
 			//cout << "AAAA"<< *(&itSec)<<endl<<sec;
 			*sec = *(&itSec);
 			//cout << "AAAA"<< *(&itSec) << endl << *sec << endl;
-			//cout << "trouver !"<< endl;
+			if(verbose==1)
+				cout << "trouver !"<< endl;
 			return (&itSec)->getNumClub();
 		}
 	}
@@ -413,7 +422,8 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		ofstream fichier(nomFichier,ios::out);
 		Iterateur<Equipe> ItE(*listeEquipe);
 		
-		//cout << "save j&e "<<endl;
+		if(verbose==1)
+			cout << "save j&e "<<endl;
 		
 		tmp = listeJoueur->getNombreElements();
 		fichier.write((char *)&tmp, sizeof(int));
@@ -453,7 +463,8 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 			}
 			
 		}
-		cout << "fin save "<<endl;
+		if(verbose==1)
+			cout << "fin save "<<endl;
 		fichier.close();
 		
 	}
@@ -470,7 +481,8 @@ Club *getClubWithNum(ListeTriee<Club> *listeClub, int num)
 {
 	Iterateur<Club> ItClub(*listeClub);
 	Club *tmpC;
-	//cout << "recheche num club "<<endl;
+	if(verbose==1)
+		cout << "recheche num club "<<endl;
 	for(ItClub.reset(); ItClub.end() == 0; ItClub++)
 	{
 		//cout << endl << "premier essais : "<< num << " == "<<(&ItClub)->getNumClub()<<endl;
@@ -478,6 +490,8 @@ Club *getClubWithNum(ListeTriee<Club> *listeClub, int num)
 		{
 			//cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
 			tmpC = (&ItClub);
+			if(verbose==1)
+				cout << "Club trouver ! "<<endl;
 			return tmpC;
 		}
 	}
@@ -490,7 +504,8 @@ Joueur *getJoueurWithNum(ListeTriee<Joueur> *listeJoueur, int num)
 {
 	Iterateur<Joueur> ItJoueur(*listeJoueur);
 	Joueur *tmpJ;
-	//cout << "recheche num Joueur "<<endl;
+	if(verbose==1)
+		cout << "recheche num Joueur "<<endl;
 	for(ItJoueur.reset(); ItJoueur.end() == 0; ItJoueur++)
 	{
 		//cout << endl << "premier essais : "<< num << " == "<<(&ItJoueur)->getMatricule().getNumero()<<endl;
@@ -498,6 +513,8 @@ Joueur *getJoueurWithNum(ListeTriee<Joueur> *listeJoueur, int num)
 		{
 			//cout << "C : "<< (&ItJoueur)<<endl<< *(&ItJoueur)<<endl;
 			tmpJ = (&ItJoueur);
+			if(verbose==1)
+				cout << "Joueur trouver "<<endl;
 			return tmpJ;
 		}
 	}
@@ -509,7 +526,8 @@ Equipe *getEquipeWithNum(Liste<Equipe> *listeEquipe, char lettre, Club tmpC)
 {
 	Iterateur<Equipe> It(*listeEquipe);
 	Equipe *tmpE;
-	//cout << "recheche Equipe "<<endl;
+	if(verbose==1)
+		cout << "recheche Equipe "<<endl;
 	for(It.reset(); It.end() == 0; It++)
 	{
 		//cout << endl << "premier essais : "<< lettre << " == "<<(&It)->getNumero()<<endl;
@@ -517,6 +535,8 @@ Equipe *getEquipeWithNum(Liste<Equipe> *listeEquipe, char lettre, Club tmpC)
 		{
 			//cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
 			tmpE = (&It);
+			if(verbose==1)
+				cout << "Equipe trouver "<<endl;
 			return tmpE;
 		}
 	}
@@ -555,6 +575,11 @@ int printListeJoueur(ListeTriee<Joueur> listeJoueur)
 
 int printListeEquipe(Liste<Equipe> listeEquipe)
 {
+	if(listeEquipe.estVide() == true)
+	{
+		cout << "liste Equipe vide  !"<<endl;
+		return -1;
+	}
 	Iterateur<Equipe> It(listeEquipe);
 	cout << "liste des equipes : "<<endl;
 	int cpt=0;
@@ -600,7 +625,8 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		// on veut les jouers et equipe que de 1 seul clubs portant le nom : nomClub
 		ifstream fichier(nomFichier,ios::in);
 		
-		cout << "Load j&e"<<endl;
+		if(verbose==1)
+			cout << "Load j&e"<<endl;
 		
 		if(!(fichier.is_open()) )
 		{
@@ -620,7 +646,8 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		}
 		
 		//lecture des equipes
-		cout << "lecture equipe "<<endl;
+		if(verbose==1)
+			cout << "lecture equipe "<<endl;
 		char c;
 		fichier.get(c);
 		for(i=0; !fichier.eof(); i++)
