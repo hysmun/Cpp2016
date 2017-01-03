@@ -331,9 +331,15 @@ void menuFed()
 					if(verbose == 1)
 						cout << "Club et secretaire ajouter "<<endl;
 				}
+				catch(InvalidPasswordException &e)
+				{
+					if(error || verbose)
+						cout << "password incorrect !"<<endl;
+				}
 				catch (ExceptionMessage &e)
 				{
-					cout << e.getMsg()<<endl;
+					if(error || verbose)
+						cout << e.getMsg()<<endl;
 				}
 				break;
 			}
