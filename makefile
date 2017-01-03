@@ -204,7 +204,7 @@ git:
 	clear
 	echo git
 	git add -A
-	git commit -m "$(TMP)"
+	git commit -m $(TMP)
 	git push
 
 
