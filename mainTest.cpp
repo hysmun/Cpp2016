@@ -503,7 +503,7 @@ void menuClub(char* nomClub)
 	{
 		
 		cout << "********************************************************************" << endl;
-		cout << "*********** Club de Tennis de Table : " << nomClub << " *********************" << endl;
+		cout << "					Club de Tennis de Table : " << nomClub << endl;
 		cout << "********************************************************************" << endl << endl;
 		cout << "	0. Quitter" << endl;
 		cout << "	1. Changer de mot de passe" << endl;
