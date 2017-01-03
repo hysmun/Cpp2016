@@ -717,6 +717,7 @@ int removeJoueurFromEquipe(Equipe *tmpE, Joueur *tmpJ)
 int showJoueurWthClassement(ListeTriee<Joueur> listeJoueur,char letclass)
 {
 	Iterateur<Joueur> It(listeJoueur);
+	int CptJoueur = 0;
 	for(It.reset();It.end() == 0;It++)
 	{
 		if((&It)->getClassement()==NULL && letclass == 'N')
@@ -727,6 +728,7 @@ int showJoueurWthClassement(ListeTriee<Joueur> listeJoueur,char letclass)
 			cout << "Numéro de matricule : " << (&It)->getMatricule().getNumero() << endl;
 			cout << "Date d'inscription : " << (&It)->getMatricule().getDateInscription() << endl;
 			cout << "****************************" << endl;
+			CptJoueur++;
 		}
 		else if((&It)->getClassement()->getLettre() == letclass)
 		{
@@ -736,8 +738,10 @@ int showJoueurWthClassement(ListeTriee<Joueur> listeJoueur,char letclass)
 			cout << "Numéro de matricule : " << (&It)->getMatricule().getNumero() << endl;
 			cout << "Date d'inscription : " << (&It)->getMatricule().getDateInscription() << endl;
 			cout << "****************************" << endl;
+			CptJoueur++;
 		}
 	}
+	cout << "Nombre de joueurs trouvés : " << CptJoueur << endl;
 	return 0;	
 }
 
