@@ -630,7 +630,7 @@ void menuClub(char* nomClub)
 			case 9:
 			{
 				//retirer un joueur d'une equipe
-				int num, full =1;
+				int num;
 				char lettre;
 				Equipe *tmpE;
 				Joueur *tmpJ;
@@ -654,7 +654,7 @@ void menuClub(char* nomClub)
 					break;
 				}
 				
-				int removeJoueurFromEquipe(tmpE, tmpJ);
+				removeJoueurFromEquipe(tmpE, tmpJ);
 				
 				if(verbose==1)
 					cout << "joueur enlever de l'equipe"<<endl;
