@@ -531,7 +531,7 @@ Equipe *getEquipeWithNum(Liste<Equipe> *listeEquipe, char lettre, Club tmpC)
 	for(It.reset(); It.end() == 0; It++)
 	{
 		//cout << endl << "premier essais : "<< lettre << " == "<<(&It)->getNumero()<<endl;
-		if( ((&It)->getNumero() == lettre) && (tmpC == *((&It)->getClub()) ) )
+		if( ((&It)->getNumero() == lettre) && (tmpC.getNumClub() == ((&It)->getClub()->getNumClub()) ) )
 		{
 			//cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
 			tmpE = (&It);

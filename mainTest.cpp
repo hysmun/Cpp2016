@@ -446,13 +446,36 @@ void menuFed()
 			case 11:
 			{
 				//afficher toutes les equipes
-				listeEquipe.Affiche();
+				printListeEquipe(listeEquipe);
 				break;
 			}
 			
 			case 12:
 			{
 				//afficher les info d'une equipe
+				char lettre;
+				Club tmpC;
+				Equipe *tmpE;
+				int numTmp;
+				
+				cout << "Veuillez entrer le numero du club de l'equipe :"<<endl;
+				cin >> numTmp;
+				
+				tmpC.setNumClub(numTmp);
+				
+				
+				cout << "Veuillez entrer la lettre de l'equipe  :"<<endl;
+				cin >> lettre;
+				
+				tmpE = getEquipeWithNum(&listeEquipe, lettre, tmpC);
+				if(tmpE == NULL)
+				{
+					if(error == 1 || verbose==1)
+						cerr << "erreur Equipe non existante!"<<endl;
+						
+					break;
+				}
+				cout << *tmpE<<endl;
 				break;
 			}
 			
@@ -749,11 +772,10 @@ void menuClub(char* nomClub)
 				{
 					if(error == 1 || verbose==1)
 						cerr << "erreur Equipe non existante!"<<endl;
-					if(error == 1 || verbose==1)
-						cerr << *tmpE<<endl;
+						
 					break;
 				}
-
+				cout << *tmpE<<endl;
 				break;
 			}
 			

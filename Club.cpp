@@ -28,23 +28,10 @@ Club::Club(const Club& c)
 {
 	nom = NULL;
 	adresse = NULL;
-	if(c.nom)
-	{
-		if(c.adresse)
-		{
-			setNom(c.getNom());
-			setAdresse(c.getAdresse());
-			setNumClub(c.getNumClub());
-		}
-		else
-		{
-			cout << "Erreur d'adresse" << endl;
-		}
-	}
-	else
-	{
-		cout << "Erreur de nom" << endl;
-	}
+	setNom(c.getNom());
+	setAdresse(c.getAdresse());
+	setNumClub(c.getNumClub());
+
 }
 
 Club::~Club()
