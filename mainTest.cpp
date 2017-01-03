@@ -515,11 +515,8 @@ void menuClub(char* nomClub)
 			{
 				//supprimer un joueur
 				Matricule m;
-				int matriculeint;
 				
-				cout << "Numero de matricule : ";
-				cin >> matriculeint;
-				m.setNumero(matriculeint);
+				cin >> m;
 				if(supprimerJoueur(m,&listeJoueur) == 0)
 				{
 					if(verbose==1)

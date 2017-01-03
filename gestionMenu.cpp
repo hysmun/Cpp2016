@@ -193,7 +193,7 @@ int supprimerJoueur(Matricule m, ListeTriee<Joueur> *listeJoueur)
 	Iterateur<Joueur> itJoueur(*listeJoueur);
 	for(itJoueur.reset();itJoueur.end() == 0;itJoueur++)
 	{
-		if((&itJoueur)->getMatricule().getNumero() == m.getNumero())
+		if(!strcmp((&itJoueur)->getMatricule().getDateInscription(),m.getDateInscription()) && ((&itJoueur)->getMatricule().getNumero() == m.getNumero()))
 		{
 			itJoueur.remove();
 			return 0;
