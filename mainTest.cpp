@@ -430,13 +430,14 @@ void menuFed()
 			{
 				//afficher tout les joueurs pour un classement de lettre donnee
 				char letclass;
-				cout << "Encodez une lettre de classement valide : ";
+				cout << "Encodez une lettre de classement valide (A,B,C,D,E,F,N(non-classé)): ";
 				cin >> letclass;
 				letclass=toupper(letclass);
 				while(letclass!='A' && letclass!='B' && letclass!='C' && letclass!='D' && letclass!='E' && letclass!='F' && letclass!='N')
 				{
-					cout << "Erreur de lettre. Encodez une lettre valide : ";
+					cout << "Erreur de lettre. Encodez une lettre valide (A,B,C,D,E,F,N(non-classé)): ";
 					cin >> letclass;
+					letclass=toupper(letclass);
 				}
 				showJoueurWthClassement(listeJoueur,letclass);
 				break;
