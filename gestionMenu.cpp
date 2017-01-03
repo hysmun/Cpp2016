@@ -733,11 +733,11 @@ int showJoueurWthClassement(ListeTriee<Joueur> listeJoueur,char letclass)
 			cout << "****************************" << endl;
 			CptJoueur++;
 		}
-		else if((&It)->getClassement()->getLettre() == letclass)
+		else if((&It)->getClassement()!=NULL && ((&It)->getClassement()->getLettre() == letclass))
 		{
 			cout << "Nom : " << (&It)->getNom() << endl;
 			cout << "Prénom : " << (&It)->getPrenom() << endl;
-			cout << "Classement : " << (&It)->getClassement() << endl;
+			cout << "Classement : " << *((&It)->getClassement()) << endl;
 			cout << "Numéro de matricule : " << (&It)->getMatricule().getNumero() << endl;
 			cout << "Date d'inscription : " << (&It)->getMatricule().getDateInscription() << endl;
 			cout << "****************************" << endl;
