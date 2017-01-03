@@ -366,7 +366,7 @@ int WaitHit()
 {
 	char c;
 	cout << endl<<"Appuyez sur une touche pour continuez "<<endl;
-	while(kbhit() != 1);
+	//while(kbhit() != 1);
 }
 
 
