@@ -616,7 +616,7 @@ void menuClub(char* nomClub)
 			case 5:
 			{
 				//afficher toutes les infos d'un seul joueur
-
+				
 				break;
 			}
 			

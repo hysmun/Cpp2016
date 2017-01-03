@@ -56,7 +56,9 @@ int SaveJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<J
 
 int removeJoueurFromEquipe(Equipe *tmpE, Joueur *tmpJ);
 
-int showJoueurWthClassement(ListeTriee<Joueur> listeJoueur,char letclass);
+void showJoueurWthClassement(ListeTriee<Joueur> listeJoueur,char letclass);
+
+void showInfoJoueur(ListeTriee<Joueur> listeJoueur,int matriculeint);
 
 
 
