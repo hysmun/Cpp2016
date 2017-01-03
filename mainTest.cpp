@@ -183,7 +183,9 @@ int main(int argc, char *argv[])
 				s.setPassword(passwd);
 			}
 			catch(InvalidPasswordException &e)
-			{}
+			{
+				//
+			}
 		}
 		
 		numeroClub = s.getNumClub();
@@ -193,6 +195,20 @@ int main(int argc, char *argv[])
 		if(numeroClub == 0)
 		{
 			clubSec = NULL;
+			
+			
+			Iterateur<Club> ItC(listeClub);
+			for(ItC.reset(); ItC.end() == 0; ItC++)
+			{
+				if((&ItC)->getNom() != NULL)
+				{
+					char Nomfichier[255];
+					sprintf(Nomfichier, "%s.dat", (&ItC)->getNom());
+					LoadJoueurAndEquipe(Nomfichier, &listeClub, &listeJoueur, &listeEquipe);
+				}
+			}
+			
+			
 			menuFed();	//lancer l'interface grand manitou
 		}
 		else

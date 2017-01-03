@@ -581,15 +581,17 @@ int printListeEquipe(Liste<Equipe> listeEquipe)
 		return -1;
 	}
 	Iterateur<Equipe> It(listeEquipe);
+	int j;
 	cout << "liste des equipes : "<<endl;
 	int cpt=0;
-	for(It.reset(); It.end() == 0; It++)
+	for(It.reset(), j=0; It.end() == 0; It++, j++)
 	{
 		if(&It == NULL || (&It)->getClub()->getNom() == NULL || ((&It)->getDivision()) == NULL)
 		{
 			cout << "Fin liste des equipes !"<<endl<<endl;
 			return -1;
 		}
+		cout << "Equipe "<<j<<endl;
 		cout  << "Nom : " << (&It)->getClub()->getNom()<<flush;
 		cout  <<  (&It)->getNumero() <<endl;
 		cout  << "Division : "<< ((&It)->getDivision()) <<endl;
@@ -601,7 +603,8 @@ int printListeEquipe(Liste<Equipe> listeEquipe)
 				cpt++;
 			}
 		}
-		cout << "Nombre de joueurs : " << cpt << endl;
+		cout <<endl;
+		//cout << "Nombre de joueurs : " << cpt << endl;
 		
 	}
 	return 1;
@@ -626,7 +629,7 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		ifstream fichier(nomFichier,ios::in);
 		
 		if(verbose==1)
-			cout << "Load j&e"<<endl;
+			cout << "Load j&e for "<< nomFichier<<endl;
 		
 		if(!(fichier.is_open()) )
 		{
