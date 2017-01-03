@@ -154,11 +154,14 @@ int ListeBase<T>::Save(ofstream &fichier)
 {
 	int i;
 	Cellule<T> *pParc = this->pTete;
+	cout <<"begin"<<endl;
 	for(i=0; pParc != NULL;i++)
 	{
+		cout <<i<<" "<<endl;
 		pParc->valeur.Save(fichier);
 		pParc=pParc->suivant;
 	}
+	cout <<endl;
 	return 1;
 }
 

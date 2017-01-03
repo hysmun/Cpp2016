@@ -46,6 +46,7 @@ Liste<Equipe> listeEquipe;
 
 
 Secretaire s;
+Club *clubSec = NULL;
 int numeroClub;
 
 int main()
@@ -133,16 +134,17 @@ int main()
 		cout <<endl<<endl<<"Bienvenue :"<<endl<< s << endl;
 		if(numeroClub == 0)
 		{
+			clubSec = NULL;
 			menuFed();	//lancer l'interface grand manitou
 		}
 		else
 		{
 			listeClub.Affiche();
-			Club *tmpC = getClubWithNum(&listeClub, numeroClub);
+			clubSec = getClubWithNum(&listeClub, numeroClub);
 			//cout << "Club : "<<tmpC<<endl<< *tmpC;
-			if(tmpC != NULL)
+			if(clubSec != NULL)
 			{
-				strcpy(nomClub, tmpC->getNom());
+				strcpy(nomClub, clubSec->getNom());
 				char Nomfichier[255];
 				sprintf(Nomfichier, "%s.dat", nomClub);
 				LoadJoueurAndEquipe(Nomfichier, &listeClub, &listeJoueur, &listeEquipe);
@@ -401,6 +403,7 @@ void menuClub(char* nomClub)
 				//save
 				
 				sprintf(tmp,"%s.dat", nomClub);
+				cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
 				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				exit(0);
 			}
@@ -533,6 +536,50 @@ void menuClub(char* nomClub)
 			case 8:
 			{
 				//ajouter un joueur a une equipe
+				int num, full =1;
+				char lettre;
+				Equipe *tmpE;
+				Joueur *tmpJ;
+				
+				cout << "Veuillez entrer la lettre de l'equipe ou ajouter le joueur :"<<endl;
+				cin >> lettre;
+				
+				tmpE = getEquipeWithNum(&listeEquipe, lettre, *clubSec);
+				if(tmpE == NULL)
+				{
+					cout << "erreur Equipe non existante!"<<endl;
+					break;
+				}
+				
+				cout << ""<< endl;
+				cin >> num;
+				
+				tmpJ = getJoueurWithNum(&listeJoueur, num);
+				if(tmpJ == NULL)
+				{
+					cout << "erreur joueur non existant!"<<endl;
+					break;
+				}
+				
+				for(int i=0; i<4; i++)
+				{
+					if(tmpE->getJoueur(i) == NULL)
+					{
+						tmpE->setJoueur(tmpJ, i);
+						i = 4;
+						full =0;
+					}
+				}
+				if( full == 1)
+				{
+					cout << "equipe plein impossible de rajouter le joueur "<<endl;
+				}
+				else
+				{
+					cout <<endl<< "Joueur ajouter a l'equipe !"<<endl;
+					cout << *tmpE<<endl;
+				}
+				
 				break;
 			}
 			
@@ -545,6 +592,20 @@ void menuClub(char* nomClub)
 			case 10:
 			{
 				//afficher detail une equipe
+				char lettre;
+				Equipe *tmpE;
+				
+				cout << "Veuillez entrer la lettre de l'equipe  :"<<endl;
+				cin >> lettre;
+				
+				tmpE = getEquipeWithNum(&listeEquipe, lettre, *clubSec);
+				if(tmpE == NULL)
+				{
+					cout << "erreur Equipe non existante!"<<endl;
+					break;
+				}
+				
+				cout << *tmpE<<endl;
 				break;
 			}
 			

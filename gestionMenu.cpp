@@ -228,7 +228,10 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 					}
 				}
 				if( pass == 0)
+				{
+					cout << "insertion d'un joueur "<<endl;
 					listeJoueur->insere(jtmp);
+				}
 				
 			}
 			catch(InvalidClassementException &e)
@@ -290,6 +293,347 @@ int CreeEquipe(ListeTriee<Club> *listeClub, Liste<Equipe> *listeEquipe, int num)
 
 
 
+void bidonnageSec()
+{
+	try
+	{
+		ofstream fichier("secretaires.dat",ios::out);
+		Secretaire s("admin","admin",0, "admin", "admin111");
+		s.Save(fichier);
+		fichier.close();
+	}
+	catch(ExceptionMessage &e)
+	{
+		cerr << "erreur : "<< e.getMsg()<<endl;
+	}
+	catch(InvalidPasswordException &e)
+	{
+		cerr << "password incorect "<< e.getMsg() << endl;
+	}
+	catch(...)
+	{
+		cerr << "erreur inconnue"<< endl;
+	}
+}
+
+
+
+int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec)
+{
+	Iterateur<Secretaire> itSec(listeSec);
+	//cout << "test des secretaire login + mdp"<<endl;
+	for(itSec.reset(); itSec.end() == 0; itSec++)
+	{
+		//cout << (&itSec)->getLogin() << " == "<< sec->getLogin()<<endl;
+		//cout << (&itSec)->getPassword() << " == "<< sec->getPassword()<<endl<<endl;
+		if(!strcmp((&itSec)->getLogin(), sec->getLogin()) && !strcmp((&itSec)->getPassword(), sec->getPassword()))
+		{
+			//cout << "AAAA"<< *(&itSec)<<endl<<sec;
+			*sec = *(&itSec);
+			//cout << "AAAA"<< *(&itSec) << endl << *sec << endl;
+			//cout << "trouver !"<< endl;
+			return (&itSec)->getNumClub();
+		}
+	}
+	return -1;
+}
+
+int printListeSec(Liste<Secretaire> listeSec)
+{
+	int i;
+	Iterateur<Secretaire> pParc(listeSec);
+	cout<< endl;
+	for(i=0; pParc.end() == 0; i++)
+	{
+		cout << "secretaire "<< i<<endl;
+		cout << &pParc <<endl;
+		pParc++;
+	}
+	
+}
+
+
+int cleanScreen()
+{
+	for(int i =0; i<50; i++)
+	{
+		cout << endl;
+	}
+	return 1;
+}
+
+int WaitHit()
+{
+	char c;
+	cout << endl<<"Appuyez sur une touche pour continuez "<<endl;
+	while(kbhit() != 1);
+}
+
+
+
+int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
+{
+	
+	int len, tmp, i;
+	
+	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
+	{
+		//erreur !!!
+		throw ExceptionMessage("Erreur sauvegarde Joueur !!!!");
+	}
+	else
+	{
+		// on veut les jouers et equipe que de 1 seul clubs portant le nom : nomClub
+		ofstream fichier(nomFichier,ios::out);
+		Iterateur<Equipe> ItE(*listeEquipe);
+		
+		cout << "save j&e "<<endl;
+		
+		tmp = listeJoueur->getNombreElements();
+		fichier.write((char *)&tmp, sizeof(int));
+		
+		cout << "tmp = " << tmp <<endl;
+		
+		listeJoueur->Save(fichier);
+		
+		cout << "joueur save !"<<endl;
+		
+		for(ItE.reset(); ItE.end() == 0; ItE++)
+		{
+			tmp = (&ItE)->getClub()->getNumClub();
+			fichier.write((char *)&(tmp), sizeof(int));
+			tmp = (&ItE)->getNumero();
+			fichier.write((char *)&(tmp), sizeof(int));
+			
+			len = strlen((&ItE)->getDivision())+1;
+			fichier.write((char *)&len, sizeof(int));
+			fichier.write((&ItE)->getDivision(), len);
+			
+			cout << "club fait "<<endl;
+			
+			for(i=0; i<4; i++)
+			{
+				if((&ItE)->getJoueur(i) != NULL)
+				{
+					tmp = (&ItE)->getJoueur(i)->getMatricule().getNumero();
+					fichier.write((char *) &(tmp), sizeof(int));
+				}
+				else
+				{
+					tmp = 0;
+					fichier.write((char *) &tmp, sizeof(int));
+				}
+				cout << " joueur "<<i+1 <<" fait !"<<endl;
+			}
+			
+		}
+		cout << "fin save "<<endl;
+		fichier.close();
+		
+	}
+	return 1;
+}
+
+
+
+
+
+
+
+Club *getClubWithNum(ListeTriee<Club> *listeClub, int num)
+{
+	Iterateur<Club> ItClub(*listeClub);
+	Club *tmpC;
+	//cout << "recheche num club "<<endl;
+	for(ItClub.reset(); ItClub.end() == 0; ItClub++)
+	{
+		cout << endl << "premier essais : "<< num << " == "<<(&ItClub)->getNumClub()<<endl;
+		if((&ItClub)->getNumClub() == num)
+		{
+			//cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
+			tmpC = (&ItClub);
+			return tmpC;
+		}
+	}
+	return NULL;
+}
+
+
+
+Joueur *getJoueurWithNum(ListeTriee<Joueur> *listeJoueur, int num)
+{
+	Iterateur<Joueur> ItJoueur(*listeJoueur);
+	Joueur *tmpJ;
+	//cout << "recheche num Joueur "<<endl;
+	for(ItJoueur.reset(); ItJoueur.end() == 0; ItJoueur++)
+	{
+		//cout << endl << "premier essais : "<< num << " == "<<(&ItJoueur)->getMatricule().getNumero()<<endl;
+		if((&ItJoueur)->getMatricule().getNumero() == num)
+		{
+			//cout << "C : "<< (&ItJoueur)<<endl<< *(&ItJoueur)<<endl;
+			tmpJ = (&ItJoueur);
+			return tmpJ;
+		}
+	}
+	return NULL;
+}
+
+
+Equipe *getEquipeWithNum(Liste<Equipe> *listeEquipe, char lettre, Club tmpC)
+{
+	Iterateur<Equipe> It(*listeEquipe);
+	Equipe *tmpE;
+	//cout << "recheche Equipe "<<endl;
+	for(It.reset(); It.end() == 0; It++)
+	{
+		//cout << endl << "premier essais : "<< lettre << " == "<<(&It)->getNumero()<<endl;
+		if( ((&It)->getNumero() == lettre) && (tmpC == *((&It)->getClub()) ) )
+		{
+			//cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
+			tmpE = (&It);
+			return tmpE;
+		}
+	}
+	return NULL;
+}
+
+
+int printListeJoueur(ListeTriee<Joueur> listeJoueur)
+{
+	if(listeJoueur.estVide() == true)
+	{
+		cout << "liste Joueur vide  !"<<endl;
+		return -1;
+	}
+	Iterateur<Joueur> It(listeJoueur);
+	cout << "liste des joueurs : "<<endl;
+	for(It.reset(); It.end() == 0; It++)
+	{
+		if((&It) == NULL)
+		{
+			cout << "Fin liste des joueurs !"<<endl<<endl;
+			return -1;
+		}
+		cout  << "Nom : "<< (&It)->getNom() <<endl;
+		cout  << "Prenom : "<< (&It)->getPrenom() <<endl;
+		if(((&It)->getClassement()) != NULL)
+			cout  << "Classement : "<< *((&It)->getClassement()) <<endl;
+		else
+			cout << "Classement : NC"<<endl;
+		cout  << "Matricule : "<< (&It)->getMatricule().getNumero() <<endl<<endl;
+		
+	}
+	return 1;
+}
+
+
+int printListeEquipe(Liste<Equipe> listeEquipe)
+{
+	Iterateur<Equipe> It(listeEquipe);
+	cout << "liste des equipes : "<<endl;
+	int cpt=0;
+	for(It.reset(); It.end() == 0; It++)
+	{
+		if(&It == NULL || (&It)->getClub()->getNom() == NULL || ((&It)->getDivision()) == NULL)
+		{
+			cout << "Fin liste des equipes !"<<endl<<endl;
+			return -1;
+		}
+		cout  << "Nom : " << (&It)->getClub()->getNom()<<flush;
+		cout  <<  (&It)->getNumero() <<endl;
+		cout  << "Division : "<< ((&It)->getDivision()) <<endl;
+		
+		for(int i=0; i<4; i++)
+		{
+			if((&It)->getJoueur(i) != NULL)
+			{
+				cpt++;
+			}
+		}
+		cout << "Nombre de joueurs : " << cpt << endl;
+		
+	}
+	return 1;
+}
+
+
+
+int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
+{
+	int NbrJ, i, tmpI, len;
+	Joueur tmpJ;
+	Equipe tmpE;
+	char tmpS[255];
+
+	
+	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
+	{
+		//erreur !!!
+	}
+	else
+	{
+		// on veut les jouers et equipe que de 1 seul clubs portant le nom : nomClub
+		ifstream fichier(nomFichier,ios::in);
+		
+		cout << "Load j&e"<<endl;
+		
+		if(!(fichier.is_open()) )
+		{
+			return -1;
+		}
+		Iterateur<Club> ItC(*listeClub);
+		
+		Club *tmpC;
+		
+		//lecture des joueurs
+		fichier.read((char *)&NbrJ, sizeof(int));
+		for(i=0; i < NbrJ; i++)
+		{
+			//lecture du joueur et insertion
+			tmpJ.Load(fichier);
+			listeJoueur->insere(tmpJ);
+		}
+		
+		//lecture des equipes
+		for(i=0; (fichier.read((char *)&tmpI, sizeof(int))) != 0; i++)
+		{
+			tmpC = getClubWithNum(listeClub, tmpI);
+			if(tmpC != NULL)
+			{
+				//on a le club
+				tmpE.setClub(tmpC);
+				
+				fichier.read((char *)&tmpI, sizeof(int));
+				tmpE.setNumero(tmpI);
+				
+				fichier.read((char *)&len, sizeof(int));
+				fichier.read(tmpS, len);
+				tmpE.setDivision(tmpS);
+				
+				for(int j=0; j<4; j++)
+				{
+					fichier.read((char *)&tmpI, sizeof(int));
+					if(tmpI != 0)
+					{
+						//le joueur existe
+						tmpE.setJoueur(getJoueurWithNum(listeJoueur, tmpI), i);
+					}
+					else
+					{
+						//le joueur n'existe pas
+						tmpE.setJoueur(NULL, i);
+					}
+				}
+			}
+			else
+			{
+				//erreur 
+			}
+		}
+		
+	}
+	return 1;
+}
 
 
 

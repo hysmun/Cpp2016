@@ -309,6 +309,8 @@ Joueur Joueur::operator-(int x)
 void Joueur::Save(ofstream &fichier) const
 {
 	int tmp;
+	short nombre;
+	char lettre;
 	
 	Membre::Save(fichier);
 	
@@ -316,18 +318,36 @@ void Joueur::Save(ofstream &fichier) const
 	tmp = getPoints();
 	fichier.write((char *)&tmp, sizeof(int));
 	
+	cout << "save matricule "<<endl;
 	//save matricule
 	jMatricule.Save(fichier);
 	
+	cout << "save classement "<<endl;
 	//save classements
-	jClassement->Save(fichier);
-	
+	if(jClassement != NULL)
+	{
+		//
+		lettre = jClassement->getLettre();
+		nombre = jClassement->getNombre();
+		fichier.write(&lettre, sizeof(char));
+		fichier.write((char*)&nombre, sizeof(short));
+	}
+	else
+	{
+		lettre = 'N';
+		nombre = 'C';
+		fichier.write(&lettre, sizeof(char));
+		fichier.write((char*)&nombre, sizeof(short));
+	}
+	cout << "fin save joueur "<<endl;
 	return;
 }
 
 void Joueur::Load(ifstream &fichier)
 {
 	int tmp;
+	short nombre;
+	char lettre;
 	Matricule tmpM;
 	Classement tmpC;
 	
@@ -342,8 +362,14 @@ void Joueur::Load(ifstream &fichier)
 	setMatricule(tmpM);
 	
 	//load classement
-	tmpC.Load(fichier);
-	setClassement(&tmpC);
+	fichier.read(&lettre, sizeof(char));
+	fichier.read((char *)&nombre, sizeof(short));
+	if(lettre != 'N' && nombre != 'C')
+	{
+		//
+		tmpC.setCl(lettre, nombre);
+		setClassement(&tmpC);
+	}
 	
 	return ;
 }
