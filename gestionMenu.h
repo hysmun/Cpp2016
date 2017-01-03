@@ -15,7 +15,7 @@ int modifierPassword(Liste<Secretaire> *listeSec, Secretaire *s, char *newpasss)
 int showSec(Liste<Secretaire> listeSec, bool type);
 
 int supprimerSec(char* firstname,char* lastname, Liste<Secretaire> *listeSec);
-
+int supprimerEqu(int numero, Liste<Equipe> *listeEquipe);
 
 
 int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec);

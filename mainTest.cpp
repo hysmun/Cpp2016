@@ -668,6 +668,10 @@ void menuClub(char* nomClub)
 					if(verbose==1)
 						cout << "equipe cree !!"<<endl;
 				}
+				sprintf(tmp,"%s.dat", nomClub);
+				if( verbose==1)
+					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
+				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				break;
 			}
 			
@@ -720,7 +724,10 @@ void menuClub(char* nomClub)
 					if(verbose==1)
 						cout <<endl<< "Joueur ajouter a l'equipe !"<< endl << *tmpE<<endl;
 				}
-				
+				sprintf(tmp,"%s.dat", nomClub);
+				if( verbose==1)
+					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
+				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				break;
 			}
 			
@@ -757,7 +764,10 @@ void menuClub(char* nomClub)
 				
 				if(verbose==1)
 					cout << "joueur enlever de l'equipe"<<endl;
-				
+				sprintf(tmp,"%s.dat", nomClub);
+				if( verbose==1)
+					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
+				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				break;
 			}
 			
@@ -779,6 +789,7 @@ void menuClub(char* nomClub)
 					break;
 				}
 				cout << *tmpE<<endl;
+				
 				break;
 			}
 			
@@ -793,14 +804,24 @@ void menuClub(char* nomClub)
 			{
 				//supprimer une equipe
 				char lettre;
-				Equipe *tmpE;
 				
 				cout << "Veuillez entrer la lettre de l'equipe  :"<<endl;
 				cin >> lettre;
 				
-				
-				Iterateur<Equipe> It(listeEquipe);
-				
+				if(supprimerEqu(lettre, &listeEquipe) == 0)
+				{
+					if(verbose == 1)
+						cout << "Equipe supprimer !"<<endl;
+				}
+				else
+				{
+					if(verbose == 1 || error == 1)
+						cout << "equipe non supprimer !"<<endl;
+				}
+				sprintf(tmp,"%s.dat", nomClub);
+				if( verbose==1)
+					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
+				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);	
 				break;
 			}
 			

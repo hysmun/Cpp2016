@@ -128,6 +128,22 @@ int supprimerSec(char* firstname,char* lastname,Liste<Secretaire> *listeSec)
 
 }
 
+int supprimerEqu(int numero, Liste<Equipe> *listeEquipe)
+{
+	Iterateur<Equipe> it(*listeEquipe);
+	for(it.reset();it.end() == 0;it++)
+	{
+		if((&it)->getNumero() == numero)
+		{
+			
+			it.remove();
+			
+			return 0;
+		}
+	}
+	return -1;
+}
+
 int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 {
 	Club cTmp;
