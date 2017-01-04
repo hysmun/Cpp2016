@@ -144,9 +144,7 @@ int supprimerEqu(int numero, Liste<Equipe> *listeEquipe)
 	{
 		if((&it)->getNumero() == numero)
 		{
-			
 			it.remove();
-			
 			return 0;
 		}
 	}
@@ -208,7 +206,6 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 		return -1;
 	}
 	
-	
 	return 1;
 }
 
@@ -259,11 +256,9 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				prenomtmp = strtok(NULL, ",");
 				matrictmp = strtok(NULL, ",");
 				classtmp = strtok(NULL, " ,\n\0");
-				
-				
+
 				cout << "Lu : " <<tmpS2<<endl;
-				
-				
+
 				matriculeint=atoi(matrictmp);
 				jtmp.setNom(nomtmp);
 				jtmp.setPrenom(prenomtmp);
@@ -271,9 +266,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				Matricule mtmp;
 				mtmp.setNumero(matriculeint);
 				jtmp.setMatricule(mtmp);
-				
-				
-				
+
 				if(classtmp[0] == 'N' && classtmp[1] == 'C')
 				{
 					if(error == 1 || verbose==1)
@@ -315,10 +308,6 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 			{
 				//erreur generale
 			}
-			
-			
-			
-			
 			fichiertxt.get(c);
 			classtmp = NULL;
 			nomtmp = NULL;
