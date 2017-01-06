@@ -256,8 +256,9 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				prenomtmp = strtok(NULL, ",");
 				matrictmp = strtok(NULL, ",");
 				classtmp = strtok(NULL, " ,\n\0");
-
-				cout << "Lu : " <<tmpS2<<endl;
+				
+				if(verbose==1)
+					cout << "Lu : " <<tmpS2<<endl;
 
 				matriculeint=atoi(matrictmp);
 				jtmp.setNom(nomtmp);
@@ -606,9 +607,9 @@ int printListeEquipe(Liste<Equipe> listeEquipe)
 			cout << "Fin liste des equipes !"<<endl<<endl;
 			return -1;
 		}
-		cout << "Equipe "<<j<<endl;
+		cout << "Equipe "<<j+1<<endl;
 		cout  << "Nom : " << (&It)->getClub()->getNom()<<flush;
-		cout  <<  (&It)->getNumero() <<endl;
+		cout << " " <<  (&It)->getNumero() <<endl;
 		cout  << "Division : "<< ((&It)->getDivision()) <<endl;
 		
 		for(int i=0; i<4; i++)
@@ -618,9 +619,9 @@ int printListeEquipe(Liste<Equipe> listeEquipe)
 				cpt++;
 			}
 		}
-		cout <<endl;
-		//cout << "Nombre de joueurs : " << cpt << endl;
-		
+		//cout <<endl;
+		cout << "Nombre de joueurs : " << cpt << endl<<endl;
+		cpt=0;
 	}
 	return 1;
 }
