@@ -308,6 +308,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 			catch(ExceptionMessage &e)
 			{
 				//erreur generale
+				throw ExceptionMessage(e);
 			}
 			fichiertxt.get(c);
 			classtmp = NULL;
@@ -788,6 +789,10 @@ void showInfoJoueur(ListeTriee<Joueur> listeJoueur,int matriculeint)
 		cout << "Joueur introuvable" << endl;
 	return;
 }
+
+
+
+
 
 
 
