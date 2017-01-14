@@ -934,8 +934,8 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 				cout << "NC" << endl;
 			else
 				cout << pEquipeVis->getJoueur(i)->getClassement() << endl;
+			Cpt++;
 		}
-		Cpt++;
 	}
 	cout << endl;
 	nbrMatch = nbrJoueurDom * nbrJoueurVis;
