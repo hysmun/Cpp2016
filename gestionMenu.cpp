@@ -839,8 +839,9 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	if(nbrJoueurVis < 3)
 	{
 		throw ExceptionMessage("L'équipe visiteuse n'a pas le nombre nominal de joueurs, elle est déclarée forfait");	//equipe vis forfait
-	}	
-	//le match peut se faire
+	}
+	
+	//le match peut se faire 
 	cout << "**** Rencontre de division : " << pEquipeDom->getDivision() << " ****************" << endl;
 	cout << "Equipe à domicile : " << pEquipeDom->getClub() << " " << pEquipeDom->getDivision() << endl;
 	int i=0;
@@ -867,6 +868,9 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			
 			//verif de l'encodage du resultat
 			if(strlen(buf)<4)
+			{
+				//
+			}
 			
 		}
 	}
