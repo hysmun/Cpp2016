@@ -821,13 +821,20 @@ void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,List
 							cout << "Cette équipe ne possède aucun joueur" << endl;
 						else
 						{
-							for(int i = 0; i < nbJ ; i++)
+							for(int i = 0; i < 4 ; i++)
 							{
+								if((&ItEqui)->getJoueur(i) != NULL)
+								{
 								cout << "Joueur " << i+1 << " : " << (&ItEqui)->getJoueur(i)->getNom() << " " << (&ItEqui)->getJoueur(i)->getPrenom() << " ";
 								if((&ItEqui)->getJoueur(i)->getClassement() == NULL)
 									cout << "NC" << endl;
 								else
 									cout << *(&ItEqui)->getJoueur(i)-> getClassement() << endl;
+								}
+								else
+								{
+									cout << "pas de joueur "<<i;
+								}
 							}
 						}
 						cout << endl << "**********************" << endl << endl;
