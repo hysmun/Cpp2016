@@ -944,32 +944,35 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	int resultat[4][4][2];
 	char buf[255];
 	
-	for(int i=0; i<nbrJoueurDom; i++)
+	for(int i=0; i<4; i++)
 	{
-		for(int j=0; j<nbrJoueurVis; i++)
+		for(int j=0; j<4; i++)
 		{
 			resOK = 0;
-			while(resOK == 0)
+			if( pEquipeDom->getJoueur(i) != NULL && pEquipeVis->getJoueur(j) != NULL)
 			{
-				cout << i << " contre " << lettre[j] << " ? "<<flush;
-				cin >> buf;
-			
-				//verif de l'encodage du resultat
-				if(strlen(buf)==3)
+				while(resOK == 0)
 				{
-					if(isdigit(buf[0]) && isdigit(buf[2]) && buf[1]== '-')
+					cout << i << " contre " << lettre[j] << " ? "<<flush;
+					cin >> buf;
+			
+					//verif de l'encodage du resultat
+					if(strlen(buf)==3)
 					{
-						//
-						resultat[i][j][0] = atoi(&buf[0]);
-						resultat[i][j][1] = atoi(&buf[2]);
-						if( (resultat[i][j][0] + resultat[i][j][1]) <= 5 && (resultat[i][j][0] == 3 || resultat[i][j][1] == 3))
+						if(isdigit(buf[0]) && isdigit(buf[2]) && buf[1]== '-')
 						{
-							resOK=1;
+							//
+							resultat[i][j][0] = atoi(&buf[0]);
+							resultat[i][j][1] = atoi(&buf[2]);
+							if( (resultat[i][j][0] + resultat[i][j][1]) <= 5 && (resultat[i][j][0] == 3 || resultat[i][j][1] == 3))
+							{
+								resOK=1;
+							}
 						}
-					}
+					}//fin while() resOK = 1
+					if(resOK == 0)
+						cout << endl << "resultat invalide !! recommencez"<<endl;
 				}
-				if(resOK == 0)
-					cout << endl << "resultat invalide !! recommencez"<<endl;
 			}//fin while() resOK = 1
 		}//fin for() j= nbrJoueurVis
 	}//fin for() i=nbrJoueurDom
@@ -978,14 +981,17 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	//analyse resultat
 	cout << "***** Analyse des resultats **********************************" <<endl;
 	int pointEquipeDom, pointEquipeVis;
-	for(int i=0; i<nbrJoueurDom; i++)
+	for(int i=0; i<4; i++)
 	{
-		for(int j=0; j<nbrJoueurVis; i++)
+		for(int j=0; j<4; i++)
 		{
-			if(resultat[i][j][0] > resultat[i][j][0])
-				pointEquipeDom++;
-			else
-				pointEquipeVis++;
+			if( pEquipeDom->getJoueur(i) != NULL && pEquipeVis->getJoueur(j) != NULL)
+			{
+				if(resultat[i][j][0] > resultat[i][j][1])
+					pointEquipeDom++;
+				else
+					pointEquipeVis++;
+			}
 		}//fin for() j= nbrJoueurVis
 	}//fin for() i=nbrJoueurDom
 	
@@ -1030,21 +1036,55 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 				cout << "NC"<<flush;
 			int tmpRes=0;
 			int tmpPts=0;
-			for(int j=0; j<nbrJoueurVis; j++)
+			for(int j=0; j<4; j++)
 			{
-				if(resultat[i][j][0] > resultat[i][j][0])
+				if(pEquipeDom->getJoueur(j) != NULL)
 				{
-					tmpRes++;
-					if(pEquipeDom->getJoueur(i))
+					if(resultat[i][j][0] > resultat[i][j][0])
 					{
-						//
+						tmpRes++;
+						if(pEquipeDom->getJoueur(i)->getClassement() != NULL && pEquipeVis->getJoueur(j)->getClassement() != NULL)
+						{
+							//
+							tmpPts += (pEquipeDom->getJoueur(i)->getClassement() - pEquipeVis->getJoueur(j)->getClassement());
+						}
 					}
-					
 				}
-			}
-			cout << ") : "<<tmpRes<<"/"<<nbrJoueurVis<<endl;
+			}//fin for() j=4
+			cout << ") : "<< tmpRes << "/" << nbrJoueurVis << ", "<< tmpPts << "points"<<endl;
 		}
-	}//fin for() i=nbrJoueurDom
+	}//fin for() i=4
+	
+	//Joueur vis
+	for(int j=0; j<4; j++)
+	{
+		if( pEquipeVis->getJoueur(j) != NULL)
+		{
+			cout << "Joueur " << lettre[j] << " (" << pEquipeVis->getJoueur(j)<< ", " << flush;
+			if(pEquipeVis->getJoueur(j)->getClassement() != NULL )
+				cout <<pEquipeVis->getJoueur(j)->getClassement() <<flush;
+			else
+				cout << "NC"<<flush;
+			int tmpRes=0;
+			int tmpPts=0;
+			for(int i=0; i<4; i++)
+			{
+				if(pEquipeVis->getJoueur(i) != NULL)
+				{
+					if(resultat[i][j][0] > resultat[i][j][0])
+					{
+						tmpRes++;
+						if(pEquipeVis->getJoueur(j)->getClassement() != NULL && pEquipeDom->getJoueur(i)->getClassement() != NULL)
+						{
+							//
+							tmpPts += (pEquipeVis->getJoueur(j)->getClassement() - pEquipeDom->getJoueur(i)->getClassement());
+						}
+					}
+				}
+			}//fin for() j=4
+			cout << ") : "<< tmpRes << "/" << nbrJoueurDom << ", "<< tmpPts << "points"<<endl;
+		}
+	}//fin for() j=4
 }
 
 
