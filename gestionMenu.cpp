@@ -859,6 +859,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			cin >> buf;
 			
 			//verif de l'encodage du resultat
+			if(strlen(buf)<4)
 			
 		}
 	}
