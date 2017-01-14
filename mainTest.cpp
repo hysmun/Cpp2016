@@ -508,7 +508,7 @@ void menuFed()
 				cin >> divVis;
 				//vérif si existe
 				//vérif si une des deux équipes comporte moins de 3 joueurs --> forfait, pas de simulation	
-				SimAndExportRes(&listeEquipe,&listeJoueur,clubDom,clubVis,divdom,divVis);
+				SimAndExportRes(listeEquipe,listeJoueur,clubDom,clubVis,divDom,divVis);
 				break;
 			}
 		}
