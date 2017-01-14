@@ -804,15 +804,12 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	cin >> clubDom;
 	cout << "Lettre de l'equipe ? ";
 	cin >> letDom;
-	//vérif si existe
 	cout << "Equipe visiteur ? " << endl;
 	cout << "Num Club ? ";
 	cin >> clubVis;
 	cout << "Lettre de l'equipe ? ";
 	cin >> letVis;
 	//vérif si existe
-	//vérif si une des deux équipes comporte moins de 3 joueurs --> forfait, pas de simulation
-	//get des 2 clubs
 	pClubDom = getClubWithNum(listeClub, clubDom);
 	pClubVis = getClubWithNum(listeClub, clubVis);
 	
@@ -833,18 +830,28 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	// verif nbr joueur
 	if(nbrJoueurDom < 3 && nbrJoueurVis < 3)
 	{
-		//equipe dom et vis forfait
+		throw ExceptionMessage("Les deux équipes n'ont pas le nombre nominal de joueurs, forfait pour les deux équipes");	//equipe dom et vis forfait
 	}
 	if(nbrJoueurDom < 3)
 	{
-		//equipe dom forfait
+		throw ExceptionMessage("L'équipe à domicile n'a pas le nombre nominal de joueurs, elle est déclarée forfait");	//equipe dom forfait
 	}
 	if(nbrJoueurVis < 3)
 	{
-		//equipe vis forfait
-	}
-	
+		throw ExceptionMessage("L'équipe visiteuse n'a pas le nombre nominal de joueurs, elle est déclarée forfait");	//equipe vis forfait
+	}	
 	//le match peut se faire
+	cout << "**** Rencontre de division : " << pEquipeDom->getDivision() << " ****************" << endl;
+	cout << "Equipe à domicile : " << pEquipeDom->getClub() << " " << pEquipeDom->getDivision() << endl;
+	int i=0;
+	while(pEquipeDom->getJoueur(i) != NULL)
+	{
+		cout << "Joueur " << i+1 << " : " << pEquipeDom->getJoueur(i)->getNom() << " " << pEquipeDom->getJoueur(i)->getPrenom() << " ";
+		if(pEquipeDom->getJoueur(i)->getClassement() == NULL)
+			cout << "NC" << endl;
+		else
+			cout << pEquipeDom->getJoueur(i)->getClassement() << endl;
+	}
 	nbrMatch = nbrJoueurDom * nbrJoueurVis;
 	cout << "***** Encodage des resultats ********************************"<<endl;
 	int nbr, resOK;

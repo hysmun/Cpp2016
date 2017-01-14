@@ -492,8 +492,14 @@ void menuFed()
 			
 			case 13:
 			{
-				
+				try 
+				{
 				SimAndExportRes(&listeEquipe,&listeJoueur,&listeClub);
+				}
+				catch(ExceptionMessage &e)
+				{
+					cout << e.getMsg() <<endl;
+				}
 				break;
 			}
 		}
