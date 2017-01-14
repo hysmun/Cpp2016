@@ -833,7 +833,7 @@ void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,List
 								}
 								else
 								{
-									cout << "pas de joueur "<<i;
+									cout << "pas de joueur "<<i+1<<endl;
 								}
 							}
 						}
