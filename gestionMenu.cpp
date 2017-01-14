@@ -795,27 +795,30 @@ void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,List
 	Iterateur<Club> ItClub(listeClub);
 	Iterateur<Joueur> ItJou(listeJoueur);
 	Iterateur<Equipe> ItEqui(listeEquipe);
-	int nc;
+	int nc = 0,CptClub = 0,CptEqui = 0;
 	cout << "Num du club ? ";
 	cin >> nc;
 	for(ItClub.reset();ItClub.end() == 0;ItClub++)
 	{
 		if((&ItClub)->getNumClub() == nc)
 		{
+			CptClub++;
+			cout << endl;
 			cout << "Nom : " << (&ItClub)->getNom() << endl;
 			cout << "NumClub : " << (&ItClub)->getNumClub() << endl;
-			cout << "Adresse : " << (&ItClub)->getAdresse() << endl;
+			cout << "Adresse : " << (&ItClub)->getAdresse() << endl << endl;
 			for(ItEqui.reset();ItEqui.end() == 0;ItEqui++)
 			{
 				if((&ItEqui)->getClub()->getNumClub() == nc)
 				{
+					CptEqui++;
 					if((&ItEqui)->getDivision())
 					{
-						cout << "Equipe " << (&ItEqui)->getDivision() << " " << (&ItEqui)->getNumero() << endl;
+						cout << "Equipe " << (&ItEqui)->getDivision() << " " << (&ItEqui)->getNumero() << endl << endl;
 						int nbJ = 0;
 						nbJ = (&ItEqui)->getNbrJoueur();
 						if(nbJ == 0)
-							throw ExceptionMessage("Pas de joueurs dans l'équipe");
+							cout << "Cette équipe ne possède aucun joueur" << endl;
 						else
 						{
 							for(int i = 0; i < nbJ ; i++)
@@ -824,30 +827,26 @@ void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,List
 								if((&ItEqui)->getJoueur(i)->getClassement() == NULL)
 									cout << "NC" << endl;
 								else
-									cout << (&ItEqui)->getJoueur(i)->getClassement() << endl;
+									cout << *(&ItEqui)->getJoueur(i)-> getClassement() << endl;
 							}
-							return;
 						}
+						cout << endl << "**********************" << endl << endl;
 					}
-					else
-						throw ExceptionMessage("Pas d'équipe dans dans le club");
 				}
 			}
-			throw ExceptionMessage("Club introuvable");
+			if(CptEqui == 0)
+			{
+				cout << "Ce club ne possède aucune équipe" << endl;
+				return;
+			}
 		}
 	}
-	
-
-
+	if(CptClub == 0)
+	{
+		cout << "Club introuvable" << endl;
+		return;
+	}
 }
-
-
-
-
-
-
-
-
 
 int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,ListeTriee<Club> *listeClub)
 {
