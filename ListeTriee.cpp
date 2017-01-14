@@ -17,7 +17,7 @@ T* ListeTriee<T>::insere(const T &elm)
 		return &(this->pTete->valeur);
 	}
 	
-	while (pParc != 0 && pParc->valeur > elm) 
+	while (pParc != 0 && pParc->valeur < elm) 
 	{
 		pPrec = pParc;
 		pParc = pParc->suivant;

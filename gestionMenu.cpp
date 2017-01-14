@@ -851,7 +851,7 @@ void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,List
 int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,ListeTriee<Club> *listeClub)
 {
 	//lancer un match + exporter resultat en .txt
-	int clubDom, clubVis; 
+	int clubDom, clubVis, cptTmp=0; 
 	char letDom,letVis;
 	int nbrJoueurDom, nbrJoueurVis, nbrMatch;
 	Club *pClubVis, *pClubDom;
@@ -1025,11 +1025,13 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	//affichage des res par joueur
 	
 	//joueur dom
+	cptTmp=0;
 	for(int i=0; i<4; i++)
 	{
 		if( pEquipeDom->getJoueur(i) != NULL)
 		{
-			cout << "Joueur " << i+1 << " (" << pEquipeDom->getJoueur(i)<< ", " << flush;
+			cout << "Joueur " << cptTmp+1 << " (" << pEquipeDom->getJoueur(i)<< ", " << flush;
+			cptTmp++;
 			if(pEquipeDom->getJoueur(i)->getClassement() != NULL )
 				cout <<pEquipeDom->getJoueur(i)->getClassement() <<flush;
 			else
@@ -1038,7 +1040,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			int tmpPts=0;
 			for(int j=0; j<4; j++)
 			{
-				if(pEquipeDom->getJoueur(j) != NULL)
+				if(pEquipeVis->getJoueur(j) != NULL)
 				{
 					if(resultat[i][j][0] > resultat[i][j][0])
 					{
@@ -1056,11 +1058,13 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	}//fin for() i=4
 	
 	//Joueur vis
+	cptTmp=0;
 	for(int j=0; j<4; j++)
 	{
 		if( pEquipeVis->getJoueur(j) != NULL)
 		{
-			cout << "Joueur " << lettre[j] << " (" << pEquipeVis->getJoueur(j)<< ", " << flush;
+			cout << "Joueur " << lettre[cptTmp] << " (" << pEquipeVis->getJoueur(j)<< ", " << flush;
+			cptTmp++;
 			if(pEquipeVis->getJoueur(j)->getClassement() != NULL )
 				cout <<pEquipeVis->getJoueur(j)->getClassement() <<flush;
 			else
@@ -1069,7 +1073,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			int tmpPts=0;
 			for(int i=0; i<4; i++)
 			{
-				if(pEquipeVis->getJoueur(i) != NULL)
+				if(pEquipeDom->getJoueur(i) != NULL)
 				{
 					if(resultat[i][j][0] > resultat[i][j][0])
 					{

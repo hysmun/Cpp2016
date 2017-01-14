@@ -158,12 +158,12 @@ int Joueur::operator==(const Joueur &tmp)
 
 int Joueur::operator<(const Joueur &tmp)
 {
-	return this->jClassement->getValeur() < tmp.jClassement->getValeur();
+	return this->jClassement->getValeur() > tmp.jClassement->getValeur();
 }
 
 int Joueur::operator>(const Joueur &tmp)
 {
-	return this->jClassement->getValeur() > tmp.jClassement->getValeur();
+	return this->jClassement->getValeur() < tmp.jClassement->getValeur();
 }
 
 ostream &operator<<(ostream &s, const Joueur &j)
