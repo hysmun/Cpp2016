@@ -791,7 +791,10 @@ void showInfoJoueur(ListeTriee<Joueur> listeJoueur,int matriculeint)
 }
 
 
-
+void SimAndExportRes(Liste<Equipe> &listeEquipe,ListeTriee<Joueur> &listeJoueur,char *clubDom,char *clubVis, char divDom,char divVis)
+{
+	cout << 
+}
 
 
 

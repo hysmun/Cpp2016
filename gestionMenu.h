@@ -84,8 +84,12 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur,char *nomFich, int numer
 int SaveJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe);
 int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe);
 
-
-
+/***********************************
+*
+*			fct exporter resultats
+*
+***********************************/
+void SimAndExportRes(Liste<Equipe> &listeEquipe,ListeTriee<Joueur> &listeJoueur,char *clubDom,char *clubVis, char divDom,char divVis);
 
 
 
