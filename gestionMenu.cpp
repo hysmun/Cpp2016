@@ -846,9 +846,15 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	
 	//le match peut se faire
 	nbrMatch = nbrJoueurDom * nbrJoueurVis;
-	for(int i; i<nbrMatch; i++)
+	cout << "***** Encodage des resultats ********************************"<<endl;
+	int
+	char lettre[4] = {'A','B','C','D'}; 
+	for(int i=0; i<nbrJoueurDom; i++)
 	{
-		
+		for(int j=0; j<nbrJoueurVis; i++)
+		{
+			cout << i << " contre " << lettre[j] << " ? "<<flush;
+		}
 	}
 }
 
