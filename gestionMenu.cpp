@@ -790,6 +790,64 @@ void showInfoJoueur(ListeTriee<Joueur> listeJoueur,int matriculeint)
 	return;
 }
 
+void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,Liste<Equipe> listeEquipe)
+{
+	Iterateur<Club> ItClub(listeClub);
+	Iterateur<Joueur> ItJou(listeJoueur);
+	Iterateur<Equipe> ItEqui(listeEquipe);
+	int nc;
+	cout << "Num du club ? ";
+	cin >> nc;
+	for(ItClub.reset();ItClub.end() == 0;ItClub++)
+	{
+		if((&ItClub)->getNumClub() == nc)
+		{
+			cout << "Nom : " << (&ItClub)->getNom() << endl;
+			cout << "NumClub : " << (&ItClub)->getNumClub() << endl;
+			cout << "Adresse : " << (&ItClub)->getAdresse() << endl;
+			for(ItEqui.reset();ItEqui.end() == 0;ItEqui++)
+			{
+				if((&ItEqui)->getClub()->getNumClub() == nc)
+				{
+					if((&ItEqui)->getDivision())
+					{
+						cout << "Equipe " << (&ItEqui)->getDivision() << " " << (&ItEqui)->getNumero() << endl;
+						int nbJ = 0;
+						nbJ = (&ItEqui)->getNbrJoueur();
+						if(nbJ == 0)
+							throw ExceptionMessage("Pas de joueurs dans l'équipe");
+						else
+						{
+							for(int i = 0; i < nbJ ; i++)
+							{
+								cout << "Joueur " << i+1 << " : " << (&ItEqui)->getJoueur(i)->getNom() << " " << (&ItEqui)->getJoueur(i)->getPrenom() << " ";
+								if((&ItEqui)->getJoueur(i)->getClassement() == NULL)
+									cout << "NC" << endl;
+								else
+									cout << (&ItEqui)->getJoueur(i)->getClassement() << endl;
+							}
+							return;
+						}
+					}
+					else
+						throw ExceptionMessage("Pas d'équipe dans dans le club");
+				}
+			}
+			throw ExceptionMessage("Club introuvable");
+		}
+	}
+	
+
+
+}
+
+
+
+
+
+
+
+
 
 int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,ListeTriee<Club> *listeClub)
 {

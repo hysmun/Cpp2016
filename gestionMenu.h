@@ -51,6 +51,7 @@ int printListeJoueur(ListeTriee<Joueur> listeJoueur);
 int printListeEquipe(Liste<Equipe> listeEquipe);
 void showJoueurWthClassement(ListeTriee<Joueur> listeJoueur,char letclass);
 void showInfoJoueur(ListeTriee<Joueur> listeJoueur,int matriculeint);
+void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,Liste<Equipe> listeEquipe);
 
 
 /***********************************

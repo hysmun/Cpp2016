@@ -89,15 +89,12 @@ ostream& operator<<(ostream& o,const Club& c)
 {
 	if(c.getNom() != NULL)
 		o << "Nom du club : " << c.getNom() << endl;
-	else
-		o << "nom du club2 : NULL"<<endl;
 		
 	o << "Numero du club : " << c.getNumClub() << endl;
 	
 	if(c.getAdresse() != NULL)
 		o << "Adresse du club : " << c.getAdresse() << endl;
-	else
-		o << "Adresse du club2 : NULL" << endl;
+		
 	return o;
 }
 

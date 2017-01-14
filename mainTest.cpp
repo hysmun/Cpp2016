@@ -367,6 +367,14 @@ void menuFed()
 			{
 				//afficher les infos et joueur d'un club
 				cleanScreen();
+				try
+				{
+					showInfoClub(listeClub,listeJoueur,listeEquipe);
+				}
+				catch(ExceptionMessage &e)
+				{
+					cout << e.getMsg() << endl;
+				}
 				break;
 			}
 			
