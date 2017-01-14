@@ -934,16 +934,50 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	{
 		for(int j=0; j<nbrJoueurVis; i++)
 		{
-			cout << i << " contre " << lettre[j] << " ? "<<flush;
-			cin >> buf;
-			
-			//verif de l'encodage du resultat
-			if(strlen(buf)<4)
+			resOK = 0;
+			while(resOK == 0)
 			{
-				//
-			}
+				cout << i << " contre " << lettre[j] << " ? "<<flush;
+				cin >> buf;
 			
-		}
+				//verif de l'encodage du resultat
+				if(strlen(buf)==3)
+				{
+					if(isdigit(buf[0]) && isdigit(buf[2]) && buf[1]== '-')
+					{
+						//
+						resultat[i][j][0] = atoi(&buf[0]);
+						resultat[i][j][1] = atoi(&buf[2]);
+						if( (resultat[i][j][0] + resultat[i][j][1]) <= 5 && (resultat[i][j][0] == 3 || resultat[i][j][1] == 3))
+						{
+							resOK=1;
+						}
+					}
+				}
+				if(resOK == 0)
+					cout << endl << "resultat invalide !! recommencez"<<endl;
+			}//fin while() resOK = 1
+		}//fin for() j= nbrJoueurVis
+	}//fin for() i=nbrJoueurDom
+	//fin encodage resultat
+	
+	//analyse resultat
+	cout << "***** Analyse des resultats **********************************" <<endl;
+	int pointEquipeDom, pointEquipeVis;
+	for(int i=0; i<nbrJoueurDom; i++)
+	{
+		for(int j=0; j<nbrJoueurVis; i++)
+		{
+			if(resultat[i][j][0] > resultat[i][j][0])
+				pointEquipeDom++;
+			else
+				pointEquipeVis++;
+		}//fin for() j= nbrJoueurVis
+	}//fin for() i=nbrJoueurDom
+	
+	if(pointEquipeDom == pointEquipeVis)
+	{
+		//
 	}
 }
 
