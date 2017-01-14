@@ -953,6 +953,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	
 	for(int i=0; i<4; i++)
 	{
+		cptTmp=0;
 		for(int j=0; j<4; j++)
 		{
 			resOK = 0;
@@ -960,7 +961,8 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			{
 				while(resOK == 0)
 				{
-					cout << i << " contre " << lettre[j] << " ? "<<endl;
+					cout << i << " contre " << lettre[cptTmp] << " ? "<<endl;
+					cptTmp++;
 					cin >> buf;
 			
 					//verif de l'encodage du resultat
@@ -987,7 +989,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	
 	//analyse resultat
 	cout << "***** Analyse des resultats **********************************" <<endl;
-	int pointEquipeDom, pointEquipeVis;
+	int pointEquipeDom=0, pointEquipeVis=0;
 	for(int i=0; i<4; i++)
 	{
 		for(int j=0; j<4; j++)
@@ -1020,7 +1022,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 		pEquipeVis->printfClubLettre();
 		cout << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
 	}
-	if(pointEquipeDom > pointEquipeVis)
+	if(pointEquipeDom < pointEquipeVis)
 	{
 		//vis victoire dom
 		cout << "Victoire de "<<flush;
@@ -1037,10 +1039,10 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	{
 		if( pEquipeDom->getJoueur(i) != NULL)
 		{
-			cout << "Joueur " << cptTmp+1 << " (" << pEquipeDom->getJoueur(i)<< ", " << flush;
+			cout << "Joueur " << cptTmp+1 << " (" << *pEquipeDom->getJoueur(i)<< ", " << flush;
 			cptTmp++;
 			if(pEquipeDom->getJoueur(i)->getClassement() != NULL )
-				cout <<pEquipeDom->getJoueur(i)->getClassement() <<flush;
+				cout << *pEquipeDom->getJoueur(i)->getClassement() <<flush;
 			else
 				cout << "NC"<<flush;
 			int tmpRes=0;
