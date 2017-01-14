@@ -908,7 +908,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	
 	//le match peut se faire 
 	cout << "**** Rencontre de division : " << pEquipeDom->getDivision() << " ****************" << endl;
-	cout << "Equipe à domicile : " << pEquipeDom->getClub() << " " << pEquipeDom->getDivision() << endl;
+	cout << "Equipe à domicile : " << pEquipeDom->getClub()->getNom() << " " << pEquipeDom->getNumero() << endl;
 	int i=0,Cpt=0;
 	for(i=0;i<4;i++)
 	{
@@ -921,12 +921,12 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			if(pEquipeDom->getJoueur(i)->getClassement() == NULL)
 				cout << "NC" << endl;
 			else
-				cout << pEquipeDom->getJoueur(i)->getClassement() << endl;
+				cout << *pEquipeDom->getJoueur(i)->getClassement() << endl;
 			Cpt++;
 		}
 	}
 	cout << endl;
-	cout << "Equipe visiteuse : " << pEquipeVis->getClub() << " " << pEquipeVis->getDivision() << endl;
+	cout << "Equipe visiteuse : " << pEquipeVis->getClub()->getNom() << " " << pEquipeVis->getNumero() << endl;
 	i=0;
 	Cpt=0;
 	for(i=0;i<4;i++)
@@ -940,7 +940,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			if(pEquipeVis->getJoueur(i)->getClassement() == NULL)
 				cout << "NC" << endl;
 			else
-				cout << pEquipeVis->getJoueur(i)->getClassement() << endl;
+				cout << *pEquipeVis->getJoueur(i)->getClassement() << endl;
 			Cpt++;
 		}
 	}
