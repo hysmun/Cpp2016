@@ -1005,9 +1005,33 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 		cout << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
 	}
 	//affichage des res par joueur
-	for(int i=0; i<nbrJoueurDom; i++)
+	
+	//joueur dom
+	for(int i=0; i<4; i++)
 	{
-		cout << "Joueur " << i+1 <<endl;
+		if( pEquipeDom->getJoueur(i) != NULL)
+		{
+			cout << "Joueur " << i+1 << " (" << pEquipeDom->getJoueur(i)<< ", " << flush;
+			if(pEquipeDom->getJoueur(i)->getClassement() != NULL )
+				cout <<pEquipeDom->getJoueur(i)->getClassement() <<flush;
+			else
+				cout << "NC"<<flush;
+			int tmpRes=0;
+			int tmpPts=0;
+			for(int j=0; j<nbrJoueurVis; j++)
+			{
+				if(resultat[i][j][0] > resultat[i][j][0])
+				{
+					tmpRes++;
+					if(pEquipeDom->getJoueur(i))
+					{
+						//
+					}
+					
+				}
+			}
+			cout << ") : "<<tmpRes<<"/"<<nbrJoueurVis<<endl;
+		}
 	}//fin for() i=nbrJoueurDom
 }
 
