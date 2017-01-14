@@ -30,6 +30,7 @@ class Equipe
 		char getNumero() const;
 		char *getDivision() const;
 		Joueur *getJoueur(int nbr) const;
+		int getNbrJoueur() const;
 		
 		//setteur
 		int setClub(Club *tClub);

@@ -791,9 +791,60 @@ void showInfoJoueur(ListeTriee<Joueur> listeJoueur,int matriculeint)
 }
 
 
-void SimAndExportRes(Liste<Equipe> &listeEquipe,ListeTriee<Joueur> &listeJoueur,char *clubDom,char *clubVis, char divDom,char divVis)
+int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,ListeTriee<Club> *listeClub)
 {
-	cout << 
+	//lancer un match + exporter resultat en .txt
+	int clubDom, clubVis; 
+	char letDom,letVis;
+	int nbrJoueurDom, nbrJoueurVis;
+	Club *pClubVis, *pClubDom;
+	Equipe *pEquipeVis, *pEquipeDom;
+	cout << "Equipe domicile : " << endl;
+	cout << "Num Club ? ";
+	cin >> clubDom;
+	cout << "Lettre de l'equipe ? ";
+	cin >> letDom;
+	//vérif si existe
+	cout << "Equipe visiteur ? " << endl;
+	cout << "Num Club ? ";
+	cin >> clubVis;
+	cout << "Lettre de l'equipe ? ";
+	cin >> letVis;
+	//vérif si existe
+	//vérif si une des deux équipes comporte moins de 3 joueurs --> forfait, pas de simulation
+	//get des 2 clubs
+	pClubDom = getClubWithNum(listeClub, clubDom);
+	pClubVis = getClubWithNum(listeClub, clubVis);
+	
+	if(pClubDom == NULL || pClubVis == NULL)
+		throw ExceptionMessage("un des 2 clubs n'existe pas !");
+	
+	//on recupere les 2 equipe
+	pEquipeDom = getEquipeWithNum(listeEquipe, letDom, *pClubDom);
+	pEquipeVis = getEquipeWithNum(listeEquipe, letVis, *pClubVis);
+	
+	if(pEquipeDom == NULL || pEquipeVis == NULL)
+		throw ExceptionMessage("une des 2 Equipes n'existe pas !");
+	
+	// on compte le nbr de joueur
+	nbrJoueurDom = pEquipeDom->getNbrJoueur();
+	nbrJoueurVis = pEquipeVis->getNbrJoueur();
+	
+	// verif nbr joueur
+	if(nbrJoueurDom < 3 && nbrJoueurVis < 3)
+	{
+		//equipe dom et vis forfait
+	}
+	if(nbrJoueurDom < 3)
+	{
+		//equipe dom forfait
+	}
+	if(nbrJoueurVis < 3)
+	{
+		//equipe vis forfait
+	}
+	
+	//le match peut se faire
 }
 
 

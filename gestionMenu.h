@@ -89,7 +89,7 @@ int LoadJoueurAndEquipe(char *nomClub, ListeTriee<Club> *listeClub, ListeTriee<J
 *			fct exporter resultats
 *
 ***********************************/
-void SimAndExportRes(Liste<Equipe> &listeEquipe,ListeTriee<Joueur> &listeJoueur,char *clubDom,char *clubVis, char divDom,char divVis);
+int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,ListeTriee<Club> *listeClub);
 
 
 
