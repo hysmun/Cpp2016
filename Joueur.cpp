@@ -364,6 +364,7 @@ void Joueur::Load(ifstream &fichier)
 	//load classement
 	fichier.read(&lettre, sizeof(char));
 	fichier.read((char *)&nombre, sizeof(short));
+	jClassement=NULL;
 	if(lettre != 'N' && nombre != 'C')
 	{
 		//
