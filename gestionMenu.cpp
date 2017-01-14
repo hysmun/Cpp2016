@@ -726,7 +726,7 @@ int removeJoueurFromEquipe(Equipe *tmpE, Joueur *tmpJ)
 	
 	for(int i=0; i<4; i++)
 	{
-		if(*(tmpE->getJoueur(i)) == *tmpJ)
+		if( tmpE->getJoueur(i) != NULL && (tmpE->getJoueur(i)->getMatricule().getNumero()) == tmpJ->getMatricule().getNumero())
 		{
 			tmpE->setJoueur(NULL, i);
 		}
