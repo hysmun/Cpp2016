@@ -796,7 +796,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	//lancer un match + exporter resultat en .txt
 	int clubDom, clubVis; 
 	char letDom,letVis;
-	int nbrJoueurDom, nbrJoueurVis;
+	int nbrJoueurDom, nbrJoueurVis, nbrMatch;
 	Club *pClubVis, *pClubDom;
 	Equipe *pEquipeVis, *pEquipeDom;
 	cout << "Equipe domicile : " << endl;
@@ -845,6 +845,11 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	}
 	
 	//le match peut se faire
+	nbrMatch = nbrJoueurDom * nbrJoueurVis;
+	for(int i; i<nbrMatch; i++)
+	{
+		
+	}
 }
 
 
