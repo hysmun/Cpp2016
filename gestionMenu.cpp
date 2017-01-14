@@ -887,6 +887,9 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	
 	if(pEquipeDom == NULL || pEquipeVis == NULL)
 		throw ExceptionMessage("une des 2 Equipes n'existe pas !");
+		
+//	if(strcmp(pEquipeDom->getDivision(), pEquipeVis->getDivision()) != 0)
+//		throw ExceptionMessage("La division n'est pas la meme !!");
 	
 	// on compte le nbr de joueur
 	nbrJoueurDom = pEquipeDom->getNbrJoueur();
@@ -961,7 +964,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			{
 				while(resOK == 0)
 				{
-					cout << i << " contre " << lettre[cptTmp] << " ? "<<endl;
+					cout << i << " contre " << lettre[cptTmp] << " ? "<<flush;
 					cptTmp++;
 					cin >> buf;
 			
@@ -1039,7 +1042,8 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	{
 		if( pEquipeDom->getJoueur(i) != NULL)
 		{
-			cout << "Joueur " << cptTmp+1 << " (" << *pEquipeDom->getJoueur(i)<< ", " << flush;
+			cout << "Joueur " << cptTmp+1 << " (" << pEquipeDom->getJoueur(i)->getNom()<<flush;
+			cout << " " << pEquipeDom->getJoueur(i)->getPrenom()<<", " << flush;
 			cptTmp++;
 			if(pEquipeDom->getJoueur(i)->getClassement() != NULL )
 				cout << *pEquipeDom->getJoueur(i)->getClassement() <<flush;
@@ -1051,18 +1055,18 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			{
 				if(pEquipeVis->getJoueur(j) != NULL)
 				{
-					if(resultat[i][j][0] > resultat[i][j][0])
+					if(resultat[i][j][0] > resultat[i][j][1])
 					{
 						tmpRes++;
 						if(pEquipeDom->getJoueur(i)->getClassement() != NULL && pEquipeVis->getJoueur(j)->getClassement() != NULL)
 						{
 							//
-							tmpPts += (pEquipeDom->getJoueur(i)->getClassement() - pEquipeVis->getJoueur(j)->getClassement());
+							tmpPts += (*pEquipeVis->getJoueur(j)->getClassement() - *pEquipeDom->getJoueur(i)->getClassement());
 						}
 					}
 				}
 			}//fin for() j=4
-			cout << ") : "<< tmpRes << "/" << nbrJoueurVis << ", "<< tmpPts << "points"<<endl;
+			cout << ") : "<< tmpRes << "/" << nbrJoueurVis << ", "<< tmpPts << " points"<<endl;
 		}
 	}//fin for() i=4
 	
@@ -1072,10 +1076,11 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	{
 		if( pEquipeVis->getJoueur(j) != NULL)
 		{
-			cout << "Joueur " << lettre[cptTmp] << " (" << pEquipeVis->getJoueur(j)<< ", " << flush;
+			cout << "Joueur " << lettre[cptTmp] << " (" << pEquipeVis->getJoueur(j)->getNom()<<flush;
+			cout << " " << pEquipeVis->getJoueur(j)->getPrenom()<<", " << flush;
 			cptTmp++;
 			if(pEquipeVis->getJoueur(j)->getClassement() != NULL )
-				cout <<pEquipeVis->getJoueur(j)->getClassement() <<flush;
+				cout << *pEquipeVis->getJoueur(j)->getClassement() <<flush;
 			else
 				cout << "NC"<<flush;
 			int tmpRes=0;
@@ -1084,18 +1089,18 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			{
 				if(pEquipeDom->getJoueur(i) != NULL)
 				{
-					if(resultat[i][j][0] > resultat[i][j][0])
+					if(resultat[i][j][0] < resultat[i][j][1])
 					{
 						tmpRes++;
 						if(pEquipeVis->getJoueur(j)->getClassement() != NULL && pEquipeDom->getJoueur(i)->getClassement() != NULL)
 						{
 							//
-							tmpPts += (pEquipeVis->getJoueur(j)->getClassement() - pEquipeDom->getJoueur(i)->getClassement());
+							tmpPts += (*pEquipeDom->getJoueur(i)->getClassement() - *pEquipeVis->getJoueur(j)->getClassement());
 						}
 					}
 				}
 			}//fin for() j=4
-			cout << ") : "<< tmpRes << "/" << nbrJoueurDom << ", "<< tmpPts << "points"<<endl;
+			cout << ") : "<< tmpRes << "/" << nbrJoueurDom << ", "<< tmpPts << " points"<<endl;
 		}
 	}//fin for() j=4
 }
