@@ -855,6 +855,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	char letDom,letVis;
 	int nbrJoueurDom, nbrJoueurVis, nbrMatch;
 	Club *pClubVis, *pClubDom;
+	char lettre[4] = {'A','B','C','D'}; 
 	Equipe *pEquipeVis, *pEquipeDom;
 	cout << "Equipe domicile : " << endl;
 	cout << "Num Club ? ";
@@ -902,7 +903,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	cout << "**** Rencontre de division : " << pEquipeDom->getDivision() << " ****************" << endl;
 	cout << "Equipe à domicile : " << pEquipeDom->getClub() << " " << pEquipeDom->getDivision() << endl;
 	int i=0,Cpt=0;
-	for(int n = 0;n < i;n++)
+	for(i=0;i<4;i++)
 	{
 		if(pEquipeDom->getJoueur(i) == NULL)
 		{
@@ -920,22 +921,29 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	cout << endl;
 	cout << "Equipe visiteuse : " << pEquipeVis->getClub() << " " << pEquipeVis->getDivision() << endl;
 	i=0;
-	while(pEquipeVis->getJoueur(i) != NULL)
+	Cpt=0;
+	for(i=0;i<4;i++)
 	{
-		cout << "Joueur " << i+1 << " : " << pEquipeVis->getJoueur(i)->getNom() << " " << pEquipeVis->getJoueur(i)->getPrenom() << " ";
-		if(pEquipeVis->getJoueur(i)->getClassement() == NULL)
-			cout << "NC" << endl;
+		if(pEquipeVis->getJoueur(i) == NULL)
+		{
+		}
 		else
-			cout << pEquipeVis->getJoueur(i)->getClassement() << endl;
+		{
+			cout << "Joueur " << lettre[Cpt] << " : " << pEquipeVis->getJoueur(i)->getNom() << " " << pEquipeVis->getJoueur(i)->getPrenom() << " ";
+			if(pEquipeVis->getJoueur(i)->getClassement() == NULL)
+				cout << "NC" << endl;
+			else
+				cout << pEquipeVis->getJoueur(i)->getClassement() << endl;
+		}
+		Cpt++;
 	}
 	cout << endl;
-	
 	nbrMatch = nbrJoueurDom * nbrJoueurVis;
 	cout << "***** Encodage des resultats ********************************"<<endl;
 	int nbr, resOK;
 	int resultat[4][4][2];
 	char buf[255];
-	char lettre[4] = {'A','B','C','D'}; 
+	
 	for(int i=0; i<nbrJoueurDom; i++)
 	{
 		for(int j=0; j<nbrJoueurVis; i++)
@@ -983,8 +991,36 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	
 	if(pointEquipeDom == pointEquipeVis)
 	{
-		//
+		//Egalité
+		cout << "Egalite de "<<flush;
+		pEquipeDom->printfClubLettre();
+		cout << " contre "<<flush;
+		pEquipeVis->printfClubLettre();
+		cout << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
 	}
+	if(pointEquipeDom > pointEquipeVis)
+	{
+		//dom victoire vis
+		cout << "Victoire de "<<flush;
+		pEquipeDom->printfClubLettre();
+		cout << " contre "<<flush;
+		pEquipeVis->printfClubLettre();
+		cout << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
+	}
+	if(pointEquipeDom > pointEquipeVis)
+	{
+		//vis victoire dom
+		cout << "Victoire de "<<flush;
+		pEquipeVis->printfClubLettre();
+		cout << " contre "<<flush;
+		pEquipeDom->printfClubLettre();
+		cout << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
+	}
+	//affichage des res par joueur
+	for(int i=0; i<nbrJoueurDom; i++)
+	{
+		cout << "Joueur " << i+1 <<endl;
+	}//fin for() i=nbrJoueurDom
 }
 
 
