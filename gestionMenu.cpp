@@ -902,30 +902,42 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	//le match peut se faire 
 	cout << "**** Rencontre de division : " << pEquipeDom->getDivision() << " ****************" << endl;
 	cout << "Equipe à domicile : " << pEquipeDom->getClub() << " " << pEquipeDom->getDivision() << endl;
-	int i=0;
-	while(pEquipeDom->getJoueur(i) != NULL && i < 4)
+	int i=0,Cpt=0;
+	for(i=0;i<4;i++)
 	{
-		cout << "Joueur " << i+1 << " : " << pEquipeDom->getJoueur(i)->getNom() << " " << pEquipeDom->getJoueur(i)->getPrenom() << " ";
-		if(pEquipeDom->getJoueur(i)->getClassement() == NULL)
-			cout << "NC" << endl;
+		if(pEquipeDom->getJoueur(i) == NULL)
+		{
+		}
 		else
-			cout << pEquipeDom->getJoueur(i)->getClassement() << endl;
-		i++;
+		{
+			cout << "Joueur " << Cpt+1 << " : " << pEquipeDom->getJoueur(i)->getNom() << " " << pEquipeDom->getJoueur(i)->getPrenom() << " ";
+			if(pEquipeDom->getJoueur(i)->getClassement() == NULL)
+				cout << "NC" << endl;
+			else
+				cout << pEquipeDom->getJoueur(i)->getClassement() << endl;
+			Cpt++;
+		}
 	}
 	cout << endl;
 	cout << "Equipe visiteuse : " << pEquipeVis->getClub() << " " << pEquipeVis->getDivision() << endl;
 	i=0;
-	while(pEquipeVis->getJoueur(i) != NULL && i < 4)
+	Cpt=0;
+	for(i=0;i<4;i++)
 	{
-		cout << "Joueur " << lettre[i] << " : " << pEquipeVis->getJoueur(i)->getNom() << " " << pEquipeVis->getJoueur(i)->getPrenom() << " ";
-		if(pEquipeVis->getJoueur(i)->getClassement() == NULL)
-			cout << "NC" << endl;
+		if(pEquipeVis->getJoueur(i) == NULL)
+		{
+		}
 		else
-			cout << pEquipeVis->getJoueur(i)->getClassement() << endl;
-		i++;
+		{
+			cout << "Joueur " << lettre[Cpt] << " : " << pEquipeVis->getJoueur(i)->getNom() << " " << pEquipeVis->getJoueur(i)->getPrenom() << " ";
+			if(pEquipeVis->getJoueur(i)->getClassement() == NULL)
+				cout << "NC" << endl;
+			else
+				cout << pEquipeVis->getJoueur(i)->getClassement() << endl;
+		}
+		Cpt++;
 	}
 	cout << endl;
-	
 	nbrMatch = nbrJoueurDom * nbrJoueurVis;
 	cout << "***** Encodage des resultats ********************************"<<endl;
 	int nbr, resOK;
