@@ -853,6 +853,19 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 		else
 			cout << pEquipeDom->getJoueur(i)->getClassement() << endl;
 	}
+	cout << endl;
+	cout << "Equipe visiteuse : " << pEquipeVis->getClub() << " " << pEquipeVis->getDivision() << endl;
+	i=0;
+	while(pEquipeVis->getJoueur(i) != NULL)
+	{
+		cout << "Joueur " << i+1 << " : " << pEquipeVis->getJoueur(i)->getNom() << " " << pEquipeVis->getJoueur(i)->getPrenom() << " ";
+		if(pEquipeVis->getJoueur(i)->getClassement() == NULL)
+			cout << "NC" << endl;
+		else
+			cout << pEquipeVis->getJoueur(i)->getClassement() << endl;
+	}
+	cout << endl;
+	
 	nbrMatch = nbrJoueurDom * nbrJoueurVis;
 	cout << "***** Encodage des resultats ********************************"<<endl;
 	int nbr, resOK;
