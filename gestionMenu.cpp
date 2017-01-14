@@ -953,7 +953,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	
 	for(int i=0; i<4; i++)
 	{
-		for(int j=0; j<4; i++)
+		for(int j=0; j<4; j++)
 		{
 			resOK = 0;
 			if( pEquipeDom->getJoueur(i) != NULL && pEquipeVis->getJoueur(j) != NULL)
@@ -990,7 +990,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	int pointEquipeDom, pointEquipeVis;
 	for(int i=0; i<4; i++)
 	{
-		for(int j=0; j<4; i++)
+		for(int j=0; j<4; j++)
 		{
 			if( pEquipeDom->getJoueur(i) != NULL && pEquipeVis->getJoueur(j) != NULL)
 			{
