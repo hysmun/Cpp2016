@@ -960,7 +960,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			{
 				while(resOK == 0)
 				{
-					cout << i << " contre " << lettre[j] << " ? "<<flush;
+					cout << i << " contre " << lettre[j] << " ? "<<endl;
 					cin >> buf;
 			
 					//verif de l'encodage du resultat
