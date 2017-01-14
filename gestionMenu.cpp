@@ -796,7 +796,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	//lancer un match + exporter resultat en .txt
 	int clubDom, clubVis; 
 	char letDom,letVis;
-	int nbrJoueurDom, nbrJoueurVis;
+	int nbrJoueurDom, nbrJoueurVis, nbrMatch;
 	Club *pClubVis, *pClubDom;
 	Equipe *pEquipeVis, *pEquipeDom;
 	cout << "Equipe domicile : " << endl;
@@ -851,6 +851,17 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			cout << "NC" << endl;
 		else
 			cout << pEquipeDom->getJoueur(i)->getClassement() << endl;
+	}
+	nbrMatch = nbrJoueurDom * nbrJoueurVis;
+	cout << "***** Encodage des resultats ********************************"<<endl;
+	int nbr;
+	char lettre[4] = {'A','B','C','D'}; 
+	for(int i=0; i<nbrJoueurDom; i++)
+	{
+		for(int j=0; j<nbrJoueurVis; i++)
+		{
+			cout << i << " contre " << lettre[j] << " ? "<<flush;
+		}
 	}
 }
 
