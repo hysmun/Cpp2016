@@ -280,7 +280,14 @@ void Equipe::Load(ifstream &fichier)
 	return;
 }
 
-
+void Equipe::printfClubLettre()const
+{
+	if(getClub() != NULL && getClub()->getNom() != NULL)
+	{
+		cout << getClub()->getNom()<<" "<<flush;
+	}
+	cout << getNumero()<<flush;
+}
 
 
 

@@ -46,6 +46,7 @@ class Equipe
 		//autre
 		void Save(ofstream &fichier) const;
 		void Load(ifstream &fichier);
+		void printfClubLettre()const;
 
 };
 
