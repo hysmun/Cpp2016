@@ -492,23 +492,14 @@ void menuFed()
 			
 			case 13:
 			{
-				//lancer un match + exporter resultat en .txt
-				char clubDom[20],clubVis[20];
-				char divDom,divVis;
-				cout << "Equipe domicile : " << endl;
-				cout << "Club ? ";
-				cin >> clubDom;
-				cout << "Division ? ";
-				cin >> divDom;
-				//vérif si existe
-				cout << "Equipe visiteur ? " << endl;
-				cout << "Club ? ";
-				cin >> clubVis;
-				cout << "Division ? ";
-				cin >> divVis;
-				//vérif si existe
-				//vérif si une des deux équipes comporte moins de 3 joueurs --> forfait, pas de simulation	
-				SimAndExportRes(listeEquipe,listeJoueur,clubDom,clubVis,divDom,divVis);
+				try 
+				{
+				SimAndExportRes(&listeEquipe,&listeJoueur,&listeClub);
+				}
+				catch(ExceptionMessage &e)
+				{
+					cout << e.getMsg() <<endl;
+				}
 				break;
 			}
 		}

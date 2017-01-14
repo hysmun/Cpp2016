@@ -88,6 +88,18 @@ Joueur *Equipe::getJoueur(int nbr) const
 	return jJoueur[nbr];
 }
 
+int Equipe::getNbrJoueur() const
+{
+	int cpt=0;
+	for(int i=0; i<4; i++)
+	{
+		if(getJoueur(0) != NULL)
+		{
+			cpt++;
+		}
+	}
+	return cpt;
+}
 
 /***************************************
 *

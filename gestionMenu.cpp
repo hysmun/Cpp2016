@@ -791,9 +791,67 @@ void showInfoJoueur(ListeTriee<Joueur> listeJoueur,int matriculeint)
 }
 
 
-void SimAndExportRes(Liste<Equipe> &listeEquipe,ListeTriee<Joueur> &listeJoueur,char *clubDom,char *clubVis, char divDom,char divVis)
+int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,ListeTriee<Club> *listeClub)
 {
-	cout << 
+	//lancer un match + exporter resultat en .txt
+	int clubDom, clubVis; 
+	char letDom,letVis;
+	int nbrJoueurDom, nbrJoueurVis;
+	Club *pClubVis, *pClubDom;
+	Equipe *pEquipeVis, *pEquipeDom;
+	cout << "Equipe domicile : " << endl;
+	cout << "Num Club ? ";
+	cin >> clubDom;
+	cout << "Lettre de l'equipe ? ";
+	cin >> letDom;
+	cout << "Equipe visiteur ? " << endl;
+	cout << "Num Club ? ";
+	cin >> clubVis;
+	cout << "Lettre de l'equipe ? ";
+	cin >> letVis;
+	//vérif si existe
+	pClubDom = getClubWithNum(listeClub, clubDom);
+	pClubVis = getClubWithNum(listeClub, clubVis);
+	
+	if(pClubDom == NULL || pClubVis == NULL)
+		throw ExceptionMessage("un des 2 clubs n'existe pas !");
+	
+	//on recupere les 2 equipe
+	pEquipeDom = getEquipeWithNum(listeEquipe, letDom, *pClubDom);
+	pEquipeVis = getEquipeWithNum(listeEquipe, letVis, *pClubVis);
+	
+	if(pEquipeDom == NULL || pEquipeVis == NULL)
+		throw ExceptionMessage("une des 2 Equipes n'existe pas !");
+	
+	// on compte le nbr de joueur
+	nbrJoueurDom = pEquipeDom->getNbrJoueur();
+	nbrJoueurVis = pEquipeVis->getNbrJoueur();
+	
+	// verif nbr joueur
+	if(nbrJoueurDom < 3 && nbrJoueurVis < 3)
+	{
+		throw ExceptionMessage("Les deux équipes n'ont pas le nombre nominal de joueurs, forfait pour les deux équipes");	//equipe dom et vis forfait
+	}
+	if(nbrJoueurDom < 3)
+	{
+		throw ExceptionMessage("L'équipe à domicile n'a pas le nombre nominal de joueurs, elle est déclarée forfait");	//equipe dom forfait
+	}
+	if(nbrJoueurVis < 3)
+	{
+		throw ExceptionMessage("L'équipe visiteuse n'a pas le nombre nominal de joueurs, elle est déclarée forfait");	//equipe vis forfait
+	}	
+	//le match peut se faire
+	cout << "**** Rencontre de division : " << pEquipeDom->getDivision() << " ****************" << endl;
+	cout << "Equipe à domicile : " << pEquipeDom->getClub() << " " << pEquipeDom->getDivision() << endl;
+	int i=0;
+	while(pEquipeDom->getJoueur(i) != NULL)
+	{
+		cout << "Joueur " << i+1 << " : " << pEquipeDom->getJoueur(i)->getNom() << " " << pEquipeDom->getJoueur(i)->getPrenom() << " ";
+		if(pEquipeDom->getJoueur(i)->getClassement() == NULL)
+			cout << "NC" << endl;
+		else
+			cout << pEquipeDom->getJoueur(i)->getClassement() << endl;
+	}
 }
 
 

@@ -198,13 +198,14 @@ gestionMenu.o: gestionMenu.cpp gestionMenu.h
 
 # -------------------------------------------------
 
+
 ## autre
 git:
 	clear
 	clear
 	echo git
 	git add -A
-	git commit -m $(TMP)
+	git commit -m "$(TMP)"
 	git push
 
 
