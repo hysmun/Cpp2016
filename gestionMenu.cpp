@@ -821,13 +821,20 @@ void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,List
 							cout << "Cette équipe ne possède aucun joueur" << endl;
 						else
 						{
-							for(int i = 0; i < nbJ ; i++)
+							for(int i = 0; i < 4 ; i++)
 							{
+								if((&ItEqui)->getJoueur(i) != NULL)
+								{
 								cout << "Joueur " << i+1 << " : " << (&ItEqui)->getJoueur(i)->getNom() << " " << (&ItEqui)->getJoueur(i)->getPrenom() << " ";
 								if((&ItEqui)->getJoueur(i)->getClassement() == NULL)
 									cout << "NC" << endl;
 								else
 									cout << *(&ItEqui)->getJoueur(i)-> getClassement() << endl;
+								}
+								else
+								{
+									cout << "pas de joueur "<<i+1<<endl;
+								}
 							}
 						}
 						cout << endl << "**********************" << endl << endl;
@@ -946,14 +953,14 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	
 	for(int i=0; i<4; i++)
 	{
-		for(int j=0; j<4; i++)
+		for(int j=0; j<4; j++)
 		{
 			resOK = 0;
 			if( pEquipeDom->getJoueur(i) != NULL && pEquipeVis->getJoueur(j) != NULL)
 			{
 				while(resOK == 0)
 				{
-					cout << i << " contre " << lettre[j] << " ? "<<flush;
+					cout << i << " contre " << lettre[j] << " ? "<<endl;
 					cin >> buf;
 			
 					//verif de l'encodage du resultat
@@ -983,7 +990,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	int pointEquipeDom, pointEquipeVis;
 	for(int i=0; i<4; i++)
 	{
-		for(int j=0; j<4; i++)
+		for(int j=0; j<4; j++)
 		{
 			if( pEquipeDom->getJoueur(i) != NULL && pEquipeVis->getJoueur(j) != NULL)
 			{
