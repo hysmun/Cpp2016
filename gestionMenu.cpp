@@ -67,7 +67,6 @@ char WaitHit()
 {
 	char c;
 	cout << endl<<"Appuyez sur une touche pour continuez "<<endl;
-	//while(kbhit() != 1);
 	c = mygetch();
 	return c;
 }
@@ -272,21 +271,16 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				{
 					if(error == 1 || verbose==1)
 						cout << "Ajout d'un joueur non classé" << classtmp << endl;
-					//jtmp.setClassement(NULL);
 				}
 				else
 				{
 					Classement cltmp(classtmp);
 					jtmp.setClassement(&cltmp);
-				}
-				
-				//cout << jtmp<<endl;
-				
+				}		
 				for(itJoueur.reset();itJoueur.end() == 0;itJoueur++)
 				{
 					if((&itJoueur)->getMatricule().getNumero() == jtmp.getMatricule().getNumero())
 					{
-						//cout << "Joueur déja présent dans la liste" << endl;
 						pass = 1;
 					}
 				}
@@ -390,13 +384,9 @@ int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec)
 		cout << "test des secretaire login + mdp"<<endl;
 	for(itSec.reset(); itSec.end() == 0; itSec++)
 	{
-		//cout << (&itSec)->getLogin() << " == "<< sec->getLogin()<<endl;
-		//cout << (&itSec)->getPassword() << " == "<< sec->getPassword()<<endl<<endl;
 		if(!strcmp((&itSec)->getLogin(), sec->getLogin()) && !strcmp((&itSec)->getPassword(), sec->getPassword()))
 		{
-			//cout << "AAAA"<< *(&itSec)<<endl<<sec;
 			*sec = *(&itSec);
-			//cout << "AAAA"<< *(&itSec) << endl << *sec << endl;
 			if(verbose==1)
 				cout << "trouver !"<< endl;
 			return (&itSec)->getNumClub();
@@ -445,11 +435,9 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		tmp = listeJoueur->getNombreElements();
 		fichier.write((char *)&tmp, sizeof(int));
 		
-		//cout << "tmp = " << tmp <<endl;
 		
 		listeJoueur->Save(fichier);
 		
-		//cout << "joueur save !"<<endl;
 		
 		for(ItE.reset(); ItE.end() == 0; ItE++)
 		{
@@ -462,7 +450,6 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 			fichier.write((char *)&len, sizeof(int));
 			fichier.write((&ItE)->getDivision(), len);
 			
-			//cout << "club fait "<<endl;
 			
 			for(i=0; i<4; i++)
 			{
@@ -476,7 +463,6 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 					tmp = 0;
 					fichier.write((char *) &tmp, sizeof(int));
 				}
-				//cout << " joueur "<<i+1 <<" fait !"<<endl;
 			}
 			
 		}
@@ -502,10 +488,8 @@ Club *getClubWithNum(ListeTriee<Club> *listeClub, int num)
 		cout << "recheche num club "<<endl;
 	for(ItClub.reset(); ItClub.end() == 0; ItClub++)
 	{
-		//cout << endl << "premier essais : "<< num << " == "<<(&ItClub)->getNumClub()<<endl;
 		if((&ItClub)->getNumClub() == num)
 		{
-			//cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
 			tmpC = (&ItClub);
 			if(verbose==1)
 				cout << "Club trouver ! "<<endl;
@@ -525,10 +509,8 @@ Joueur *getJoueurWithNum(ListeTriee<Joueur> *listeJoueur, int num)
 		cout << "recheche num Joueur "<<endl;
 	for(ItJoueur.reset(); ItJoueur.end() == 0; ItJoueur++)
 	{
-		//cout << endl << "premier essais : "<< num << " == "<<(&ItJoueur)->getMatricule().getNumero()<<endl;
 		if((&ItJoueur)->getMatricule().getNumero() == num)
 		{
-			//cout << "C : "<< (&ItJoueur)<<endl<< *(&ItJoueur)<<endl;
 			tmpJ = (&ItJoueur);
 			if(verbose==1)
 				cout << "Joueur trouver "<<endl;
@@ -547,10 +529,8 @@ Equipe *getEquipeWithNum(Liste<Equipe> *listeEquipe, char lettre, Club tmpC)
 		cout << "recheche Equipe "<<endl;
 	for(It.reset(); It.end() == 0; It++)
 	{
-		//cout << endl << "premier essais : "<< lettre << " == "<<(&It)->getNumero()<<endl;
 		if( ((&It)->getNumero() == lettre) && (tmpC.getNumClub() == ((&It)->getClub()->getNumClub()) ) )
 		{
-			//cout << "C : "<< (&ItClub)<<endl<< *(&ItClub)<<endl;
 			tmpE = (&It);
 			if(verbose==1)
 				cout << "Equipe trouver "<<endl;
@@ -691,7 +671,6 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 				for(int j=0; j<4; j++)
 				{
 					fichier.read((char *)&tmpI, sizeof(int));
-					//cout<< "joueur "<< j <<" -- "<<tmpI<<endl;
 					if(tmpI != 0)
 					{
 						//le joueur existe
@@ -708,8 +687,6 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 			{
 				//erreur 
 			}
-			//cout << "Equipe "<<i<<endl;
-			//cout <<tmpE<<endl<<endl;
 			fichier.get(c);
 			listeEquipe->insere(tmpE);
 		}
@@ -1266,7 +1243,6 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 				fichier << ") : "<< tmpRes << "/" << nbrJoueurDom << ", "<< tmpPts << " points"<<endl;
 			}
 		}//fin for() j=4
-		
 	}//fin else !fichier.is_open()
 }
 

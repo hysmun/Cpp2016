@@ -59,7 +59,6 @@ int main(int argc, char *argv[])
 	error = 1;
 	for(int j=1; j<argc; j++)
 	{
-		//cout << "mode "<<endl;
 		switch(argv[j][0])
 		{
 			case '-':
@@ -154,13 +153,10 @@ int main(int argc, char *argv[])
 		}
 		else
 		{
-			//cout << "chargement liste secretaire"<< endl;
 			listeSec.Load(fichier);
 			fichier.close();
 			if(verbose == 1)
 				cout <<"chargement fichier secretaire "<<endl;
-			//cout << "affichage liste secretaire !!!"<< endl;
-			//printListeSec(listeSec);
 		}
 		
 		
@@ -236,7 +232,7 @@ int main(int argc, char *argv[])
 			}
 			
 			
-			menuFed();	//lancer l'interface grand manitou
+			menuFed();
 		}
 		else
 		{
@@ -244,7 +240,6 @@ int main(int argc, char *argv[])
 			if(verbose == 1)
 				listeClub.Affiche();
 			clubSec = getClubWithNum(&listeClub, numeroClub);
-			//cout << "Club : "<<tmpC<<endl<< *tmpC;
 			if(clubSec != NULL)
 			{
 				//le club existe
@@ -534,7 +529,6 @@ void menuFed()
 		}//fin switch menu fed
 		WaitHit();
 		cleanScreen();
-		//cout<<endl<<endl<<endl;
 		}
 		catch(InvalidClassementException &e)
 		{
@@ -890,7 +884,6 @@ void menuClub(char* nomClub)
 		
 		WaitHit();
 		cleanScreen();
-		//cout<<endl<<endl<<endl;
 		}
 		catch(InvalidClassementException &e)
 		{
