@@ -268,7 +268,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				
 				if(verbose==1)
 					cout << "Lu : " <<tmpS2<<endl;
-				//
+				
 				matriculeint=atoi(matrictmp);
 				jtmp.setNom(nomtmp);
 				jtmp.setPrenom(prenomtmp);
