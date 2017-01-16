@@ -459,6 +459,9 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		//on save les joueurs
 		listeJoueur->Save(fichier);
 		
+		//save club
+		if(verbose==1)
+			cout << "save des equipes"<<endl;
 		for(ItE.reset(); ItE.end() == 0; ItE++)
 		{
 			//on save le numero de club
@@ -503,11 +506,12 @@ Club *getClubWithNum(ListeTriee<Club> *listeClub, int num)
 	Iterateur<Club> ItClub(*listeClub);
 	Club *tmpC;
 	if(verbose==1)
-		cout << "recheche num club "<<endl;
+		cout << "recheche sur num club "<<endl;
 	for(ItClub.reset(); ItClub.end() == 0; ItClub++)
 	{
 		if((&ItClub)->getNumClub() == num)
 		{
+			//on a le bon club
 			tmpC = (&ItClub);
 			if(verbose==1)
 				cout << "Club trouver ! "<<endl;
@@ -517,18 +521,17 @@ Club *getClubWithNum(ListeTriee<Club> *listeClub, int num)
 	return NULL;
 }
 
-
-
 Joueur *getJoueurWithNum(ListeTriee<Joueur> *listeJoueur, int num)
 {
 	Iterateur<Joueur> ItJoueur(*listeJoueur);
 	Joueur *tmpJ;
 	if(verbose==1)
-		cout << "recheche num Joueur "<<endl;
+		cout << "recheche sur num Joueur "<<endl;
 	for(ItJoueur.reset(); ItJoueur.end() == 0; ItJoueur++)
 	{
 		if((&ItJoueur)->getMatricule().getNumero() == num)
 		{
+			//on a le bon joueur
 			tmpJ = (&ItJoueur);
 			if(verbose==1)
 				cout << "Joueur trouver "<<endl;
@@ -544,11 +547,12 @@ Equipe *getEquipeWithNum(Liste<Equipe> *listeEquipe, char lettre, Club tmpC)
 	Iterateur<Equipe> It(*listeEquipe);
 	Equipe *tmpE;
 	if(verbose==1)
-		cout << "recheche Equipe "<<endl;
+		cout << "recheche par club et lettre de Equipe "<<endl;
 	for(It.reset(); It.end() == 0; It++)
 	{
 		if( ((&It)->getNumero() == lettre) && (tmpC.getNumClub() == ((&It)->getClub()->getNumClub()) ) )
 		{
+			//on a la bonne equipe
 			tmpE = (&It);
 			if(verbose==1)
 				cout << "Equipe trouver "<<endl;
@@ -637,6 +641,10 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
 	{
 		//erreur !!!
+		if(verbose==1 || error == 1)
+		{
+			cout << "erreur parametre fct load j&e"<endl;
+		}
 	}
 	else
 	{
@@ -655,6 +663,7 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		Club *tmpC;
 		
 		//lecture des joueurs
+		//nbr joueur
 		fichier.read((char *)&NbrJ, sizeof(int));
 		for(i=0; i < NbrJ; i++)
 		{
@@ -672,20 +681,26 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		{
 				Equipe tmpE;
 			fichier.seekg(-1, ios::cur);
+			
+			//num club
 			fichier.read((char *)&tmpI, sizeof(int));
+			//recherche club
 			tmpC = getClubWithNum(listeClub, tmpI);
 			if(tmpC != NULL)
 			{
 				//on a le club
 				tmpE.setClub(tmpC);
 				
+				//numero equipe
 				fichier.read((char *)&tmpI, sizeof(int));
 				tmpE.setNumero(tmpI);
 				
+				//division
 				fichier.read((char *)&len, sizeof(int));
 				fichier.read(tmpS, len);
 				tmpE.setDivision(tmpS);
 				
+				//joueur de l'equipe
 				for(int j=0; j<4; j++)
 				{
 					fichier.read((char *)&tmpI, sizeof(int));
@@ -706,14 +721,13 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 				//erreur 
 			}
 			fichier.get(c);
+			//on insere l'equipe
 			listeEquipe->insere(tmpE);
 		}
 		
 	}
 	return 1;
 }
-
-
 
 int removeJoueurFromEquipe(Equipe *tmpE, Joueur *tmpJ)
 {
@@ -724,6 +738,7 @@ int removeJoueurFromEquipe(Equipe *tmpE, Joueur *tmpJ)
 	{
 		if( tmpE->getJoueur(i) != NULL && (tmpE->getJoueur(i)->getMatricule().getNumero()) == tmpJ->getMatricule().getNumero())
 		{
+			//on a le joueur a supprimer
 			tmpE->setJoueur(NULL, i);
 			ret =1;
 		}
@@ -772,6 +787,7 @@ void showInfoJoueur(ListeTriee<Joueur> listeJoueur,int matriculeint)
 	{
 		if((&It)->getMatricule().getNumero() == matriculeint)
 		{
+			//on a le bon joueur
 			cout << "Nom : " << (&It)->getNom() << endl;
 			cout << "Prénom : " << (&It)->getPrenom() << endl;
 			if((&It)->getClassement()!=NULL)
@@ -800,11 +816,14 @@ void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,List
 	{
 		if((&ItClub)->getNumClub() == nc)
 		{
+			//on a le bon club
 			CptClub++;
 			cout << endl;
 			cout << "Nom : " << (&ItClub)->getNom() << endl;
 			cout << "NumClub : " << (&ItClub)->getNumClub() << endl;
 			cout << "Adresse : " << (&ItClub)->getAdresse() << endl << endl;
+			
+			//affiche des equipe
 			for(ItEqui.reset();ItEqui.end() == 0;ItEqui++)
 			{
 				if((&ItEqui)->getClub()->getNumClub() == nc)
@@ -819,6 +838,7 @@ void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,List
 							cout << "Cette équipe ne possède aucun joueur" << endl;
 						else
 						{
+							//on affiche les joueurs
 							for(int i = 0; i < 4 ; i++)
 							{
 								if((&ItEqui)->getJoueur(i) != NULL)
