@@ -46,6 +46,7 @@ int mygetch ( void )
 
 int cleanScreen()
 {
+	//Insertion de 50 lignes vides
 	for(int i =0; i<50; i++)
 	{
 		cout << endl;
@@ -73,11 +74,13 @@ char WaitHit()
 
 int modifierPassword(Liste<Secretaire> *listeSec, Secretaire *s, char *newpass)
 {
+	//Si le mot de passe dépasse 8 caractères, erreur
 	if(strlen(newpass) != 8)
 	{
 		throw ExceptionMessage("mauvais mots de pass dans modifierPassword");
 	}
 	Iterateur<Secretaire> itSec(*listeSec);
+	//On recherche la secrétaire dans la liste
 	for(itSec.reset(); itSec.end() == 0; itSec++)
 	{
 		if(!strcmp((&itSec)->getLogin(), s->getLogin()) && !strcmp((&itSec)->getPassword(), s->getPassword()))
@@ -92,14 +95,17 @@ int modifierPassword(Liste<Secretaire> *listeSec, Secretaire *s, char *newpass)
 int showSec(Liste<Secretaire> listeSec,bool type)
 {
 	Iterateur<Secretaire> itSec(listeSec);
+	//On recherche la secrétaire dans la liste
 	for(itSec.reset(); itSec.end() == 0; itSec++)
 	{
+		//Si c'est une secrétaire de fédération
 		if((&itSec)->getNumClub() == 0 && (type == 0))
 		{
 			cout << "******************" << endl;
 			cout << "Nom : " << (&itSec)->getNom() << endl;
 			cout << "Prénom : " << (&itSec)->getPrenom() << endl;
 		}
+		//Si c'est une secrétaire de club
 		else if((&itSec)->getNumClub() != 0 && (type == 1))
 		{
 			cout << "******************" << endl;
@@ -114,6 +120,7 @@ int supprimerSec(char* firstname,char* lastname,Liste<Secretaire> *listeSec)
 {
 	Iterateur<Secretaire> itSec(*listeSec);
 	int nClub;
+	//On recherche la secrétaire dans la liste
 	for(itSec.reset();itSec.end() == 0;itSec++)
 	{
 		if(!strcmp((&itSec)->getPrenom(), firstname) && !strcmp((&itSec)->getNom(), lastname))
@@ -138,6 +145,7 @@ int supprimerSec(char* firstname,char* lastname,Liste<Secretaire> *listeSec)
 int supprimerEqu(int numero, Liste<Equipe> *listeEquipe)
 {
 	Iterateur<Equipe> it(*listeEquipe);
+	//On recherche l'équipe dans la liste
 	for(it.reset();it.end() == 0;it++)
 	{
 		if((&it)->getNumero() == numero)
@@ -211,6 +219,7 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 int supprimerJoueur(Matricule m, ListeTriee<Joueur> *listeJoueur)
 {
 	Iterateur<Joueur> itJoueur(*listeJoueur);
+	//On recherche la joueur dans la liste
 	for(itJoueur.reset();itJoueur.end() == 0;itJoueur++)
 	{
 		if(!strcmp((&itJoueur)->getMatricule().getDateInscription(),m.getDateInscription()) && ((&itJoueur)->getMatricule().getNumero() == m.getNumero()))
@@ -229,6 +238,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 	char c;
 	int matriculeint, pass=0;
 	char *nomtmp,*prenomtmp,*matrictmp,*classtmp, tmpS2[256], dummyline[255], tmpS[256];
+	//Test d'ouverture du fichier
 	if(!(fichiertxt.is_open()))
 	{
 		if(error == 1 || verbose==1)
@@ -237,6 +247,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 	}
 	else
 	{
+		//Saute la premiere ligne
 		fichiertxt.getline(dummyline,255);
 		fichiertxt.get(c);
 		for(int i=0; !fichiertxt.eof(); i++)
@@ -257,7 +268,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				
 				if(verbose==1)
 					cout << "Lu : " <<tmpS2<<endl;
-
+				//
 				matriculeint=atoi(matrictmp);
 				jtmp.setNom(nomtmp);
 				jtmp.setPrenom(prenomtmp);
