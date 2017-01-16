@@ -1,0 +1,28 @@
+**** Rencontre de division : Nationale ****************
+Equipe à domicile : Grace A
+Joueur 1 : CHRISTOPHE Ralph D2
+Joueur 2 : HUBERTY Philippe E1
+Joueur 3 : LECHANTEUR Andre F1
+
+Equipe visiteuse : Surlemez E
+Joueur A : GUYOT Adrien A10
+Joueur B : GRANDJEAN Frederic B6
+Joueur C : PETITJEAN Paul B2
+***** Encodage des resultats ********************************
+1 contre A ? 1-1
+1 contre A ? 2-2
+1 contre A ? 3-3
+2 contre A ? 3-3
+2 contre A ? 1-1
+2 contre A ? 2-2
+3 contre A ? 0-0
+3 contre A ? 3-3
+3 contre A ? 3-3
+***** Analyse des resultats **********************************
+Victoire de Surlemez E contre Grace A : 4-5
+Joueur 1 (CHRISTOPHE Ralph, D2) : 1/3, 12 points
+Joueur 2 (HUBERTY Philippe, E1) : 1/3, 19 points
+Joueur 3 (LECHANTEUR Andre, F1) : 2/3, 42 points
+Joueur A (GUYOT Adrien, A10) : 2/3, -39 points
+Joueur B (GRANDJEAN Frederic, B6) : 2/3, -21 points
+Joueur C (PETITJEAN Paul, B2) : 1/3, -17 points
