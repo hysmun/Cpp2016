@@ -120,23 +120,7 @@ int main(int argc, char *argv[])
 		char passwd[255];
 		int i;
 		
-		// fichier club
-		if(!(fichierClub.is_open()))
-		{
-			//fichier club inexistant ou pas ouvert
-			if(verbose == 1 || error == 1)
-			{
-				cout << "fichier club inexistant ! "<<endl;
-			}
-		}
-		else
-		{
-			//fichier club.dat ouvert
-			if(verbose == 1)
-				cout << "chargement fichier club"<<endl;
-			listeClub.Load(fichierClub);
-			fichierClub.close();
-		}
+		
 		
 		
 		//fichier Secretaire
@@ -157,6 +141,24 @@ int main(int argc, char *argv[])
 			fichier.close();
 			if(verbose == 1)
 				cout <<"chargement fichier secretaire "<<endl;
+			
+			// fichier club
+			if(!(fichierClub.is_open()))
+			{
+				//fichier club inexistant ou pas ouvert
+				if(verbose == 1 || error == 1)
+				{
+					cout << "fichier club inexistant ! "<<endl;
+				}
+			}
+			else
+			{
+				//fichier club.dat ouvert
+				if(verbose == 1)
+					cout << "chargement fichier club"<<endl;
+				listeClub.Load(fichierClub);
+				fichierClub.close();
+			}
 		}
 		
 		

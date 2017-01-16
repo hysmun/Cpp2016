@@ -85,6 +85,7 @@ int modifierPassword(Liste<Secretaire> *listeSec, Secretaire *s, char *newpass)
 	{
 		if(!strcmp((&itSec)->getLogin(), s->getLogin()) && !strcmp((&itSec)->getPassword(), s->getPassword()))
 		{
+			//on a la bonne secretaire
 			(&itSec)->setPassword(newpass);
 			return 0;
 		}
@@ -132,6 +133,7 @@ int supprimerSec(char* firstname,char* lastname,Liste<Secretaire> *listeSec)
 			{
 				if((strcmp((&itTmp)->getPrenom(), firstname) != 0) && (strcmp((&itTmp)->getNom(),lastname) != 0) && ((&itTmp)->getNumClub() == nClub))
 				{
+					//on a la bonne secretaire et il reste au moins une secretaire du même nClub
 					itSec.remove();
 					return 0;
 				}
@@ -150,6 +152,7 @@ int supprimerEqu(int numero, Liste<Equipe> *listeEquipe)
 	{
 		if((&it)->getNumero() == numero)
 		{
+			//on a l'equipe
 			it.remove();
 			return 0;
 		}
@@ -180,6 +183,7 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 	{
 		if(((&itTmp)->getNumClub() == cTmp.getNumClub()))
 		{
+			//il reste une secretaire dans le club
 			test = 1;
 		}
 	}
@@ -203,6 +207,7 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 	//verifie que le club et la secretaire n'existe pas déjà
 	if(!listeClub->SearchDoublet(cTmp)  &&  !listeSec->SearchDoublet(sTmp))
 	{
+		//on insere la secretaire et le club
 		listeClub->insere(cTmp);
 		listeSec->insere(sTmp);
 	}
@@ -224,6 +229,7 @@ int supprimerJoueur(Matricule m, ListeTriee<Joueur> *listeJoueur)
 	{
 		if(!strcmp((&itJoueur)->getMatricule().getDateInscription(),m.getDateInscription()) && ((&itJoueur)->getMatricule().getNumero() == m.getNumero()))
 		{
+			//on a le bon joueur
 			itJoueur.remove();
 			return 0;
 		}
@@ -249,13 +255,13 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 	{
 		//Saute la premiere ligne
 		fichiertxt.getline(dummyline,255);
+		
 		fichiertxt.get(c);
 		for(int i=0; !fichiertxt.eof(); i++)
 		{
 			Joueur jtmp;
 			try
 			{
-				
 				pass = 0;
 				fichiertxt.seekg(-1, ios::cur);
 				fichiertxt.getline(tmpS, 255, '\n');
