@@ -884,6 +884,7 @@ void menuClub(char* nomClub)
 				cout << "Veuillez entrer la lettre de l'equipe  :"<<endl;
 				cin >> lettre;
 				
+				//on supprime l'equipe
 				if(supprimerEqu(lettre, &listeEquipe) == 0)
 				{
 					if(verbose == 1)
@@ -894,6 +895,8 @@ void menuClub(char* nomClub)
 					if(verbose == 1 || error == 1)
 						cout << "equipe non supprimer !"<<endl;
 				}
+				
+				//on sauvegarde les modifs
 				sprintf(tmp,"%s.dat", nomClub);
 				if( verbose==1)
 					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
