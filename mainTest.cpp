@@ -230,8 +230,6 @@ int main(int argc, char *argv[])
 					LoadJoueurAndEquipe(Nomfichier, &listeClub, &listeJoueur, &listeEquipe);
 				}
 			}
-			
-			
 			menuFed();
 		}
 		else
@@ -367,12 +365,10 @@ void menuFed()
 				}
 				catch(InvalidPasswordException &e)
 				{
-					if(error || verbose)
 						cout << "password incorrect !"<<endl;
 				}
 				catch (ExceptionMessage &e)
 				{
-					if(error || verbose)
 						cout << "error :"<<e.getMsg()<<endl;
 				}
 				break;
@@ -592,12 +588,17 @@ void menuClub(char* nomClub)
 				sprintf(tmp,"%s.dat", nomClub);
 				if( verbose==1)
 					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
+				//on sauvegarde dans le fichier .dat du club
 				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
+				ofstream fichier("secretaires.dat",ios::out);
+				listeSec.Save(fichier);
+				fichier.close();
 				exit(0);
 				break;
 			}
 			case 1:
 			{
+				//nouveau mot de passe
 				char newpass[100];
 				cout << "Nouveau mot de passe : ";
 				cin >> newpass;
@@ -606,7 +607,8 @@ void menuClub(char* nomClub)
 				
 				if(verbose==1)
 					cout << "Mot de passe changé avec succès !" << endl;
-					
+				
+				//on sauvegarde les modifs
 				ofstream fichier("secretaires.dat",ios::out);
 				listeSec.Save(fichier);
 				fichier.close();
@@ -621,19 +623,24 @@ void menuClub(char* nomClub)
 				Classement tmpc;
 				Matricule tmpm;
 	
-	
+				//on encode le joueur
 				cin >>tmp;
 				j.setNom(tmp.getNom());
 				j.setPrenom(tmp.getPrenom());
 				cin >> tmpm;
 				j.setMatricule(tmpm);
 				
-				
 				j.setNumClub(numeroClub);
-				cout << "Encodez le classement: " << flush;
-				cin >> tmpc;
-				j.setClassement(&tmpc);
+				try
+				{
+					cout << "Encodez le classement: " << flush;
+					cin >> tmpc;
+					j.setClassement(&tmpc);
+				}
+				catch(InvalidClassementException &e)
+				{}
 				
+				//on insere le joueur
 				listeJoueur.insere(j);
 				if(verbose==1)
 					cout << " joueur insere "<<endl;
@@ -643,7 +650,7 @@ void menuClub(char* nomClub)
 			{
 				//supprimer un joueur
 				Matricule m;
-				
+				cout << "veuillez entrez le matricule du joueur a supprimer :"<<endl;
 				cin >> m;
 				if(supprimerJoueur(m,&listeJoueur) == 0)
 				{
@@ -678,7 +685,7 @@ void menuClub(char* nomClub)
 				DIR *pDir;
 				dirent *pElementDir;
 				int len;
-				char nomFich[20];
+				char nomFich[255];
 				if((pDir = opendir(".")) == NULL)
 				{
 					//erreur
@@ -697,11 +704,11 @@ void menuClub(char* nomClub)
 							i++;
 						}
 					}
-					cout <<endl<<endl<< "Nom du fichier pour insertion : ";
-					cin >> nomFich;
-					importFichierJoueur(&listeJoueur,nomFich,numeroClub);
-					
 				}
+				cout <<endl<<endl<< "Nom du fichier pour insertion : ";
+				cin >> nomFich;
+				//on importe dans les listes
+				importFichierJoueur(&listeJoueur,nomFich,numeroClub);
 				break;
 			}
 			case 7:
@@ -716,9 +723,12 @@ void menuClub(char* nomClub)
 					if(verbose==1)
 						cout << "equipe cree !!"<<endl;
 				}
+				
 				sprintf(tmp,"%s.dat", nomClub);
 				if( verbose==1)
 					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
+				
+				//on save les modifs
 				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				break;
 			}
@@ -733,6 +743,7 @@ void menuClub(char* nomClub)
 				cout << "Veuillez entrer la lettre de l'equipe ou ajouter le joueur :"<<endl;
 				cin >> lettre;
 				
+				//on recupere l'equipe
 				tmpE = getEquipeWithNum(&listeEquipe, lettre, *clubSec);
 				if(tmpE == NULL)
 				{
@@ -741,9 +752,11 @@ void menuClub(char* nomClub)
 				}
 				else
 				{
+					//l'equipe existe
 					cout << "Veuillez entrer le numero de matricule du joueur "<< endl;
 					cin >> num;
-				
+					
+					//on recupere le joueur
 					tmpJ = getJoueurWithNum(&listeJoueur, num);
 					if(tmpJ == NULL)
 					{
@@ -752,6 +765,8 @@ void menuClub(char* nomClub)
 					}
 					else
 					{
+						//le joueur et l'equpe existe 
+						//on l'ajoute a la premiere place libre
 						for(int i=0; i<4; i++)
 						{
 							if(tmpE->getJoueur(i) == NULL)
@@ -771,6 +786,8 @@ void menuClub(char* nomClub)
 							if(verbose==1)
 								cout <<endl<< "Joueur ajouter a l'equipe !"<< endl << *tmpE<<endl;
 						}
+						
+						//on sauvegarde les modif
 						sprintf(tmp,"%s.dat", nomClub);
 						if( verbose==1)
 							cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
