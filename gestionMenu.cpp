@@ -1033,7 +1033,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 		pEquipeVis->printfClubLettre();
 		cout << " contre "<<flush;
 		pEquipeDom->printfClubLettre();
-		cout << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
+		cout << " : "<< pointEquipeVis << "-" << pointEquipeDom<<endl;
 	}
 	//affichage des res par joueur
 	
@@ -1163,7 +1163,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			{
 				if( pEquipeDom->getJoueur(i) != NULL && pEquipeVis->getJoueur(j) != NULL)
 				{
-					fichier << i << " contre " << lettre[cptTmp] << " ? "<< resultat[i][j][0]<<"-"<<resultat[i][j][0]<<endl;
+					fichier << i << " contre " << lettre[cptTmp] << " ? "<< resultat[i][j][0]<<"-"<<resultat[i][j][1]<<endl;
 				}
 			}//fin for() j=4
 		}//fin for() i=4
@@ -1195,7 +1195,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			fichier << pEquipeVis->getClub()->getNom() << " " << pEquipeVis->getNumero();
 			fichier << " contre "<<flush;
 			fichier << pEquipeDom->getClub()->getNom() << " " << pEquipeDom->getNumero();
-			fichier << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
+			fichier << " : "<< pointEquipeVis << "-" << pointEquipeDom<<endl;
 		}
 		//affichage des res par joueur
 	
