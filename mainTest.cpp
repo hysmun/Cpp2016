@@ -377,7 +377,6 @@ void menuFed()
 				}
 				break;
 			}
-			
 			case 3:
 			{
 				//afficher tout les clubs
@@ -385,25 +384,26 @@ void menuFed()
 				listeClub.Affiche();
 				break;
 			}
-			
 			case 4:
 			{
 				//afficher les infos et joueur d'un club
-				
 				showInfoClub(listeClub,listeJoueur,listeEquipe);
 				break;
 			}
-			
 			case 5:
 			{
 				//cree nouvelle secretaire
+				//on encode la secretaire
 				Secretaire s;		
 				cin >> s;
+				//on verifie si la secretaire existe dans la liste
 				if(listeSec.SearchDoublet(s) == 0)
 				{
+					//pas de doublon on insere
 					listeSec.insere(s);
 					if(verbose == 1)
 						cout << "Insertion réussie" << endl;
+					//on sauvegarde
 					ofstream fichier("secretaires.dat",ios::out);
 					listeSec.Save(fichier);
 					fichier.close();
@@ -414,53 +414,52 @@ void menuFed()
 						cout << "Erreur insertion" << endl;
 				}
 				break;
-			}		
-				
+			}//fin case 5
 			case 6:
 			{
 				//afficher TOUTE les secretaire
 				showSec(listeSec,0);
 				break;
 			}
-			
 			case 7:
 			{
 				//afficher les secretaire d'un club
 				showSec(listeSec,1);
 				break;
 			}
-			
 			case 8:
 			{
 				//suprimer un secretaire
-				char firstname[20],lastname[20];
+				char firstname[255],lastname[255];
 				cout << "Nom : ";
 				cin >> lastname;
 				cout << "Prénom : ";
 				cin >> firstname;
+				//on test si la suppression est reussie
 				if(supprimerSec(firstname,lastname,&listeSec) == 0)
 				{
 					if(verbose == 1)
 						cout << "Secrétaire supprimé(e)" << endl;
+					
+					//sauvegarde des modifs
 					ofstream fichier("secretaires.dat",ios::out);
 					listeSec.Save(fichier);
 					fichier.close();
 				}
 				else
 				{
+					//supression rater
 					if(error == 1 || verbose==1)
 						cout << "Erreur suppression" << endl;
 				}
 				break;
 			}
-			
 			case 9:
 			{
 				//afficher tous les joueurs
 				printListeJoueur(listeJoueur);
 				break;
 			}
-			
 			case 10:
 			{
 				//afficher tout les joueurs pour un classement de lettre donnee
@@ -474,17 +473,16 @@ void menuFed()
 					cin >> letclass;
 					letclass=toupper(letclass);
 				}
+				//on affiche le joueur
 				showJoueurWthClassement(listeJoueur,letclass);
 				break;
 			}
-			
 			case 11:
 			{
 				//afficher toutes les equipes
 				printListeEquipe(listeEquipe);
 				break;
 			}
-			
 			case 12:
 			{
 				//afficher les info d'une equipe
@@ -498,10 +496,10 @@ void menuFed()
 				
 				tmpC.setNumClub(numTmp);
 				
-				
 				cout << "Veuillez entrer la lettre de l'equipe  :"<<endl;
 				cin >> lettre;
 				
+				//on recupere l'equipe
 				tmpE = getEquipeWithNum(&listeEquipe, lettre, tmpC);
 				if(tmpE == NULL)
 				{
@@ -510,20 +508,14 @@ void menuFed()
 						
 					break;
 				}
+				//affichage de l'equipe
 				cout << *tmpE<<endl;
 				break;
 			}//fin case 12
-			
 			case 13:
 			{
-				try 
-				{
+				//simulation et exportatione en .txt
 				SimAndExportRes(&listeEquipe,&listeJoueur,&listeClub);
-				}
-				catch(ExceptionMessage &e)
-				{
-					cout << e.getMsg() <<endl;
-				}
 				break;
 			}
 		}//fin switch menu fed
