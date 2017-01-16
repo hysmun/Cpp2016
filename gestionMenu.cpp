@@ -115,6 +115,7 @@ int showSec(Liste<Secretaire> listeSec,bool type)
 			cout << "Numéro de club : " << (&itSec)->getNumClub() << endl;
 		}
 	}
+	return 1;
 }
 
 int supprimerSec(char* firstname,char* lastname,Liste<Secretaire> *listeSec)
@@ -141,7 +142,7 @@ int supprimerSec(char* firstname,char* lastname,Liste<Secretaire> *listeSec)
 			return -1;
 		}
 	}
-
+	return -1;
 }
 
 int supprimerEqu(int numero, Liste<Equipe> *listeEquipe)
@@ -165,7 +166,7 @@ int addClub(ListeTriee<Club> *listeClub, Liste<Secretaire> *listeSec)
 	Club cTmp;
 	Secretaire sTmp;
 	char tmp[100], pass[100];
-	int tmpint, test =0;
+	int test =0;
 	Personne tmpp;
 	if(listeClub == NULL || listeSec == NULL)
 	{
@@ -432,13 +433,14 @@ int printListeSec(Liste<Secretaire> listeSec)
 		cout << &pParc <<endl;
 		pParc++;
 	}
+	return 1;
 }
 
 int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
 {
 	int len, tmp, i;
 	
-	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
+	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL || listeEquipe == NULL)
 	{
 		//erreur !!!
 		throw ExceptionMessage("Erreur sauvegarde Joueur !!!!");
@@ -638,7 +640,7 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 	char tmpS[255];
 
 	
-	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
+	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL || listeEquipe == NULL)
 	{
 		//erreur !!!
 		if(verbose==1 || error == 1)
@@ -731,7 +733,6 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 
 int removeJoueurFromEquipe(Equipe *tmpE, Joueur *tmpJ)
 {
-	int tmpI;
 	int ret = -1;
 	
 	for(int i=0; i<4; i++)
@@ -878,10 +879,9 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	//lancer un match + exporter resultat en .txt
 	int clubDom, clubVis, cptTmp=0; 
 	char letDom,letVis;
-	int nbrJoueurDom, nbrJoueurVis, nbrMatch;
+	int nbrJoueurDom, nbrJoueurVis;
 	Club *pClubVis, *pClubDom;
 	char lettre[4] = {'A','B','C','D'};
-	char nomFich[20];
 	Equipe *pEquipeVis, *pEquipeDom;
 	cout << "Equipe domicile : " << endl;
 	cout << "Num Club ? ";
@@ -967,9 +967,8 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 		}
 	}
 	cout << endl;
-	nbrMatch = nbrJoueurDom * nbrJoueurVis;
 	cout << "***** Encodage des resultats ********************************"<<endl;
-	int nbr, resOK;
+	int resOK;
 	int resultat[4][4][2];
 	char buf[255];
 	
@@ -1285,6 +1284,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			}
 		}//fin for() j=4
 	}//fin else !fichier.is_open()
+	return 1;
 }
 
 

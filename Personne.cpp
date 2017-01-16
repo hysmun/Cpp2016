@@ -147,7 +147,6 @@ istream &operator>>(istream &s, Personne &j)
 
 void Personne::Save(ofstream &fichier) const
 {
-	char buf[255];
 	int tmp;
 	// save nom
 	tmp = strlen(getNom())+1;

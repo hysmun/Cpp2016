@@ -125,8 +125,10 @@ void Classement::setCl(char n , int x)
 			throw InvalidClassementException("Nombre invalide !");
 			break;
 		case 'N':
-			if( x = 67)
-			
+			if( x == 67)
+			{
+				//on ne fait rien 
+			}
 			return;
 			break;
 		default:
@@ -140,8 +142,6 @@ void Classement::setValeur(int x)
 {
 
 	// 0x41 'A'	
-	
-	int tmp;
 	if(x <= 0 || x >= 37)
 	{
 		throw InvalidClassementException("Classement invalide !");

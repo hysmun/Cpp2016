@@ -1,10 +1,10 @@
-.SILENT:
+#.SILENT:
 ALLPROG= Test1 Test2 Test3 Test4 Test5 Test6 Test7 main mainTest
 ALLOBJ = Joueur.o Matricule.o Classement.o Personne.o Membre.o Secretaire.o InvalidClassementException.o InvalidPasswordException.o ListeBase.o Liste.o ListeTriee.o Iterateur.o Equipe.o Club.o ExceptionMessage.o gestionMenu.o
 ALLCPP = 
 ALLHEADER = 
 TMP = commentaire de base
-CFLAGS = 
+CFLAGS = -Wall
 
 all:
 	clear
@@ -35,7 +35,7 @@ main: main.o $(ALLOBJ)
 
 mainTest: mainTest.o $(ALLOBJ)
 	echo $@
-	g++ mainTest.o $(ALLOBJ) -o mainTest -Wall
+	g++ mainTest.o $(ALLOBJ) -o main -Wall
 
 Test1: test1.o $(ALLOBJ)
 	echo $@
@@ -75,39 +75,39 @@ Test7: test7.o $(ALLOBJ)
 
 test1.o: Test1.cpp
 	echo $@
-	g++ Test1.cpp -c -o test1.o -Wall
+	g++ Test1.cpp -c -o test1.o $(CFLAGS)
 
 test2.o: Test2.cpp
 	echo $@
-	g++ Test2.cpp -c -o test2.o -Wall
+	g++ Test2.cpp -c -o test2.o $(CFLAGS)
 
 test3.o: Test3.cpp
 	echo $@
-	g++ Test3.cpp -c -o test3.o -Wall
+	g++ Test3.cpp -c -o test3.o $(CFLAGS)
 
 test4.o: Test4.cpp
 	echo $@
-	g++ Test4.cpp -c -o test4.o -Wall
+	g++ Test4.cpp -c -o test4.o $(CFLAGS)
 
 test5.o: Test5.cpp
 	echo $@
-	g++ Test5.cpp -c -o test5.o -Wall
+	g++ Test5.cpp -c -o test5.o $(CFLAGS)
 
 test6.o: Test6.cpp
 	echo $@
-	g++ Test6.cpp -c -o test6.o -Wall
+	g++ Test6.cpp -c -o test6.o $(CFLAGS)
 
 test7.o : Test7.cpp
 	echo $@
-	g++ Test7.cpp -c -o test7.o -Wall
+	g++ Test7.cpp -c -o test7.o $(CFLAGS)
 
 main.o: main.cpp
 	echo $@
-	g++ main.cpp -c -o main.o -Wall
+	g++ main.cpp -c -o main.o $(CFLAGS)
 	
 mainTest.o: mainTest.cpp
 	echo $@
-	g++ mainTest.cpp -c -o mainTest.o -Wall
+	g++ mainTest.cpp -c -o mainTest.o $(CFLAGS)
 
 
 
@@ -119,67 +119,67 @@ mainTest.o: mainTest.cpp
 
 Joueur.o: Joueur.h Joueur.cpp
 	echo $@
-	g++ Joueur.cpp -c -o Joueur.o -Wall
+	g++ Joueur.cpp -c -o Joueur.o $(CFLAGS)
 
 Matricule.o: Matricule.h Matricule.cpp
 	echo $@
-	g++ Matricule.cpp -c -o Matricule.o
+	g++ Matricule.cpp -c -o Matricule.o $(CFLAGS)
 
 Classement.o: Classement.h Classement.cpp
 	echo $@
-	g++ Classement.cpp -c -o Classement.o
+	g++ Classement.cpp -c -o Classement.o $(CFLAGS)
 
 Personne.o: Personne.h Personne.cpp
 	echo $@
-	g++ Personne.cpp -c -o Personne.o
+	g++ Personne.cpp -c -o Personne.o $(CFLAGS)
 
 Membre.o: Membre.h Membre.cpp
 	echo $@
-	g++ Membre.cpp -c -o Membre.o
+	g++ Membre.cpp -c -o Membre.o $(CFLAGS)
 
 Secretaire.o: Secretaire.h Secretaire.cpp
 	echo $@
-	g++ Secretaire.cpp -c -o Secretaire.o
+	g++ Secretaire.cpp -c -o Secretaire.o $(CFLAGS)
 
 InvalidClassementException.o: InvalidClassementException.h InvalidClassementException.cpp
 	echo $@
-	g++ InvalidClassementException.cpp -c -o InvalidClassementException.o
+	g++ InvalidClassementException.cpp -c -o InvalidClassementException.o $(CFLAGS)
 
 InvalidPasswordException.o: InvalidPasswordException.h InvalidPasswordException.cpp
 	echo $@
-	g++ InvalidPasswordException.cpp -c -o InvalidPasswordException.o
+	g++ InvalidPasswordException.cpp -c -o InvalidPasswordException.o $(CFLAGS)
 
 Iterateur.o: Iterateur.cpp Iterateur.h
 	echo $@
-	g++ Iterateur.cpp -c -o Iterateur.o
+	g++ Iterateur.cpp -c -o Iterateur.o $(CFLAGS)
 
 ListeBase.o: ListeBase.cpp ListeBase.h
 	echo $@
-	g++ ListeBase.cpp -c -o ListeBase.o
+	g++ ListeBase.cpp -c -o ListeBase.o $(CFLAGS)
 
 Liste.o: Liste.cpp Liste.h
 	echo $@
-	g++ Liste.cpp -c -o Liste.o
+	g++ Liste.cpp -c -o Liste.o $(CFLAGS)
 
 ListeTriee.o: ListeTriee.cpp ListeTriee.h
 	echo $@
-	g++ ListeTriee.cpp -c -o ListeTriee.o
+	g++ ListeTriee.cpp -c -o ListeTriee.o $(CFLAGS)
 
 Club.o: Club.cpp Club.h
 	echo $@
-	g++ Club.cpp -c -o Club.o
+	g++ Club.cpp -c -o Club.o $(CFLAGS)
 
 Equipe.o: Equipe.cpp Equipe.h
 	echo $@
-	g++ Equipe.cpp -c -o Equipe.o
+	g++ Equipe.cpp -c -o Equipe.o $(CFLAGS)
 
 ExceptionMessage.o: ExceptionMessage.cpp ExceptionMessage.h
 	echo $@
-	g++ ExceptionMessage.cpp -c -o ExceptionMessage.o
+	g++ ExceptionMessage.cpp -c -o ExceptionMessage.o $(CFLAGS)
 
 gestionMenu.o: gestionMenu.cpp gestionMenu.h
 	echo $@
-	g++ gestionMenu.cpp -c -o gestionMenu.o
+	g++ gestionMenu.cpp -c -o gestionMenu.o $(CFLAGS)
 
 
 # -------------------------------------------------

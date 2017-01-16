@@ -118,6 +118,7 @@ int Equipe::setNumero(char num)
 		return -1;
 		
 	numero = num;
+	return 1;
 }
 
 int Equipe::setDivision(const char *div)
@@ -129,7 +130,7 @@ int Equipe::setDivision(const char *div)
 		division = new char[strlen(div)+1];
 		strcpy(division, div);
 	}
-	
+	return 1;
 }
 
 int Equipe::setJoueur(Joueur *tmpJoueur, int nbr)
@@ -139,7 +140,7 @@ int Equipe::setJoueur(Joueur *tmpJoueur, int nbr)
 	
 	
 	jJoueur[nbr] = tmpJoueur;
-	
+	return 1;
 }
 
 
@@ -167,6 +168,7 @@ ostream &operator<<(ostream &s, const Equipe &e)
 			s<< " pas de joueur " << i<<endl;
 		}
 	}
+	return s;
 }
 
 istream &operator>>(istream &s, Equipe &e)
@@ -174,12 +176,7 @@ istream &operator>>(istream &s, Equipe &e)
 	Joueur tmpJoueur;
 	char nbr;
 	char tmpDiv[100];
-	//Club tmpClub;
-	int i;
 
-	//s >> tmpClub;
-	//e.setClub(&tmpClub);
-	
 	cout << "veuillez entrez le numero de l'equipe (A, B, C, D, ...)"<<endl;
 	s>> nbr;
 	e.setNumero(nbr);
@@ -188,13 +185,7 @@ istream &operator>>(istream &s, Equipe &e)
 	s>> tmpDiv;
 	e.setDivision(tmpDiv);
 	
-	/*for(i=0; i<4; i++)
-	{
-		cout << " joueur "<< i<< endl;
-		s>>tmpJoueur;
-		e.setJoueur(&tmpJoueur,i);
-	}*/
-	
+	return s;
 }
 
 Equipe &Equipe::operator=(const Equipe &tmpEquipe)
@@ -252,32 +243,7 @@ void Equipe::Save(ofstream &fichier) const
 
 void Equipe::Load(ifstream &fichier)
 {
-	int len, tmp, i;
-	char ctmp;
-	
-	/*
-	
-	fichier.read((char *)&tmp, sizeof(int));
-	
-	ctmp = getNumero();
-	fichier.write(&ctmp, sizeof(char));
-	
-	len = strlen(getDivision())+1;
-	fichier.write((char *)&len, sizeof(int));
-	fichier.write(getDivision(), sizeof(len));
-	
-	for(i=0; i<4; i++)
-	{
-		if(getJoueur() == NULL)
-			tmp = 0;
-		else
-			tmp = getJoueur()->getNumero();
-		fichier.write((char *)&tmp, sizeof(int));
-	}
-	*/
-	
-	
-	return;
+	throw ExceptionMessage("Load Equipe inutilisable !!!");
 }
 
 void Equipe::printfClubLettre()const

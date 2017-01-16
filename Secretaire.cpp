@@ -54,7 +54,7 @@ int Secretaire::Affiche(void)
 ********************************/
 int Secretaire::setLogin(const char *tmp)
 {
-	int i, lenght;
+	int lenght;
 	if(tmp == NULL)
 	{
 		return -1;
@@ -78,6 +78,7 @@ int Secretaire::setLogin(const char *tmp)
 		sprintf(temp, "mauvis login car taille = %d --- %s", lenght, tmp);
 		//throw ExceptionMessage(temp);
 	}
+	return 1;
 }
 int Secretaire::setPassword(const char *tmp)
 {
@@ -110,6 +111,7 @@ int Secretaire::setPassword(const char *tmp)
 	
 
 	strcpy(password, tmp);
+	return 1;
 }
 
 /***************************************
@@ -193,7 +195,6 @@ int Secretaire::operator==(const Secretaire &tmpSecretaire)
 
 void Secretaire::Save(ofstream &fichier) const
 {
-	char buf[9];
 	// save login
 	Membre::Save(fichier);
 	fichier.write(getLogin(),9);
