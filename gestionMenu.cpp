@@ -710,14 +710,17 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 int removeJoueurFromEquipe(Equipe *tmpE, Joueur *tmpJ)
 {
 	int tmpI;
+	int ret = -1;
 	
 	for(int i=0; i<4; i++)
 	{
 		if( tmpE->getJoueur(i) != NULL && (tmpE->getJoueur(i)->getMatricule().getNumero()) == tmpJ->getMatricule().getNumero())
 		{
 			tmpE->setJoueur(NULL, i);
+			ret =1;
 		}
 	}
+	return ret;
 }
 
 

@@ -807,6 +807,7 @@ void menuClub(char* nomClub)
 				cout << "Veuillez entrer la lettre de l'equipe ou ajouter le joueur :"<<endl;
 				cin >> lettre;
 				
+				//on recupere l'equipe
 				tmpE = getEquipeWithNum(&listeEquipe, lettre, *clubSec);
 				if(tmpE == NULL)
 				{
@@ -817,7 +818,7 @@ void menuClub(char* nomClub)
 				{
 					cout << "Veuillez entrer le numero de matricule du joueur "<< endl;
 					cin >> num;
-				
+					//on recupere le joueur
 					tmpJ = getJoueurWithNum(&listeJoueur, num);
 					if(tmpJ == NULL)
 					{
@@ -826,14 +827,22 @@ void menuClub(char* nomClub)
 					}
 					else
 					{
-						removeJoueurFromEquipe(tmpE, tmpJ);
+						//on supprime le joueur
+						if(removeJoueurFromEquipe(tmpE, tmpJ)==1)
+						{
 				
-						if(verbose==1)
-							cout << "joueur enlever de l'equipe"<<endl;
-						sprintf(tmp,"%s.dat", nomClub);
-						if( verbose==1)
-							cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
-						SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
+							if(verbose==1)
+								cout << "joueur enlever de l'equipe"<<endl;
+							sprintf(tmp,"%s.dat", nomClub);
+							if( verbose==1)
+								cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
+							SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
+						}
+						else
+						{
+							if(verbose==1 || error == 1)
+								cout << "suppression rater"<<endl;
+						}
 					}
 				}
 				break;
@@ -847,6 +856,7 @@ void menuClub(char* nomClub)
 				cout << "Veuillez entrer la lettre de l'equipe  :"<<endl;
 				cin >> lettre;
 				
+				//on recupere l'equipe
 				tmpE = getEquipeWithNum(&listeEquipe, lettre, *clubSec);
 				if(tmpE == NULL)
 				{
@@ -855,6 +865,7 @@ void menuClub(char* nomClub)
 						
 					break;
 				}
+				//on affiche l'equipe'
 				cout << *tmpE<<endl;
 				
 				break;
