@@ -1266,7 +1266,6 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 				fichier << ") : "<< tmpRes << "/" << nbrJoueurDom << ", "<< tmpPts << " points"<<endl;
 			}
 		}//fin for() j=4
-		
 	}//fin else !fichier.is_open()
 }
 
