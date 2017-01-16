@@ -889,8 +889,8 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	if(pEquipeDom == NULL || pEquipeVis == NULL)
 		throw ExceptionMessage("une des 2 Equipes n'existe pas !");
 		
-//	if(strcmp(pEquipeDom->getDivision(), pEquipeVis->getDivision()) != 0)
-//		throw ExceptionMessage("La division n'est pas la meme !!");
+	if(strcmp(pEquipeDom->getDivision(), pEquipeVis->getDivision()) != 0)
+		throw ExceptionMessage("La division n'est pas la meme !!");
 	
 	// on compte le nbr de joueur
 	nbrJoueurDom = pEquipeDom->getNbrJoueur();
