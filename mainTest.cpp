@@ -3,12 +3,10 @@
 *
 *
 *
-*		main pour test personnel !!!
+*		Fait par Brajkovic Antoine et Remy Mauhin 2016-2017
 *
 *
 */
-
-//rezusd
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -41,11 +39,13 @@ char nomClub[100];
 void menuFed();
 void menuClub(char*);
 
+//instanciation des listes utilisées
 Liste<Secretaire> listeSec;
 ListeTriee<Club> listeClub;
 ListeTriee<Joueur> listeJoueur;
 Liste<Equipe> listeEquipe;
 
+//les differents mode par defaut non verbose et error
 int verbose = 0;
 int error = 1;
 
@@ -67,15 +67,18 @@ int main(int argc, char *argv[])
 				switch(argv[j][1])
 				{
 					case 'v':
+						//mode verbose
 						verbose = 1;
 						cout <<"      mode verbose        "<<endl;
 						break;
 					case 'e':
+						//non affichage des erreurs
 						error = 0;
 						cout << "      mode non-affichage des erreurs  "<<endl;
 						break;
 					case 'h':
 					{
+						//help
 						cout <<endl<< "-------   HELP ----------"<<endl<<endl;
 						cout << "liste des options:"<<endl;
 						cout << "-v   pour le mode verbose (affichage suplémentaire de ce que fait le programme)"<<endl;
@@ -86,6 +89,7 @@ int main(int argc, char *argv[])
 					}
 					case 'i':
 					{
+						//info
 						cout <<endl<< "------------------------------------ ------"<<endl;
 						cout << "Programme de gestion du tennis "<<endl<<endl;;
 						cout << "fait par :"<<endl;
@@ -110,16 +114,21 @@ int main(int argc, char *argv[])
 
 	try
 	{
+		//les deux fichier a avoir
 		ifstream fichier("secretaires.dat",ios::in);
 		ifstream fichierClub("clubs.dat",ios::in);
 		
-		char passwd[100];
+		char passwd[255];
 		int i;
 		
 		// fichier club
 		if(!(fichierClub.is_open()))
 		{
 			//fichier club inexistant ou pas ouvert
+			if(verbose == 1 || error == 1)
+			{
+				cout << "fichier club inexistant ! "<<endl;
+			}
 		}
 		else
 		{
@@ -134,6 +143,10 @@ int main(int argc, char *argv[])
 		//fichier Secretaire
 		if(!(fichier.is_open()))
 		{
+			if(verbose == 1 || error == 1)
+			{
+				cout << "bidonnage de secretaire.dat"<<endl;
+			}
 			bidonnageSec();
 			ifstream fichierSec("secretaires.dat", ios::in);
 			listeSec.Load(fichierSec);
@@ -156,6 +169,7 @@ int main(int argc, char *argv[])
 		cout << "********** Bienvenue !!! **********" << endl;
 		cout << "***********************************" << endl << endl;
 		
+		//test du login de la secretaire !
 		try
 		{
 			cout << "Login : ";
@@ -195,19 +209,21 @@ int main(int argc, char *argv[])
 			}
 			catch(InvalidPasswordException &e)
 			{
-				//
+				//on catch pour gere si le mdp taper n'es pas formater correctement
 			}
 		}
 		
+		//on prends le numclub de la secretaire pour savoir si c'est federation ou de club
 		numeroClub = s.getNumClub();
 		if(verbose == 1)
 			cout <<endl<<endl<<"Bienvenue :"<<endl<< s << endl;
 		
+		//si c'est federation
 		if(numeroClub == 0)
 		{
 			clubSec = NULL;
 			
-			
+			//on charge tout les fichier club .dat
 			Iterateur<Club> ItC(listeClub);
 			for(ItC.reset(); ItC.end() == 0; ItC++)
 			{
@@ -224,22 +240,26 @@ int main(int argc, char *argv[])
 		}
 		else
 		{
-			listeClub.Affiche();
+			//si c'est de club
+			if(verbose == 1)
+				listeClub.Affiche();
 			clubSec = getClubWithNum(&listeClub, numeroClub);
 			//cout << "Club : "<<tmpC<<endl<< *tmpC;
 			if(clubSec != NULL)
 			{
+				//le club existe
 				strcpy(nomClub, clubSec->getNom());
 				char Nomfichier[255];
 				sprintf(Nomfichier, "%s.dat", nomClub);
+				//on charge les joueur et equipe du club
 				LoadJoueurAndEquipe(Nomfichier, &listeClub, &listeJoueur, &listeEquipe);
-				menuClub(nomClub);	//lancer l'interface petite bite
+				menuClub(nomClub);
 			}
 		}
 	}
 	catch(ExceptionMessage &e)
 	{
-		cerr << e.getMsg()<< endl;
+		cerr << "erreur : " << e.getMsg()<< endl;
 	}
 	catch(InvalidClassementException &e)
 	{
@@ -255,13 +275,21 @@ int main(int argc, char *argv[])
 	}
 }
 
+/*******************************************
+*
+*
+*		Menu de secretaire de federation
+*
+*
+****************************************/
 void menuFed()
 {
 	int ch=14;
 	cleanScreen();
 	while(ch != 0)
 	{
-		
+		try
+		{
 		cout << "********************************************************************" << endl;
 		cout << "********* Gestion de la Fédération de Tennis de Table **************" << endl;
 		cout << "********************************************************************" << endl << endl;
@@ -291,7 +319,7 @@ void menuFed()
 		{
 			case 0:
 			{
-				//save
+				//save des modifs possibles
 				ofstream fichier("secretaires.dat",ios::out);
 				listeSec.Save(fichier);
 				fichier.close();
@@ -310,17 +338,13 @@ void menuFed()
 				char newpass[100];
 				cout << "Nouveau mot de passe : ";
 				cin >> newpass;
-				try
-				{
-					modifierPassword(&listeSec,&s,newpass);
-				}
-				catch(ExceptionMessage &e)
-				{
-					cerr << e.getMsg() << endl;
-					break;
-				}
+				
+				modifierPassword(&listeSec,&s,newpass);
+				
 				if(verbose == 1)
 					cout << "Mot de passe changé avec succès !" << endl;
+				
+				//on sauvegarde directement les modifications
 				ofstream fichier("secretaires.dat",ios::out);
 				listeSec.Save(fichier);
 				fichier.close();
@@ -332,13 +356,17 @@ void menuFed()
 				//cree un club
 				try
 				{
+					//on ajoute un club 
 					addClub(&listeClub, &listeSec);
+					
+					//on sauvegarde les modifs
 					ofstream fichierClub("clubs.dat",ios::out);
 					listeClub.Save(fichierClub);
 					fichierClub.close();
 					ofstream fichier("secretaires.dat",ios::out);
 					listeSec.Save(fichier);
 					fichier.close();
+					
 					if(verbose == 1)
 						cout << "Club et secretaire ajouter "<<endl;
 				}
@@ -350,7 +378,7 @@ void menuFed()
 				catch (ExceptionMessage &e)
 				{
 					if(error || verbose)
-						cout << e.getMsg()<<endl;
+						cout << "error :"<<e.getMsg()<<endl;
 				}
 				break;
 			}
@@ -366,15 +394,8 @@ void menuFed()
 			case 4:
 			{
 				//afficher les infos et joueur d'un club
-				cleanScreen();
-				try
-				{
-					showInfoClub(listeClub,listeJoueur,listeEquipe);
-				}
-				catch(ExceptionMessage &e)
-				{
-					cout << e.getMsg() << endl;
-				}
+				
+				showInfoClub(listeClub,listeJoueur,listeEquipe);
 				break;
 			}
 			
@@ -496,7 +517,7 @@ void menuFed()
 				}
 				cout << *tmpE<<endl;
 				break;
-			}
+			}//fin case 12
 			
 			case 13:
 			{
@@ -510,16 +531,42 @@ void menuFed()
 				}
 				break;
 			}
-		}
+		}//fin switch menu fed
 		WaitHit();
 		cleanScreen();
 		//cout<<endl<<endl<<endl;
-	}
+		}
+		catch(InvalidClassementException &e)
+		{
+			//
+			cout << "erreur classement :"<<e.getMsg()<<endl;
+		}
+		catch(InvalidPasswordException &e)
+		{
+			//
+			cout << "erreur password :"<<e.getMsg()<<endl;
+		}
+		catch(ExceptionMessage &e)
+		{
+			//
+			cout << "erreur :"<<e.getMsg()<<" --- "<<e.getNbrErr()<<endl;
+		}
+		catch(...)
+		{
+			//erreur inconnue
+			cout << "erreur inconue"<<endl;
+		}
+	}//fin while()
 }
 
 
-
-
+/**************************************
+*
+*
+*	Menu de secretaire de club
+*
+*
+*************************************/
 void menuClub(char* nomClub)
 {
 	int ch= 14;
@@ -527,7 +574,8 @@ void menuClub(char* nomClub)
 	cleanScreen();
 	while(ch != 0)
 	{
-		
+		try
+		{
 		cout << "********************************************************************" << endl;
 		cout << "		Club de Tennis de Table : " << nomClub << endl;
 		cout << "********************************************************************" << endl << endl;
@@ -560,29 +608,22 @@ void menuClub(char* nomClub)
 					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
 				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				exit(0);
+				break;
 			}
-			break;
-			
 			case 1:
 			{
 				char newpass[100];
 				cout << "Nouveau mot de passe : ";
 				cin >> newpass;
-				try
-				{
-					modifierPassword(&listeSec,&s,newpass);
-				}
-				catch(ExceptionMessage &e)
-				{
-					cerr << e.getMsg() << endl;
-				}
+				
+				modifierPassword(&listeSec,&s,newpass);
+				
 				if(verbose==1)
 					cout << "Mot de passe changé avec succès !" << endl;
+					
 				ofstream fichier("secretaires.dat",ios::out);
 				listeSec.Save(fichier);
 				fichier.close();
-				
-				
 				
 				break;
 			}						
@@ -612,7 +653,6 @@ void menuClub(char* nomClub)
 					cout << " joueur insere "<<endl;
 				break;
 			}
-			
 			case 3:
 			{
 				//supprimer un joueur
@@ -631,14 +671,12 @@ void menuClub(char* nomClub)
 				}
 				break;
 			}
-			
 			case 4:
 			{
 				//afficher tous les joueurs (nom, prenom, classement)
 				printListeJoueur(listeJoueur);
 				break;
 			}
-			
 			case 5:
 			{
 				//afficher toutes les infos d'un seul joueur
@@ -648,7 +686,6 @@ void menuClub(char* nomClub)
 				showInfoJoueur(listeJoueur,matriculeint);
 				break;
 			}
-			
 			case 6:
 			{
 				// importer un ensemble de joueur d'un fichier .txt
@@ -681,7 +718,6 @@ void menuClub(char* nomClub)
 				}
 				break;
 			}
-			
 			case 7:
 			{
 				//cree une equipe
@@ -700,7 +736,6 @@ void menuClub(char* nomClub)
 				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				break;
 			}
-			
 			case 8:
 			{
 				//ajouter un joueur a une equipe
@@ -717,46 +752,47 @@ void menuClub(char* nomClub)
 				{
 					if(error == 1 || verbose==1)
 						cerr << "erreur Equipe non existante!"<<endl;
-					break;
-				}
-				
-				cout << "Veuillez entrer le numero de matricule du joueur "<< endl;
-				cin >> num;
-				
-				tmpJ = getJoueurWithNum(&listeJoueur, num);
-				if(tmpJ == NULL)
-				{
-					if(verbose==1 || error ==1)
-						cerr << "erreur joueur non existant!"<<endl;
-					break;
-				}
-				
-				for(int i=0; i<4; i++)
-				{
-					if(tmpE->getJoueur(i) == NULL)
-					{
-						tmpE->setJoueur(tmpJ, i);
-						i = 4;
-						full =0;
-					}
-				}
-				if( full == 1)
-				{
-					if(verbose==1 || error ==1)
-						cerr << "equipe plein impossible de rajouter le joueur "<<endl;
 				}
 				else
 				{
-					if(verbose==1)
-						cout <<endl<< "Joueur ajouter a l'equipe !"<< endl << *tmpE<<endl;
+					cout << "Veuillez entrer le numero de matricule du joueur "<< endl;
+					cin >> num;
+				
+					tmpJ = getJoueurWithNum(&listeJoueur, num);
+					if(tmpJ == NULL)
+					{
+						if(verbose==1 || error ==1)
+							cerr << "erreur joueur non existant!"<<endl;
+					}
+					else
+					{
+						for(int i=0; i<4; i++)
+						{
+							if(tmpE->getJoueur(i) == NULL)
+							{
+								tmpE->setJoueur(tmpJ, i);
+								i = 4;
+								full =0;
+							}
+						}
+						if( full == 1)
+						{
+							if(verbose==1 || error ==1)
+								cerr << "equipe plein impossible de rajouter le joueur "<<endl;
+						}
+						else
+						{
+							if(verbose==1)
+								cout <<endl<< "Joueur ajouter a l'equipe !"<< endl << *tmpE<<endl;
+						}
+						sprintf(tmp,"%s.dat", nomClub);
+						if( verbose==1)
+							cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
+						SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
+					}
 				}
-				sprintf(tmp,"%s.dat", nomClub);
-				if( verbose==1)
-					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
-				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				break;
-			}
-			
+			}//fin case 8
 			case 9:
 			{
 				//retirer un joueur d'une equipe
@@ -773,30 +809,32 @@ void menuClub(char* nomClub)
 				{
 					if(error == 1 || verbose==1)
 						cerr << "erreur Equipe non existante!"<<endl;
-					break;
 				}
-				cout << "Veuillez entrer le numero de matricule du joueur "<< endl;
-				cin >> num;
-				
-				tmpJ = getJoueurWithNum(&listeJoueur, num);
-				if(tmpJ == NULL)
+				else
 				{
-					if(error == 1 || verbose==1)
-						cerr << "erreur joueur non existant!"<<endl;
-					break;
+					cout << "Veuillez entrer le numero de matricule du joueur "<< endl;
+					cin >> num;
+				
+					tmpJ = getJoueurWithNum(&listeJoueur, num);
+					if(tmpJ == NULL)
+					{
+						if(error == 1 || verbose==1)
+							cerr << "erreur joueur non existant!"<<endl;
+					}
+					else
+					{
+						removeJoueurFromEquipe(tmpE, tmpJ);
+				
+						if(verbose==1)
+							cout << "joueur enlever de l'equipe"<<endl;
+						sprintf(tmp,"%s.dat", nomClub);
+						if( verbose==1)
+							cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
+						SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
+					}
 				}
-				
-				removeJoueurFromEquipe(tmpE, tmpJ);
-				
-				if(verbose==1)
-					cout << "joueur enlever de l'equipe"<<endl;
-				sprintf(tmp,"%s.dat", nomClub);
-				if( verbose==1)
-					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
-				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);
 				break;
-			}
-			
+			}//fin case 9
 			case 10:
 			{
 				//afficher detail une equipe
@@ -818,14 +856,12 @@ void menuClub(char* nomClub)
 				
 				break;
 			}
-			
 			case 11:
 			{
 				//afficher toutes les equipes
 				printListeEquipe(listeEquipe);
 				break;
 			}
-			
 			case 12:
 			{
 				//supprimer une equipe
@@ -849,14 +885,34 @@ void menuClub(char* nomClub)
 					cout << "Sauvegarde dans : "<<tmp<<endl<<endl;
 				SaveJoueurAndEquipe(tmp, &listeClub, &listeJoueur, &listeEquipe);	
 				break;
-			}
-			
-		}
+			}//fin case 12
+		}//fin switch
 		
 		WaitHit();
 		cleanScreen();
 		//cout<<endl<<endl<<endl;
-	}
+		}
+		catch(InvalidClassementException &e)
+		{
+			//
+			cout << "erreur classement :"<<e.getMsg()<<endl;
+		}
+		catch(InvalidPasswordException &e)
+		{
+			//
+			cout << "erreur password :"<<e.getMsg()<<endl;
+		}
+		catch(ExceptionMessage &e)
+		{
+			//
+			cout << "erreur :"<<e.getMsg()<<" --- "<<e.getNbrErr()<<endl;
+		}
+		catch(...)
+		{
+			//erreur inconnue
+			cout << "erreur inconue"<<endl;
+		}
+	}//fin while menu club
 }
 
 
