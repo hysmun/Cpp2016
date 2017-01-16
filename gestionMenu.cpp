@@ -22,7 +22,6 @@ using namespace std;
 #include "ExceptionMessage.h"
 #include "Matricule.h"
 #include "Iterateur.h"
-#include "utils.h"
 #include "gestionMenu.h"
 
 extern int verbose;
