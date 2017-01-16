@@ -858,7 +858,6 @@ void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,List
 int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,ListeTriee<Club> *listeClub)
 {
 	//lancer un match + exporter resultat en .txt
-	filebuf fichier;
 	int clubDom, clubVis, cptTmp=0; 
 	char letDom,letVis;
 	int nbrJoueurDom, nbrJoueurVis, nbrMatch;
@@ -866,35 +865,16 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	char lettre[4] = {'A','B','C','D'};
 	char nomFich[20];
 	Equipe *pEquipeVis, *pEquipeDom;
-	cout << "Saisir nom du fichier pour exportation (sans son extension) : ";
-	cin >> nomFich;
-	strcat(nomFich,".txt");
-	if(!fichier.open(nomFich,ios::out))
-	{
-		cout << "Erreur de fichier" << endl;
-		return -1;
-	}
-	ostream flux(&fichier);
 	cout << "Equipe domicile : " << endl;
-	flux << "Equipe domicile : " << endl;
 	cout << "Num Club ? ";
-	flux << "Num Club ? ";
 	cin >> clubDom;
-	flux << clubDom << endl;
 	cout << "Lettre de l'equipe ? ";
-	flux << "Lettre de l'equipe ? ";
 	cin >> letDom;
-	flux << letDom << endl;
 	cout << "Equipe visiteur ? " << endl;
-	flux << "Equipe visiteur ? " << endl;
 	cout << "Num Club ? ";
-	flux << "Num Club ? ";
 	cin >> clubVis;
-	flux << clubVis << endl;
 	cout << "Lettre de l'equipe ? ";
-	flux << "Lettre de l'equipe ? ";
 	cin >> letVis;
-	flux << letVis << endl;
 	//vérif si existe
 	pClubDom = getClubWithNum(listeClub, clubDom);
 	pClubVis = getClubWithNum(listeClub, clubVis);
@@ -1123,8 +1103,173 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			}//fin for() j=4
 			cout << ") : "<< tmpRes << "/" << nbrJoueurDom << ", "<< tmpPts << " points"<<endl;
 		}
-	}//fin for() j=4
-	fichier.close();
+	}//fin for() j=4	
+	//on a toute les données
+	
+	//on exporte dans un txt
+	cout << "Veuillez entrez le nom de fichier avec l'extension :"<<endl;
+	cin >> buf;
+	
+	ofstream fichier(buf,ios::out);
+	if(!fichier.is_open())
+	{
+		throw ExceptionMessage("fichier incorrecte ouverture impossible!");
+	}
+	else
+	{
+		//ecriture dans fichier
+		fichier << "**** Rencontre de division : " << pEquipeDom->getDivision() << " ****************" << endl;
+		fichier << "Equipe à domicile : " << pEquipeDom->getClub()->getNom() << " " << pEquipeDom->getNumero() << endl;
+		Cpt=0;
+		for(i=0;i<4;i++)
+		{
+			if(pEquipeDom->getJoueur(i) == NULL)
+			{
+			}
+			else
+			{
+				fichier << "Joueur " << Cpt+1 << " : " << pEquipeDom->getJoueur(i)->getNom() << " " << pEquipeDom->getJoueur(i)->getPrenom() << " ";
+				if(pEquipeDom->getJoueur(i)->getClassement() == NULL)
+					fichier << "NC" << endl;
+				else
+					fichier << *pEquipeDom->getJoueur(i)->getClassement() << endl;
+				Cpt++;
+			}
+		}//fin for() i=4
+		fichier << endl;
+		fichier << "Equipe visiteuse : " << pEquipeVis->getClub()->getNom() << " " << pEquipeVis->getNumero() << endl;
+		i=0;
+		Cpt=0;
+		for(i=0;i<4;i++)
+		{
+			if(pEquipeVis->getJoueur(i) == NULL)
+			{
+			}
+			else
+			{
+				fichier << "Joueur " << lettre[Cpt] << " : " << pEquipeVis->getJoueur(i)->getNom() << " " << pEquipeVis->getJoueur(i)->getPrenom() << " ";
+				if(pEquipeVis->getJoueur(i)->getClassement() == NULL)
+					fichier << "NC" << endl;
+				else
+					fichier << *pEquipeVis->getJoueur(i)->getClassement() << endl;
+				Cpt++;
+			}
+		}//fin for() i=4
+		fichier << "***** Encodage des resultats ********************************"<<endl;
+		for(int i=0; i<4; i++)
+		{
+			cptTmp=0;
+			for(int j=0; j<4; j++)
+			{
+				if( pEquipeDom->getJoueur(i) != NULL && pEquipeVis->getJoueur(j) != NULL)
+				{
+					fichier << i << " contre " << lettre[cptTmp] << " ? "<< resultat[i][j][0]<<"-"<<resultat[i][j][0]<<endl;
+				}
+			}//fin for() j=4
+		}//fin for() i=4
+		
+		fichier << "***** Analyse des resultats **********************************" <<endl;
+	
+		if(pointEquipeDom == pointEquipeVis)
+		{
+			//Egalité
+			fichier << "Egalite de "<<flush;
+			pEquipeDom->printfClubLettre();
+			fichier << " contre "<<flush;
+			pEquipeVis->printfClubLettre();
+			fichier << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
+		}
+		if(pointEquipeDom > pointEquipeVis)
+		{
+			//dom victoire vis
+			fichier << "Victoire de "<<flush;
+			pEquipeDom->printfClubLettre();
+			fichier << " contre "<<flush;
+			pEquipeVis->printfClubLettre();
+			fichier << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
+		}
+		if(pointEquipeDom < pointEquipeVis)
+		{
+			//vis victoire dom
+			fichier << "Victoire de "<<flush;
+			pEquipeVis->printfClubLettre();
+			fichier << " contre "<<flush;
+			pEquipeDom->printfClubLettre();
+			fichier << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
+		}
+		//affichage des res par joueur
+	
+		//joueur dom
+		cptTmp=0;
+		for(int i=0; i<4; i++)
+		{
+			if( pEquipeDom->getJoueur(i) != NULL)
+			{
+				fichier << "Joueur " << cptTmp+1 << " (" << pEquipeDom->getJoueur(i)->getNom()<<flush;
+				fichier << " " << pEquipeDom->getJoueur(i)->getPrenom()<<", " << flush;
+				cptTmp++;
+				if(pEquipeDom->getJoueur(i)->getClassement() != NULL )
+					fichier << *pEquipeDom->getJoueur(i)->getClassement() <<flush;
+				else
+					fichier << "NC"<<flush;
+				int tmpRes=0;
+				int tmpPts=0;
+				for(int j=0; j<4; j++)
+				{
+					if(pEquipeVis->getJoueur(j) != NULL)
+					{
+						if(resultat[i][j][0] > resultat[i][j][1])
+						{
+							tmpRes++;
+							if(pEquipeDom->getJoueur(i)->getClassement() != NULL && pEquipeVis->getJoueur(j)->getClassement() != NULL)
+							{
+								//
+								tmpPts += (*pEquipeVis->getJoueur(j)->getClassement() - *pEquipeDom->getJoueur(i)->getClassement());
+							}
+						}
+					}
+				}//fin for() j=4
+				fichier << ") : "<< tmpRes << "/" << nbrJoueurVis << ", "<< tmpPts << " points"<<endl;
+			}
+		}//fin for() i=4
+	
+		//Joueur vis
+		cptTmp=0;
+		for(int j=0; j<4; j++)
+		{
+			if( pEquipeVis->getJoueur(j) != NULL)
+			{
+				fichier << "Joueur " << lettre[cptTmp] << " (" << pEquipeVis->getJoueur(j)->getNom()<<flush;
+				fichier << " " << pEquipeVis->getJoueur(j)->getPrenom()<<", " << flush;
+				cptTmp++;
+				if(pEquipeVis->getJoueur(j)->getClassement() != NULL )
+					fichier << *pEquipeVis->getJoueur(j)->getClassement() <<flush;
+				else
+					fichier << "NC"<<flush;
+				int tmpRes=0;
+				int tmpPts=0;
+				for(int i=0; i<4; i++)
+				{
+					if(pEquipeDom->getJoueur(i) != NULL)
+					{
+						if(resultat[i][j][0] < resultat[i][j][1])
+						{
+							tmpRes++;
+							if(pEquipeVis->getJoueur(j)->getClassement() != NULL && pEquipeDom->getJoueur(i)->getClassement() != NULL)
+							{
+								//
+								tmpPts += (*pEquipeDom->getJoueur(i)->getClassement() - *pEquipeVis->getJoueur(j)->getClassement());
+							}
+						}
+					}
+				}//fin for() j=4
+				fichier << ") : "<< tmpRes << "/" << nbrJoueurDom << ", "<< tmpPts << " points"<<endl;
+			}
+		}//fin for() j=4
+		
+	}//fin else !fichier.is_open()
+	
+>>>>>>> 28186514c8c611d42d99e1b79152e9da425ac484
 }
 
 
