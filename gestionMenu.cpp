@@ -858,22 +858,43 @@ void showInfoClub(ListeTriee<Club> listeClub,ListeTriee<Joueur> listeJoueur,List
 int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,ListeTriee<Club> *listeClub)
 {
 	//lancer un match + exporter resultat en .txt
+	filebuf fichier;
 	int clubDom, clubVis, cptTmp=0; 
 	char letDom,letVis;
 	int nbrJoueurDom, nbrJoueurVis, nbrMatch;
 	Club *pClubVis, *pClubDom;
-	char lettre[4] = {'A','B','C','D'}; 
+	char lettre[4] = {'A','B','C','D'};
+	char nomFich[20];
 	Equipe *pEquipeVis, *pEquipeDom;
+	cout << "Saisir nom du fichier pour exportation (sans son extension) : ";
+	cin >> nomFich;
+	strcat(nomFich,".txt");
+	if(!fichier.open(nomFich,ios::out))
+	{
+		cout << "Erreur de fichier" << endl;
+		return -1;
+	}
+	ostream flux(&fichier);
 	cout << "Equipe domicile : " << endl;
+	flux << "Equipe domicile : " << endl;
 	cout << "Num Club ? ";
+	flux << "Num Club ? ";
 	cin >> clubDom;
+	flux << clubDom << endl;
 	cout << "Lettre de l'equipe ? ";
+	flux << "Lettre de l'equipe ? ";
 	cin >> letDom;
+	flux << letDom << endl;
 	cout << "Equipe visiteur ? " << endl;
+	flux << "Equipe visiteur ? " << endl;
 	cout << "Num Club ? ";
+	flux << "Num Club ? ";
 	cin >> clubVis;
+	flux << clubVis << endl;
 	cout << "Lettre de l'equipe ? ";
+	flux << "Lettre de l'equipe ? ";
 	cin >> letVis;
+	flux << letVis << endl;
 	//vérif si existe
 	pClubDom = getClubWithNum(listeClub, clubDom);
 	pClubVis = getClubWithNum(listeClub, clubVis);
@@ -1103,6 +1124,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			cout << ") : "<< tmpRes << "/" << nbrJoueurDom << ", "<< tmpPts << " points"<<endl;
 		}
 	}//fin for() j=4
+	fichier.close();
 }
 
 
