@@ -1183,18 +1183,18 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 		{
 			//dom victoire vis
 			fichier << "Victoire de "<<flush;
-			pEquipeDom->printfClubLettre();
+			fichier << pEquipeDom->getClub()->getNom() << " " << pEquipeDom->getNumero();
 			fichier << " contre "<<flush;
-			pEquipeVis->printfClubLettre();
+			fichier << pEquipeVis->getClub()->getNom() << " " << pEquipeVis->getNumero();
 			fichier << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
 		}
 		if(pointEquipeDom < pointEquipeVis)
 		{
 			//vis victoire dom
 			fichier << "Victoire de "<<flush;
-			pEquipeVis->printfClubLettre();
+			fichier << pEquipeVis->getClub()->getNom() << " " << pEquipeVis->getNumero();
 			fichier << " contre "<<flush;
-			pEquipeDom->printfClubLettre();
+			fichier << pEquipeDom->getClub()->getNom() << " " << pEquipeDom->getNumero();
 			fichier << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
 		}
 		//affichage des res par joueur
@@ -1269,7 +1269,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 		
 	}//fin else !fichier.is_open()
 	
->>>>>>> 28186514c8c611d42d99e1b79152e9da425ac484
+
 }
 
 
