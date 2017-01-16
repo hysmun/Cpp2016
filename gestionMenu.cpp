@@ -643,7 +643,7 @@ int LoadJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 		//erreur !!!
 		if(verbose==1 || error == 1)
 		{
-			cout << "erreur parametre fct load j&e"<endl;
+			cout << "erreur parametre fct load j&e"<<endl;
 		}
 	}
 	else
