@@ -59,7 +59,6 @@ int main(int argc, char *argv[])
 	error = 1;
 	for(int j=1; j<argc; j++)
 	{
-		//cout << "mode "<<endl;
 		switch(argv[j][0])
 		{
 			case '-':
@@ -141,13 +140,10 @@ int main(int argc, char *argv[])
 		}
 		else
 		{
-			//cout << "chargement liste secretaire"<< endl;
 			listeSec.Load(fichier);
 			fichier.close();
 			if(verbose == 1)
 				cout <<"chargement fichier secretaire "<<endl;
-			//cout << "affichage liste secretaire !!!"<< endl;
-			//printListeSec(listeSec);
 		}
 		
 		
@@ -220,20 +216,19 @@ int main(int argc, char *argv[])
 			}
 			
 			
-			menuFed();	//lancer l'interface grand manitou
+			menuFed();
 		}
 		else
 		{
 			listeClub.Affiche();
 			clubSec = getClubWithNum(&listeClub, numeroClub);
-			//cout << "Club : "<<tmpC<<endl<< *tmpC;
 			if(clubSec != NULL)
 			{
 				strcpy(nomClub, clubSec->getNom());
 				char Nomfichier[255];
 				sprintf(Nomfichier, "%s.dat", nomClub);
 				LoadJoueurAndEquipe(Nomfichier, &listeClub, &listeJoueur, &listeEquipe);
-				menuClub(nomClub);	//lancer l'interface petite bite
+				menuClub(nomClub);
 			}
 		}
 	}
@@ -513,7 +508,6 @@ void menuFed()
 		}
 		WaitHit();
 		cleanScreen();
-		//cout<<endl<<endl<<endl;
 	}
 }
 
@@ -855,7 +849,6 @@ void menuClub(char* nomClub)
 		
 		WaitHit();
 		cleanScreen();
-		//cout<<endl<<endl<<endl;
 	}
 }
 
