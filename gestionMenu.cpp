@@ -264,9 +264,12 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 			{
 				pass = 0;
 				fichiertxt.seekg(-1, ios::cur);
+				
+				//on prends la ligne a analyser
 				fichiertxt.getline(tmpS, 255, '\n');
 				strcpy(tmpS2, tmpS);
 				
+				//on separe les differents champs
 				nomtmp = strtok(tmpS, ",");
 				prenomtmp = strtok(NULL, ",");
 				matrictmp = strtok(NULL, ",");
@@ -275,6 +278,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				if(verbose==1)
 					cout << "Lu : " <<tmpS2<<endl;
 				
+				//on set le joueur
 				matriculeint=atoi(matrictmp);
 				jtmp.setNom(nomtmp);
 				jtmp.setPrenom(prenomtmp);
@@ -282,7 +286,8 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				Matricule mtmp;
 				mtmp.setNumero(matriculeint);
 				jtmp.setMatricule(mtmp);
-
+				
+				//cas si c'est NC
 				if(classtmp[0] == 'N' && classtmp[1] == 'C')
 				{
 					if(error == 1 || verbose==1)
@@ -290,6 +295,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				}
 				else
 				{
+					//on set le classement si c'est pas NC
 					Classement cltmp(classtmp);
 					jtmp.setClassement(&cltmp);
 				}		
@@ -297,6 +303,7 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 				{
 					if((&itJoueur)->getMatricule().getNumero() == jtmp.getMatricule().getNumero())
 					{
+						//un joueur avec le même matricule existe deja
 						pass = 1;
 					}
 				}
@@ -305,6 +312,11 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 					if(verbose==1)
 						cout << "insertion d'un joueur "<<endl;
 					listeJoueur->insere(jtmp);
+				}
+				else
+				{
+					if(verbose == 1 || error == 1)
+						cout << "un joueur avec le même le même matricule existe deja "<<endl;
 				}
 				
 			}
@@ -315,12 +327,10 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 					cerr << "erreur classement !"<<e.getMsg()<<endl;
 				
 			}
-			catch(ExceptionMessage &e)
-			{
-				//erreur generale
-				throw ExceptionMessage(e);
-			}
+			//pour le flag eof
 			fichiertxt.get(c);
+			
+			//on reset les variables
 			classtmp = NULL;
 			nomtmp = NULL;
 			prenomtmp = NULL;
@@ -332,13 +342,13 @@ int importFichierJoueur(ListeTriee<Joueur> *listeJoueur, char* nomFich, int nume
 	}
 }
 
-
 int CreeEquipe(ListeTriee<Club> *listeClub, Liste<Equipe> *listeEquipe, int num)
 {
 	//
 	Equipe tmpE;
 	Club *tmpC;
 	
+	//on recupere le club
 	if((tmpC = getClubWithNum(listeClub, num)) == NULL)
 	{
 		//erreur
@@ -361,9 +371,6 @@ int CreeEquipe(ListeTriee<Club> *listeClub, Liste<Equipe> *listeEquipe, int num)
 		return 1;
 	}
 }
-
-
-
 
 void bidonnageSec()
 {
@@ -402,9 +409,11 @@ int testSecLogin(Liste<Secretaire> listeSec, Secretaire *sec)
 	{
 		if(!strcmp((&itSec)->getLogin(), sec->getLogin()) && !strcmp((&itSec)->getPassword(), sec->getPassword()))
 		{
+			//on a le bon secretaire
 			*sec = *(&itSec);
 			if(verbose==1)
 				cout << "trouver !"<< endl;
+			//on retourne le club
 			return (&itSec)->getNumClub();
 		}
 	}
@@ -418,20 +427,15 @@ int printListeSec(Liste<Secretaire> listeSec)
 	cout<< endl;
 	for(i=0; pParc.end() == 0; i++)
 	{
+		//affichage de la secretaire
 		cout << "secretaire "<< i<<endl;
 		cout << &pParc <<endl;
 		pParc++;
 	}
-	
 }
-
-
-
-
 
 int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTriee<Joueur> *listeJoueur, Liste<Equipe> *listeEquipe)
 {
-	
 	int len, tmp, i;
 	
 	if(nomFichier == NULL || listeClub == NULL || listeJoueur == NULL | listeEquipe == NULL)
@@ -449,51 +453,49 @@ int SaveJoueurAndEquipe(char *nomFichier, ListeTriee<Club> *listeClub, ListeTrie
 			cout << "save j&e "<<endl;
 		
 		tmp = listeJoueur->getNombreElements();
+		//on enregistre le nbr d'elem
 		fichier.write((char *)&tmp, sizeof(int));
 		
-		
+		//on save les joueurs
 		listeJoueur->Save(fichier);
-		
 		
 		for(ItE.reset(); ItE.end() == 0; ItE++)
 		{
+			//on save le numero de club
 			tmp = (&ItE)->getClub()->getNumClub();
 			fichier.write((char *)&(tmp), sizeof(int));
+			//le numero de l'equipe
 			tmp = (&ItE)->getNumero();
 			fichier.write((char *)&(tmp), sizeof(int));
 			
+			//la division
 			len = strlen((&ItE)->getDivision())+1;
 			fichier.write((char *)&len, sizeof(int));
 			fichier.write((&ItE)->getDivision(), len);
 			
-			
+			//les joueurs
 			for(i=0; i<4; i++)
 			{
 				if((&ItE)->getJoueur(i) != NULL)
 				{
+					//cas joueur present
 					tmp = (&ItE)->getJoueur(i)->getMatricule().getNumero();
 					fichier.write((char *) &(tmp), sizeof(int));
 				}
 				else
 				{
+					//cas joueur non present
 					tmp = 0;
 					fichier.write((char *) &tmp, sizeof(int));
 				}
 			}
-			
 		}
 		if(verbose==1)
 			cout << "fin save "<<endl;
 		fichier.close();
-		
 	}
 	return 1;
 }
-
-
-
-
-
 
 
 Club *getClubWithNum(ListeTriee<Club> *listeClub, int num)
