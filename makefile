@@ -1,4 +1,4 @@
-#.SILENT:
+.SILENT:
 ALLPROG= Test1 Test2 Test3 Test4 Test5 Test6 Test7 main mainTest
 ALLOBJ = Joueur.o Matricule.o Classement.o Personne.o Membre.o Secretaire.o InvalidClassementException.o InvalidPasswordException.o ListeBase.o Liste.o ListeTriee.o Iterateur.o Equipe.o Club.o ExceptionMessage.o gestionMenu.o
 ALLCPP = 
