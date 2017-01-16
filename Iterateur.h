@@ -18,7 +18,6 @@ class Iterateur
 		
 	public:
 		Iterateur(ListeBase<T> &l) : liste(l), currentPos(l.pTete) {};
-		//Iterateur(ListeBase<T> &l) {liste = &l; currentPos = l.pTete;};
 		void reset();
 		bool end();
 		void operator++(int);
