@@ -1174,9 +1174,9 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 		{
 			//Egalité
 			fichier << "Egalite de "<<flush;
-			pEquipeDom->printfClubLettre();
+			fichier << pEquipeDom->getClub()->getNom() << " " << pEquipeDom->getNumero();
 			fichier << " contre "<<flush;
-			pEquipeVis->printfClubLettre();
+			fichier << pEquipeVis->getClub()->getNom() << " " << pEquipeVis->getNumero();
 			fichier << " : "<< pointEquipeDom << "-" << pointEquipeVis<<endl;
 		}
 		if(pointEquipeDom > pointEquipeVis)
@@ -1268,8 +1268,6 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 		}//fin for() j=4
 		
 	}//fin else !fichier.is_open()
-	
-
 }
 
 
