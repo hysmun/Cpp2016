@@ -1268,8 +1268,6 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 		}//fin for() j=4
 		
 	}//fin else !fichier.is_open()
-	
->>>>>>> 28186514c8c611d42d99e1b79152e9da425ac484
 }
 
 
