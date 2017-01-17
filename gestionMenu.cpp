@@ -893,6 +893,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	cin >> clubVis;
 	cout << "Lettre de l'equipe ? ";
 	cin >> letVis;
+	
 	//vérif si existe
 	pClubDom = getClubWithNum(listeClub, clubDom);
 	pClubVis = getClubWithNum(listeClub, clubVis);
@@ -1005,9 +1006,10 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 					else
 						cptTmp++;
 				}
-				Cpt++;
 			}//fin while() resOK = 1
 		}//fin for() j= nbrJoueurVis
+		if(pEquipeDom->getJoueur(i) != NULL)
+			Cpt++;
 	}//fin for() i=nbrJoueurDom
 	//fin encodage resultat
 	
@@ -1186,9 +1188,11 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 				{
 					fichier << Cpt+1 << " contre " << lettre[cptTmp] << " ? "<< resultat[i][j][0]<<"-"<<resultat[i][j][1]<<endl;
 					cptTmp++;
-					Cpt++;
+
 				}
 			}//fin for() j=4
+			if(pEquipeDom->getJoueur(i) != NULL)
+				Cpt++;
 		}//fin for() i=4
 		
 		fichier << "***** Analyse des resultats **********************************" <<endl;
