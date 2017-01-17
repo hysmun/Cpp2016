@@ -971,7 +971,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 	int resOK;
 	int resultat[4][4][2];
 	char buf[255];
-	
+	Cpt=0;
 	for(int i=0; i<4; i++)
 	{
 		cptTmp=0;
@@ -982,7 +982,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			{
 				while(resOK == 0)
 				{
-					cout << i+1 << " contre " << lettre[cptTmp] << " ? "<<flush;
+					cout << Cpt+1 << " contre " << lettre[cptTmp] << " ? "<<flush;
 					
 					cin >> buf;
 			
@@ -1005,6 +1005,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 					else
 						cptTmp++;
 				}
+				Cpt++;
 			}//fin while() resOK = 1
 		}//fin for() j= nbrJoueurVis
 	}//fin for() i=nbrJoueurDom
@@ -1175,6 +1176,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			}
 		}//fin for() i=4
 		fichier << "***** Encodage des resultats ********************************"<<endl;
+		Cpt=0;
 		for(int i=0; i<4; i++)
 		{
 			cptTmp=0;
@@ -1182,8 +1184,9 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			{
 				if( pEquipeDom->getJoueur(i) != NULL && pEquipeVis->getJoueur(j) != NULL)
 				{
-					fichier << i+1 << " contre " << lettre[cptTmp] << " ? "<< resultat[i][j][0]<<"-"<<resultat[i][j][1]<<endl;
+					fichier << Cpt+1 << " contre " << lettre[cptTmp] << " ? "<< resultat[i][j][0]<<"-"<<resultat[i][j][1]<<endl;
 					cptTmp++;
+					Cpt++;
 				}
 			}//fin for() j=4
 		}//fin for() i=4
