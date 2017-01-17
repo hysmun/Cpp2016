@@ -982,7 +982,7 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			{
 				while(resOK == 0)
 				{
-					cout << i << " contre " << lettre[cptTmp] << " ? "<<flush;
+					cout << i+1 << " contre " << lettre[cptTmp] << " ? "<<flush;
 					
 					cin >> buf;
 			
@@ -1182,7 +1182,8 @@ int SimAndExportRes(Liste<Equipe> *listeEquipe,ListeTriee<Joueur> *listeJoueur,L
 			{
 				if( pEquipeDom->getJoueur(i) != NULL && pEquipeVis->getJoueur(j) != NULL)
 				{
-					fichier << i << " contre " << lettre[cptTmp] << " ? "<< resultat[i][j][0]<<"-"<<resultat[i][j][1]<<endl;
+					fichier << i+1 << " contre " << lettre[cptTmp] << " ? "<< resultat[i][j][0]<<"-"<<resultat[i][j][1]<<endl;
+					cptTmp++;
 				}
 			}//fin for() j=4
 		}//fin for() i=4
